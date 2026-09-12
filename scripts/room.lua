@@ -3521,23 +3521,17 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
 
       local fromA = chunk.from_area
       local destA = chunk.dest_area
-      assert(fromA.ceil_h)
-      assert(destA.ceil_h)
 
       local higherA = A.chunk:higher_stair_floor()
       if higherA.ceil_h - higherA.floor_h < 96 then
         A:set_ceil(destA.floor_h + 96)
       end
-      assert(destA.ceil_group)
-      assert(fromA.ceil_group)
 
       if destA.is_outdoor and not fromA.is_outdoor then
-        assert(fromA.ceil_group.h or fromA.ceil_h)
         A:set_ceil(fromA.ceil_group.h or fromA.ceil_h)
         A:set_ceil_mat(fromA.ceil_mat)
         goto skip
       elseif fromA.is_outdoor and not destA.is_outdoor then
-        assert(destA.ceil_group.h or destA.ceil_h)
         A:set_ceil(destA.ceil_group.h or destA.ceil_h)
         A:set_ceil_mat(destA.ceil_mat)
         goto skip
