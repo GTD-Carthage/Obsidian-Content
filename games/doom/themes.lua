@@ -2141,8 +2141,6 @@ DOOM.THEMES =
       gtd_shopping_mall = 50
     },
 
-    outdoor_wall_group_plain_prob = 5,
-
     window_groups =
     {
       barred = 30,

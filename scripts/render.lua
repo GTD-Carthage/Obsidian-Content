@@ -276,7 +276,7 @@ function Render_edge(LEVEL, E, SEEDS)
         A.room.outdoor_wall_group = reqs.group
       end
 
-      if reqs.group == "PLAIN" or rand.odds(THEME.outdoor_wall_group_plain_prob or 10) then
+      if reqs.group == "PLAIN" then
         reqs.group = nil
       end
     end
