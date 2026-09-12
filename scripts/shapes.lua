@@ -17930,6 +17930,28 @@ GROW_TIE =
   }
 },
 
+GROW_TIE_LOOP =
+{
+  prob = 11,
+  skip_prob = 75,
+
+  structure =
+  {
+    "xxx.....xx","xxx/AAA%xx",
+    "1.........","11/A/1%A%1",
+    "1.........","11%A%1/A/1",
+    "xxx.....xx","xxx%AAA/xx",
+  },
+
+  diagonals =
+  {
+         ".A","A.",
+    "1A","A1","1A","A1",
+    "1A","A1","1A","A1",
+         ".A","A."
+  }
+},
+
 GROW_GLASSES =
 {
   prob = 25,
