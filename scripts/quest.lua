@@ -3658,6 +3658,8 @@ function Quest_trim_prefabs(LEVEL)
   -- required
   used_groups["natural_walls"] = 1
   used_groups["marine_closet"] = 1
+  used_groups["wall_stair_1"] = 1
+  used_groups["wall_stair_2"] = 1
 
   -- just because we have outdoors style does not mean
   -- we actually have outdoor rooms
