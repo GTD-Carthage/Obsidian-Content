@@ -231,9 +231,11 @@ function Render_edge(LEVEL, E, SEEDS)
       seed_w = assert(E.long),
 
       height = math.abs(A.ceil_h - A.floor_h),
-
-      on_liquids = E.area.mode
     }
+
+    if E.area.mode == "liquid" then
+      reqs.on_liquids = true
+    end
 
     if reqs.height <= 2 then
       reqs.height = 2
@@ -276,7 +278,7 @@ function Render_edge(LEVEL, E, SEEDS)
         A.room.outdoor_wall_group = reqs.group
       end
 
-      if reqs.group == "PLAIN" or rand.odds(THEME.outdoor_wall_group_plain_prob or 10) then
+      if reqs.group == "PLAIN" then
         reqs.group = nil
       end
     end
@@ -353,12 +355,8 @@ function Render_edge(LEVEL, E, SEEDS)
           local HC = chunk:higher_stair_floor()
           reqs.height = HC.ceil_h - A.floor_h
 
-          if A.room.stair_wall_group then
-            reqs.group = A.room.stair_wall_group
-          else
-            if A.room:get_env() == "building" and HC.floor_group and HC.floor_group.wall_group then
-              reqs.group = HC.floor_group.wall_group
-            end
+          if A.room:get_env() == "building" and HC.floor_group and HC.floor_group.wall_group then
+            reqs.group = HC.floor_group.wall_group
           end
         end
       end
