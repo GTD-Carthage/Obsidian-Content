@@ -3480,6 +3480,10 @@ function Quest_room_themes(LEVEL)
       R.main_tex = R.zone.nature_facade
     end
 
+    if THEME.stair_wall_groups and rand.odds(50) then
+      R.stair_wall_group = rand.key_by_probs(THEME.stair_wall_groups)
+    end
+
     -- create a skin (for prefabs)
     R.skin =
     {

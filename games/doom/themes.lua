@@ -1206,6 +1206,12 @@ DOOM.THEMES =
       ceil_mix_with_w_ultratall = 25
     },
 
+    stair_wall_groups =
+    {
+      wall_stair_1 = 1,
+      wall_stair_2 = 1
+    },
+
     wall_groups =
     {
       PLAIN = 0.01,
@@ -2134,6 +2140,8 @@ DOOM.THEMES =
       --
       gtd_shopping_mall = 50
     },
+
+    outdoor_wall_group_plain_prob = 5,
 
     window_groups =
     {

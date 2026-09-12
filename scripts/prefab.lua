@@ -2878,8 +2878,8 @@ function Fab_find_matches(LEVEL, reqs, match_state)
     end
 
     -- on liquids check
-    if def.on_liquids == "never" and reqs.on_liquids then return 0 end
-    if def.on_liquids == "only" and not reqs.on_liquids then return 0 end
+    if def.on_liquids == "never" and reqs.on_liquids == "liquid" then return 0 end
+    if def.on_liquids == "only" and reqs.on_liquids ~= "liquid" then return 0 end
 
     -- sink check
     if reqs.is_sink and def.sink_mode == "never" then return 0 end
