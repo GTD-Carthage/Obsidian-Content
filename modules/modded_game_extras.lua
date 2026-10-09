@@ -2789,7 +2789,7 @@ function MODDED_GAME_EXTRAS.generate_custom_actor_names()
   actor_name_script = string.gsub( actor_name_script, "SDEMONS_COMPAT_CHECKS", " ")
   actor_name_script = string.gsub( actor_name_script, "GDEMONS_COMPAT_CHECKS", " ")
 
-  if PARAM.marine_gen and PARAM.marine_gen == true then
+  if PARAM.marine_gen and PARAM.marine_gen == 1 then
     actor_name_script = string.gsub( actor_name_script, "MARINE_GEN", MODDED_GAME_EXTRAS.marine_gen_actor_names_code)
   else
     actor_name_script = string.gsub( actor_name_script, "MARINE_GEN", " ")
