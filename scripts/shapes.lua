@@ -6308,7 +6308,7 @@ GROW_LIQUID_POOL_VENT_QUAD_CENTER_BRIDGE_STAIR =
 
 GROW_BRIDGE_CHEVRON_SHAPED =
 {
-  prob = 15,
+  prob = 20,
   skip_prob = 75,
 
   structure =
@@ -6333,7 +6333,7 @@ GROW_BRIDGE_CHEVRON_SHAPED =
 
 GROW_BRIDGE_CHEVRON_SHAPED_UPSIDE_DOWN =
 {
-  prob = 15,
+  prob = 20,
   skip_prob = 75,
 
   structure =
@@ -19220,6 +19220,88 @@ GROW_SHARP =
     "xx..xx..xx","xx11xx11xx",
     "xx..xx..xx","xx11xx11xx",
     "xx11xxxxxx","xx11xxxxxx"
+  }
+},
+
+GROW_SHARP_DIAGONALED =
+{
+  prob = 12,
+  skip_prob = 60,
+
+  structure =
+  {
+    "xx11xxxxxxx","xx11xxxxxxx",
+    "x....x....x","x/11%x/11%x",
+    "...........","AAAAAAAAAAA",
+    "x....x....x","x%11/x%11/x",
+    "xx..xxx..xx","xx11xxx11xx",
+    "x....x....x","x/11%x/11%x",
+    "...........","AAAAAAAAAAA",
+    "x....x....x","x%11/x%11/x",
+    "xx..xxx..xx","xx11xxx11xx",
+  },
+
+  diagonals =
+  {
+    ".1","1.",".1","1.",
+    ".1","1.",".1","1.",
+    ".1","1.",".1","1.",
+    ".1","1.",".1","1."
+  }
+},
+
+GROW_SHARP_DIAGONALED_LIQUID =
+{
+  prob = 15,
+  skip_prob = 65,
+
+  structure =
+  {
+    "xx11xxxxxxx","xx11xxxxxxx",
+    "x....x....x","x/11%x/11%x",
+    "...........","AAAAAAAAAAA",
+    "x.........x","x%11/~%11/x",
+    "xx.......xx","xx11~~~11xx",
+    "x.........x","x/11%~/11%x",
+    "...........","AAAAAAAAAAA",
+    "x....x....x","x%11/x%11/x",
+    "xx..xxx..xx","xx11xxx11xx",
+  },
+
+  diagonals =
+  {
+    ".1","1.",".1","1.",
+    ".1","1~","~1","1.",
+    ".1","1~","~1","1.",
+    ".1","1.",".1","1."
+  }
+},
+
+GROW_SHARP_DIAGONALED_LIQUID_STEEPNESS =
+{
+  prob = 15,
+  skip_prob = 65,
+
+  structure =
+  {
+    "xx11xxxxxxx","xx11xxxxxxx",
+    "xx..xxx..xx","xx11xxx11xx",
+    "x....x....x","x/vv%x/vv%x",
+    "...........","AAAAAAAAAAA",
+    "x.........x","x%AA/~%AA/x",
+    "xx.......xx","xxAA~~~AAxx",
+    "x.........x","x/AA%~/AA%x",
+    "...........","AAAAAAAAAAA",
+    "x....x....x","x%^^/x%^^/x",
+    "xx..xxx..xx","xx11xxx11xx",
+  },
+
+  diagonals =
+  {
+    ".A","A.",".A","A.",
+    ".A","A~","~A","A.",
+    ".A","A~","~A","A.",
+    ".A","A.",".A","A."
   }
 },
 
