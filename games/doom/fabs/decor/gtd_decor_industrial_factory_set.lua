@@ -131,7 +131,9 @@ PREFABS.Decor_gtd_fireblu_wim_boxes =
 PREFABS.Decor_gtd_fireblu_wim_boxes_2 =
 {
   template = "Decor_gtd_fireblu_wim_boxes",
-  map = "MAP02"
+  map = "MAP02",
+
+  height = 128
 }
 
 PREFABS.Decor_gtd_fireblu_wim_boxes_3 =
