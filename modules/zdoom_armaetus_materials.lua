@@ -2845,11 +2845,6 @@ brightmap texture SD_TWDW3
   map OBRTWTW3
 }
 
-brightmap texture SD_TWDW8
-{
-  map OBRTWTW8
-}
-
 brightmap texture SD_TWDW9
 {
   map OBRTWTW9
