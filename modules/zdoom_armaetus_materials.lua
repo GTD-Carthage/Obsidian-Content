@@ -2919,11 +2919,6 @@ brightmap texture SD_TSGF7
   map SDTSFBR7
 }
 
-brightmap texture SD_TSGF9
-{
-  map SDTSFBR9
-}
-
 brightmap texture SD_TSGFA
 {
   map SDTSFBRA
