@@ -2774,43 +2774,26 @@ end
 function Layout_handle_corners(LEVEL)
 
 
-  local function fencepost_base_z(corner)
-    local z
-
-    for _,A in pairs(corner.areas) do
-      z = math.N_max(A.floor_h, z)
-    end
-
-    return z
-  end
-
-
   local function near_porch(corner)
     local near_porch = false
-    local wallish = false
-    local ceil_groups = {}
+    local has_sky = false
+    local has_ceiling = false
 
     for _,A in pairs(corner.areas) do
       if A.is_porch or A.is_porch_neighbor then
         near_porch = true
       end
 
-      if A.ceil_group then
-        table.add_unique(ceil_groups, A.ceil_group)
+      if A:is_open_to_sky() then
+        has_sky = true
+      end
+
+      if A:is_closed_to_sky() then
+        has_ceiling = true
       end
     end
 
-    for _,E in pairs(corner.edges) do
-      if Edge_is_wallish(E) then
-        wallish = true
-      end
-    end
-
-    if #ceil_groups <= 1 and not wallish then
-      return false
-    end
-
-    if near_porch then
+    if near_porch or (has_sky == true and has_ceiling == true) then
       return true
     else
       return false
