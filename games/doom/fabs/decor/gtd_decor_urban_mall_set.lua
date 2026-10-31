@@ -64,7 +64,6 @@ PREFABS.Decor_urban_mall_island_with_seats_EPIC =
     ADVDE4 = 5,
     ADVDE6 = 5,
 
-    O_PILL = 3,
     O_BOLT = 3,
     O_RELIEF = 3,
     O_CARVE = 3
