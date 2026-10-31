@@ -3251,6 +3251,20 @@ function Quest_room_themes(LEVEL)
           R.theme = Z.outdoor_theme
         end
       end
+
+      -- pillarz
+      local reqs =
+      {
+        kind = "pillar",
+        where = "point",
+
+        height = EXTREME_H,
+        size = 128,
+      }
+
+      local def = Fab_pick(LEVEL, reqs)
+
+      Z.pillar_def = def
     end
 
     if THEME.outdoor_wall_groups then
@@ -3499,22 +3513,6 @@ function Quest_room_themes(LEVEL)
       floor = R.floor_mat,  -- can be NIL
       ceil  = R.ceil_mat,   -- ditto
     }
-
-    -- pillarz
-    if not R.is_cave or not R.is_park then
-      local reqs =
-      {
-        kind = "pillar",
-        where = "point",
-
-        height = EXTREME_H,
-        size = 128,
-      }
-
-      local def = Fab_pick(LEVEL, reqs)
-
-      R.pillar_def = def
-    end
   end
 
 

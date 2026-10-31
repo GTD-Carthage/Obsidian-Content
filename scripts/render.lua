@@ -933,7 +933,7 @@ function Render_corner(LEVEL, cx, cy)
     local mx, my = corner.x, corner.y
     local mat = corner.mat
 
-    local def = corner.areas[1].room.pillar_def
+    local def = corner.areas[1].zone.pillar_def
 
     local T = Trans.spot_transform(mx, my, 1024--[[, dir]])
 
