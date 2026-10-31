@@ -4237,7 +4237,8 @@ _NAME_LENGTH_
 - absolutely no comments, explanation, or follow-up
 - give only the name, do not add any explanation
 - no quotation marks, no camelcase, no snakecase
-- avoid using of any nouns that begin with "Kh", "Kr", "Ky", "Ely"
+- no names that begin with "Kh", "Kr", "Ky", "Ely"
+- absolutely no Warhammer 40k
 
 ]]..
 level_data
@@ -4353,10 +4354,9 @@ Rules:
 - Hell is always the ultimate enemy and its demons are the immediate mission threat but be a person, faction, archive, ritual, weapon shipment, infestation, command post, collaborator, or cover-up may interfere
 - the selected Story Plot controls the actual objective and resolution
 - if the acronym UAC is used, it means "Union Aerospace Corporation"
-- please do not mention: the smell of ozone, nexus points, junctions, or sub-levels, structural integrity
 - do not use story writing structures such as negations e.g. "not X, just Y", "not afraid, just careful", and so on
 - no Warhammer 40k
-- keep plot legible rather than abstract
+- keep plot legible with continuity across chapters
 - do not mention Earth, it is only for locational context
 
 The silent marine protagonist is the Doomslayer and needs no introduction, forever fighting an eternal war with hell and answers to no one. 
