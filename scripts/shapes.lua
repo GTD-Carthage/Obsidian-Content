@@ -10487,6 +10487,63 @@ GROW_MAZE_STRAIGHT =
   }
 },
 
+GROW_CRANKSHAFT =
+{
+  prob = 15,
+  skip_prob = 60,
+
+  structure =
+  {
+    "11xxx","11xxx",
+    ".....","AAAAA",
+    ".....","AAAAA",
+    "xxx..","xxx11",
+    ".....","AAAAA",
+    ".....","AAAAA",
+    "..xxx","11xxx",
+    ".....","AAAAA",
+    ".....","AAAAA",
+  }
+},
+
+GROW_CRANKSHAFT_ALT =
+{
+  prob = 15,
+  skip_prob = 60,
+
+  structure =
+  {
+    "11xxx","11xxx",
+    ".....","11AAA",
+    ".....","11AAA",
+    "xxx..","xxx11",
+    ".....","AAA11",
+    ".....","AAA11",
+    "..xxx","11xxx",
+    ".....","11AAA",
+    ".....","11AAA",
+  }
+},
+
+GROW_CRANKSHAFT_ALT_2 =
+{
+  prob = 15,
+  skip_prob = 60,
+
+  structure =
+  {
+    "11xxx","11xxx",
+    ".....","11A11",
+    ".....","11A11",
+    "xxx..","xxx11",
+    ".....","11A11",
+    ".....","11A11",
+    "..xxx","11xxx",
+    ".....","11A11",
+    ".....","11A11",
+  }
+},
+
 GROW_MAZE_ZIGZAG_WIDE =
 {
   prob = 10,
