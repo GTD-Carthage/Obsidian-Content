@@ -4,7 +4,6 @@ PREFABS.Wall_hell_engraving_plain_1 =
   map = "MAP01",
 
   prob = 50,
-  theme = "hell",
 
   group = "gtd_wall_hell_engraving_1",
 
@@ -24,10 +23,11 @@ PREFABS.Wall_hell_engraving_arched_1 =
   map = "MAP02",
 
   prob = 15,
+  theme = "hell",
 
   height = 128,
 
-  tex_ENGRAV1 = 
+  tex_ENGRAV1 =
   {
     DECO1GRY = 1,
     ENGRAV1 = 1,
@@ -35,6 +35,30 @@ PREFABS.Wall_hell_engraving_arched_1 =
     ENGRAV3 = 1,
     ENGRAV4 = 1,
   },
+
+  bound_z2 = 128
+}
+
+
+PREFABS.Wall_hell_engraving_arched_1_tech =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP02",
+
+  prob = 15,
+  theme = "!hell",
+
+  height = 128,
+
+  tex_ENGRAV1 =
+  {
+    DECO1GRY = 1,
+    ENGRAV1 = 1,
+    ENGRAV2 = 1,
+    ENGRAV3 = 1,
+    ENGRAV4 = 1,
+  },
+  tex_SUPPORT3 = "SHAWN01E",
 
   bound_z2 = 128
 }
@@ -62,7 +86,7 @@ PREFABS.Wall_hell_engraving_arched_2 =
   height = 128,
 
   tex_ENGRAV6 = "ENGRAV7",
-  tex_ENGRAV1 = 
+  tex_ENGRAV1 =
   {
     DECO1GRY = 1,
     ENGRAV1 = 1,
@@ -97,7 +121,7 @@ PREFABS.Wall_hell_engraving_arched_3 =
   height = 128,
 
   tex_ENGRAV6 = "ENGRAV8",
-  tex_ENGRAV1 = 
+  tex_ENGRAV1 =
   {
     DECO1GRY = 1,
     ENGRAV1 = 1,

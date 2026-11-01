@@ -176,11 +176,12 @@ function PREFAB_CONTROL.fine_tune_filters()
     tech_o_dfan = 8,
     tech_o_dfan_alt = 8,
     tech_o_dfan_alt_2 = 8,
+    tech_o_dfan_full = 8
 
-    gtd_tekwoodlite_1 = 3,
+    --[[gtd_tekwoodlite_1 = 3,
     gtd_tekwoodlite_2 = 3,
     gtd_tekwoodlite_3 = 3,
-    gtd_tekwoodlite_pillar = 3
+    gtd_tekwoodlite_pillar = 3]]
   }
 
   local new_themes_multipliers =
@@ -191,13 +192,13 @@ function PREFAB_CONTROL.fine_tune_filters()
     any_copperRust = 2,
 
     tech_iStuff = 5,
-    urban_iStuff = 4,]]
+    urban_iStuff = 4,
 
-    tech_wood_lab = 4,
-    urban_wood_lab = 4,
+    tech_wood_lab = 2,
+    urban_wood_lab = 2,]]
 
-    hell_AztecClay = 12,
-    urban_AztecClay = 12,
+    hell_AztecClay = 8,
+    urban_AztecClay = 8,
 
     tech_silver_grate = 24,
     urban_silver_grate = 24

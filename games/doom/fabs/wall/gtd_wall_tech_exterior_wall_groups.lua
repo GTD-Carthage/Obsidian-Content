@@ -707,18 +707,18 @@ PREFABS.Wall_tech_outdoor_dfan_alt =
 
   group = "tech_o_dfan_alt",
 
-  z_fit = {22,24 , 88,89},
+  z_fit = {16,17},
 
   tex_DFAN1 =
   {
-    DFAN1 = 1,
+    DFAN1 = 4,
     DFAN2 = 1,
     DFAN3 = 1,
     DFAN4 = 1
   },
   tex_DFAN2 =
   {
-    DFAN1 = 1,
+    DFAN1 = 4,
     DFAN2 = 1,
     DFAN3 = 1,
     DFAN4 = 1
@@ -730,7 +730,7 @@ PREFABS.Wall_tech_outdoor_dfan_alt_compat =
   template = "Wall_tech_outdoor_dfan_compat",
   map = "MAP29",
 
-  z_fit = {22,24 , 88,89},
+  z_fit = {16,17},
 
   tex_DFAN1 = "BLAKWAL1",
   tex_DFAN2 = "BLAKWAL1"
@@ -758,4 +758,69 @@ PREFABS.Wall_tech_outdoor_dfan_alt_2_compat =
   z_fit = { 8,32 },
 
   tex_DFAN1 = "BLAKWAL1"
+}
+
+--
+
+PREFABS.Wall_tech_outdoor_dfan_alt_2 =
+{
+  template = "Wall_tech_outdoor_dfan",
+  map = "MAP30",
+
+  group = "tech_o_dfan_alt_2",
+
+  z_fit = { 8,32 }
+}
+
+PREFABS.Wall_tech_outdoor_dfan_alt_2_compat =
+{
+  template = "Wall_tech_outdoor_dfan_compat",
+  map = "MAP30",
+
+  group = "tech_o_dfan_alt_2",
+
+  z_fit = { 8,32 },
+
+  tex_DFAN1 = "BLAKWAL1"
+}
+
+--
+
+PREFABS.Wall_tech_outdoor_dfan_full =
+{
+  template = "Wall_tech_outdoor_dfan",
+  map = "MAP31",
+
+  group = "tech_o_dfan_full",
+
+  z_fit = { 8,32 },
+
+  tex_DFAN1 =
+  {
+    DFAN1 = 4,
+    DFAN2 = 1,
+    DFAN3 = 1,
+    DFAN4 = 1
+  },
+  tex_DFAN2 =
+  {
+    DFAN1 = 4,
+    DFAN2 = 1,
+    DFAN3 = 1,
+    DFAN4 = 1
+  }
+}
+
+PREFABS.Wall_tech_outdoor_dfan_full_compat =
+{
+  template = "Wall_tech_outdoor_dfan_compat",
+  map = "MAP31",
+
+  group = "tech_o_dfan_full",
+
+  z_fit = { 8,32 },
+
+  tex_DFAN1 = "BLAKWAL1",
+  tex_DFAN2 = "BLAKWAL1",
+  tex_FENCE2 = "MIDSPACE"
 }
