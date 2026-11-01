@@ -1591,7 +1591,9 @@ DOOM.THEMES =
       --
       gtd_fireblu_where_its_made = 50,
       --
-      gtd_tech_barrier_tek = 50
+      gtd_tech_barrier_tek = 50,
+      --
+      gtd_niche_set = 50
     },
 
     outdoor_wall_groups =
@@ -2172,7 +2174,9 @@ DOOM.THEMES =
       --
       gtd_tech_barrier_tek = 25,
       --
-      gtd_shopping_mall = 50
+      gtd_shopping_mall = 50,
+      --
+      gtd_niche_set = 50
     },
 
     window_groups =
@@ -2728,7 +2732,9 @@ DOOM.THEMES =
       --
       cran_bloodtubes_set = 50,
       --
-      gtd_wall_grated_machines_damaged_wall = 50
+      gtd_wall_grated_machines_damaged_wall = 50,
+      --
+      gtd_niche_set = 50
     },
 
     outdoor_wall_groups =

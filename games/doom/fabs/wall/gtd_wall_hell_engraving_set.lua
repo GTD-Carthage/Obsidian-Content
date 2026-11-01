@@ -40,7 +40,7 @@ PREFABS.Wall_hell_engraving_arched_1 =
 }
 
 
-PREFABS.Wall_hell_engraving_arched_1_tech =
+PREFABS.Wall_hell_engraving_arched_1_industrial =
 {
   template = "Wall_hell_engraving_plain_1",
   map = "MAP02",
@@ -80,6 +80,7 @@ PREFABS.Wall_hell_engraving_arched_2 =
   map = "MAP02",
 
   prob = 15,
+  theme = "hell",
 
   group = "gtd_wall_hell_engraving_2",
 
@@ -94,6 +95,32 @@ PREFABS.Wall_hell_engraving_arched_2 =
     ENGRAV3 = 1,
     ENGRAV4 = 1
   },
+
+  bound_z2 = 128
+}
+
+PREFABS.Wall_hell_engraving_arched_2_industrial =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP02",
+
+  prob = 15,
+  theme = "!hell",
+
+  group = "gtd_wall_hell_engraving_2",
+
+  height = 128,
+
+  tex_ENGRAV6 = "ENGRAV7",
+  tex_ENGRAV1 =
+  {
+    DECO1GRY = 1,
+    ENGRAV1 = 1,
+    ENGRAV2 = 1,
+    ENGRAV3 = 1,
+    ENGRAV4 = 1
+  },
+  tex_SUPPORT3 = "SHAWN01E",
 
   bound_z2 = 128
 }
@@ -115,6 +142,7 @@ PREFABS.Wall_hell_engraving_arched_3 =
   map = "MAP02",
 
   prob = 15,
+  theme = "hell",
 
   group = "gtd_wall_hell_engraving_3",
 
@@ -133,6 +161,32 @@ PREFABS.Wall_hell_engraving_arched_3 =
   bound_z2 = 128
 }
 
+PREFABS.Wall_hell_engraving_arched_3_industrial =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP02",
+
+  prob = 15,
+  theme = "!hell",
+
+  group = "gtd_wall_hell_engraving_3",
+
+  height = 128,
+
+  tex_ENGRAV6 = "ENGRAV8",
+  tex_ENGRAV1 =
+  {
+    DECO1GRY = 1,
+    ENGRAV1 = 1,
+    ENGRAV2 = 1,
+    ENGRAV3 = 1,
+    ENGRAV4 = 1
+  },
+  tex_SUPPORT3 = "SHAWN01E",
+
+  bound_z2 = 128
+}
+
 --
 
 PREFABS.Wall_hell_engraving_dark =
@@ -141,6 +195,7 @@ PREFABS.Wall_hell_engraving_dark =
   map = "MAP03",
 
   height = 128,
+  theme = "hell",
 
   bound_z2 = 128,
 
@@ -153,9 +208,49 @@ PREFABS.Wall_hell_engraving_dark_diag =
   map = "MAP04",
 
   height = 128,
+  theme = "hell",
   where = "diagonal",
 
   bound_z2 = 128,
+
+  group = "gtd_wall_hell_engraving_dark"
+}
+
+PREFABS.Wall_hell_engraving_dark_industrial =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP03",
+
+  height = 128,
+  theme = "!hell",
+
+  bound_z2 = 128,
+
+  tex_D64SUP03 =
+  {
+    LITE3 = 1,
+    COMPRED = 4
+  },
+
+  group = "gtd_wall_hell_engraving_dark"
+}
+
+PREFABS.Wall_hell_engraving_dark_industrial_diag =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP04",
+
+  height = 128,
+  theme = "!hell",
+  where = "diagonal",
+
+  bound_z2 = 128,
+
+  tex_D64SUP03 =
+  {
+    LITE3 = 1,
+    COMPRED = 4
+  },
 
   group = "gtd_wall_hell_engraving_dark"
 }

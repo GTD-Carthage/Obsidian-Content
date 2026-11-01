@@ -176,12 +176,14 @@ function PREFAB_CONTROL.fine_tune_filters()
     tech_o_dfan = 8,
     tech_o_dfan_alt = 8,
     tech_o_dfan_alt_2 = 8,
-    tech_o_dfan_full = 8
+    tech_o_dfan_full = 8,
 
     --[[gtd_tekwoodlite_1 = 3,
     gtd_tekwoodlite_2 = 3,
     gtd_tekwoodlite_3 = 3,
     gtd_tekwoodlite_pillar = 3]]
+
+    gtd_niche_set = 16
   }
 
   local new_themes_multipliers =
