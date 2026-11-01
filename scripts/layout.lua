@@ -2893,7 +2893,7 @@ function Layout_handle_corners(LEVEL)
         for _,A in pairs(corner.areas) do
           -- extend posts all the way to the roof if
           -- neighboring porches
-          if A.is_porch or A.is_porch_neighbor then
+          if A:is_open_to_sky() then
             tallest_floor = EXTREME_H
             goto skip
           end

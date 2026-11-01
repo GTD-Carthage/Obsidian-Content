@@ -2812,14 +2812,6 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
   local function ceilings_must_stay_separated(R, A1, A2)
     assert(A1 ~= A2)
 
-    for _, IC in pairs(R.internal_conns) do
-      if (IC.A1 == A1 and IC.A2 == A2) or
-          (IC.A1 == A2 and IC.A2 == A1)
-      then
-        return (IC.kind == "direct")
-      end
-    end
-
     if A1:touches(A2) then
       if (A1.is_porch and not A2.is_porch) or
       (not A1.is_porch and A2.is_porch) then
@@ -2836,11 +2828,14 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
         A2:is_open_to_sky() and A1:is_closed_to_sky() then
           return true
         end
+      end
+    end
 
-        if (A1.ceil_mat == "_SKY" and A2.ceil_mat ~= "_SKY") or
-        (A1.ceil_mat ~= "_SKY" and A2.ceil_mat == "_SKY") then
-          return true
-        end
+    for _, IC in pairs(R.internal_conns) do
+      if (IC.A1 == A1 and IC.A2 == A2) or
+          (IC.A1 == A2 and IC.A2 == A1)
+      then
+        return (IC.kind == "direct")
       end
     end
 
@@ -2951,19 +2946,21 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
       R.stair_ceil_mode = rand.pick({ "use_dest", "use_from" })
     end
 
-    for _, A in pairs(R.areas) do
+    if R:get_env() == "building" then
+      for _, A in pairs(R.areas) do
 
-      if A.neighbors then
-        for _,N in pairs(A.neighbors) do
+        if A.neighbors then
+          for _,N in pairs(A.neighbors) do
 
-          if N.chunk and N.chunk.kind == "stair" then
-            if N.chunk.from_area == A and R.stair_ceil_mode == "use_dest" then
-              A:set_ceil_group(N.chunk.dest_area.ceil_group)
-            elseif N.chunk.dest_area == A and R.stair_ceil_mode == "use_from" then
-              A:set_ceil_group(N.chunk.from_area.ceil_group)
+            if N.chunk and N.chunk.kind == "stair" then
+              if N.chunk.from_area == A and R.stair_ceil_mode == "use_dest" then
+                A:set_ceil_group(N.chunk.dest_area.ceil_group)
+              elseif N.chunk.dest_area == A and R.stair_ceil_mode == "use_from" then
+                A:set_ceil_group(N.chunk.from_area.ceil_group)
+              end
             end
-          end
 
+          end
         end
       end
     end
@@ -3892,7 +3889,7 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
       if A.peer then
         A.peer.is_outdoor = false
         A.peer.is_porch_neighbor = true
-        A.peer:set_ceil(A.ceil_mat)
+        A.peer:set_ceil_mat(A.ceil_mat)
         A:set_ceil(A.peer.ceil_group.h or A.peer.ceil_h)
       end
     end
@@ -4451,12 +4448,12 @@ function Room_cleanup_stairs_to_nowhere(LEVEL, R)
             SA.is_outdoor = nil
           end
 
-          if SAS.is_porch then
+          --[[if SAS.is_porch then
             SA:set_ceil_group(SAS.ceil_group)
             A:set_ceil_group(SAS.ceil_group)
           elseif not SAS.is_porch then
             SA:set_ceil_group(A.ceil_group)
-          end
+          end]]
         elseif SA.room:get_env() == "building" then
           SA.is_porch_neighbor = nil
 

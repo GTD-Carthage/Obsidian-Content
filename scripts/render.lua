@@ -197,7 +197,7 @@ function Render_edge(LEVEL, E, SEEDS)
     if A.room then
       reqs.env = A.room:get_env()
 
-      if A.is_porch or A.is_porch_neighbor then
+      if A:is_closed_to_sky() then
         reqs.env = "building"
         reqs.porch = true
       end
@@ -1744,14 +1744,16 @@ function Render_ceiling(LEVEL, A, SEEDS)
     if should_do_seed(S) then
       render_seed(S)
 
-      if A.ceil_group and A.ceil_group.sink and
-      (A.ceil_mat and A.ceil_mat ~= "_SKY") then
-        Render_sink_part(LEVEL, A, S, "ceil", A.ceil_group.sink, SEEDS)
-      end
+      if A:is_closed_to_sky() then
 
-      if A.ceil_sink and not A.ceil_group
-      and (A.ceil_mat and A.ceil_mat ~= "_SKY") then
-        Render_sink_part(LEVEL, A, S, "ceil", A.ceil_sink, SEEDS)
+        if A.ceil_group and A.ceil_group.sink then
+          Render_sink_part(LEVEL, A, S, "ceil", A.ceil_group.sink, SEEDS)
+        end
+
+        if A.ceil_sink and not A.ceil_group then
+          Render_sink_part(LEVEL, A, S, "ceil", A.ceil_sink, SEEDS)
+        end
+
       end
 
     end
@@ -1782,8 +1784,8 @@ function Render_chunk(LEVEL, chunk, SEEDS)
   local A = chunk.area
   local R = A.room
 
-  local z1 = chunk.floor_h   or A.floor_h
-  local z2 = chunk.ceil_h    or A.ceil_h
+  local z1 = chunk.floor_h or A.floor_h
+  local z2 = chunk.ceil_h or A.ceil_h or A.zone.sky_h
 
   local floor_mat = chunk.floor_mat or A.floor_mat
   local  ceil_mat = chunk.ceil_mat  or A.ceil_mat
@@ -2542,14 +2544,21 @@ chunk.goal.action = "S1_OpenDoor"  -- FIXME IT SHOULD BE SET WHEN JOINER IS REND
   -- FIXME : reqs.shape
 
   -- room kind and (for joiners) neighbor room kind
+  z1 = A.floor_h
   if A.room then
     reqs.env = A.room:get_env()
 
     reqs.open_to_sky  = chunk.open_to_sky
     reqs.open_to_room = chunk.open_to_room
 
-    if A.room.is_outdoor then
+    if reqs.env == "outdoor" then
       z2 = A.zone.sky_h
+    end
+
+    if chunk.from_area then
+      if chunk.from_area:is_closed_to_sky() then
+        z2 = chunk.from_area.ceil_h
+      end
     end
 
     if A.room.is_natural_park or A.is_clearing then
@@ -2573,7 +2582,10 @@ chunk.goal.action = "S1_OpenDoor"  -- FIXME IT SHOULD BE SET WHEN JOINER IS REND
 
   if z2 then
     reqs.height = z2 - z1
-    assert(reqs.height > 0)
+    assert(reqs.height > 0, 
+      "Chunk height bounding is 0!\n" .. 
+      z2 .. "-" .. z1 .."\n" .. 
+      table.tostr(chunk,1))
   end
 
 
