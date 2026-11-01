@@ -2879,6 +2879,10 @@ function Layout_handle_corners(LEVEL)
         local tallest_ceil = -EXTREME_H
         local lowest_ceil = EXTREME_H
 
+        local sky_facing_roof = false
+        local open_to_sky = false
+        local closed_to_sky = false
+
         for _,A in pairs(corner.areas) do
           tallest_floor = math.max(tallest_floor, A.floor_h)
           tallest_ceil = math.max(tallest_ceil, A.ceil_h)
@@ -2890,11 +2894,13 @@ function Layout_handle_corners(LEVEL)
         for _,A in pairs(corner.areas) do
           -- extend posts all the way to the roof if
           -- neighboring porches
-          if A:is_open_to_sky() then
-            tallest_floor = EXTREME_H
+          if A:is_closed_to_sky() then
+            closed_to_sky = true
+          elseif A:is_open_to_sky() then
+            open_to_sky = true
           end
 
-          if corner.h_diff > 0 then
+          if open_to_sky == true and closed_to_sky == true then
             post_top_z = EXTREME_H
             goto skip
           end
@@ -2905,6 +2911,10 @@ function Layout_handle_corners(LEVEL)
           post_top_z = tallest_floor + junc.E1.rail_offset
 
           ::skip::
+        end
+
+        if corner.h_diff > 0 then
+          post_top_z = EXTREME_H
         end
 
         corner.kind = "post"
