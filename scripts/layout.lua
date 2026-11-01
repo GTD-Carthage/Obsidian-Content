@@ -2875,12 +2875,9 @@ function Layout_handle_corners(LEVEL)
 
         if not Corner_is_at_area_corner(corner) then return end
 
-        local mostly_env = Corner_get_env(corner)
-
         local tallest_floor = -EXTREME_H
         local tallest_ceil = -EXTREME_H
         local lowest_ceil = EXTREME_H
-        local corner_at_differing_height = false
 
         for _,A in pairs(corner.areas) do
           tallest_floor = math.max(tallest_floor, A.floor_h)
@@ -2895,7 +2892,6 @@ function Layout_handle_corners(LEVEL)
           -- neighboring porches
           if A:is_open_to_sky() then
             tallest_floor = EXTREME_H
-            goto skip
           end
 
           if corner.h_diff > 0 then
@@ -2912,6 +2908,12 @@ function Layout_handle_corners(LEVEL)
         end
 
         corner.kind = "post"
+        assert(post_top_z, "No post height found for corner with post\n!" --[[..
+            table.tostr(corner.areas[1],1) .. "\n" ..
+            table.tostr(corner.areas[2],1) .. "\n" ..
+            table.tostr(corner.areas[3],1) .. "\n" ..
+            table.tostr(corner.areas[4],1)]]
+          )
         if corner.post_top_h < post_top_z then
           corner.post_top_h = post_top_z
         end
