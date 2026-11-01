@@ -1988,6 +1988,10 @@ function MODDED_GAME_EXTRAS.create_hn_info(self, LEVEL)
           end
         end
 
+        if A.zone and A.zone.window_group then
+          info.name = info.name .. " (W:" .. A.zone.window_group .. ")" 
+        end
+
         --[[if A.dead_end and A.cg_history then
           info.name = info.name .. " (cg:" .. A.cg_history .. ")"
         end
@@ -2033,8 +2037,10 @@ function MODDED_GAME_EXTRAS.create_hn_info(self, LEVEL)
         local S = A.seeds[1]
         for _,S2 in pairs(A.seeds) do
           if A.mode and A.mode == "floor" then
-            S = S2
-            break;
+            if not S then
+              S = S2
+              break;
+            end
           end
         end
         hn_add_entity(info, S.mid_x, S.mid_y, A.floor_h + 1)
@@ -2300,6 +2306,7 @@ function MODDED_GAME_EXTRAS.create_hn_info(self, LEVEL)
     PARAM.hn_thing_start_offset = PARAM.hn_thing_start_offset + 1
 
     local prefered_S = find_closest_seed_to_center(R)
+    prefered_S.has_marker = true
     if not prefered_S then return end
 
     table.insert(HN_INFO_TABLE, info)
