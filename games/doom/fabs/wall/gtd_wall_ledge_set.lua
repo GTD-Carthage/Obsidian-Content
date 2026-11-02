@@ -19,7 +19,7 @@ PREFABS.Wall_gtd_ledge_1 =
 
 PREFABS.Wall_gtd_ledge_diag =
 {
-  template = "Wall_wall_niche_1",
+  template = "Wall_gtd_ledge_1",
   map = "MAP02",
 
   where = "diagonal"
