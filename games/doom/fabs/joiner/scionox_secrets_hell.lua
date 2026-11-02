@@ -19,5 +19,5 @@ PREFABS.Joiner_hell_alcove_tomb_secret =
   seed_h = 2,
 
   x_fit = "frame",
-  y_fit = "bottom"
+  y_fit = "top"
 }
