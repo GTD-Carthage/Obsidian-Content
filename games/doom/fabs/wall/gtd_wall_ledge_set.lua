@@ -24,3 +24,27 @@ PREFABS.Wall_gtd_ledge_diag =
 
   where = "diagonal"
 }
+
+PREFABS.Wall_gtd_ledge_alt =
+{
+  template = "Wall_gtd_ledge_1",
+  map = "MAP03",
+
+  group = "gtd_ledge_alt_set",
+
+  height = 169,
+  bound_z2 = 169
+}
+
+PREFABS.Wall_gtd_ledge_alt_diag =
+{
+  template = "Wall_gtd_ledge_1",
+  map = "MAP04",
+
+  group = "gtd_ledge_alt_set",
+
+  where = "diagonal",
+
+  height = 169,
+  bound_z2 = 169
+}

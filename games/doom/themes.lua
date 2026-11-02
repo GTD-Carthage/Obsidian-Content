@@ -1593,7 +1593,8 @@ DOOM.THEMES =
       --
       gtd_tech_barrier_tek = 50,
       --
-      gtd_ledge_set = 50
+      gtd_ledge_set = 25,
+      gtd_ledge_alt_set = 25
     },
 
     outdoor_wall_groups =
@@ -2176,7 +2177,8 @@ DOOM.THEMES =
       --
       gtd_shopping_mall = 50,
       --
-      gtd_ledge_set = 50
+      gtd_ledge_set = 25,
+      gtd_ledge_alt_set = 25
     },
 
     window_groups =
@@ -2734,7 +2736,8 @@ DOOM.THEMES =
       --
       gtd_wall_grated_machines_damaged_wall = 50,
       --
-      gtd_ledge_set = 50
+      gtd_ledge_set = 25,
+      gtd_ledge_alt_set = 25
     },
 
     outdoor_wall_groups =

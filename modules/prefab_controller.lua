@@ -183,7 +183,8 @@ function PREFAB_CONTROL.fine_tune_filters()
     gtd_tekwoodlite_3 = 3,
     gtd_tekwoodlite_pillar = 3]]
 
-    gtd_ledge_set = 12
+    gtd_ledge_set = 16,
+    gtd_ledge_alt_set = 16
   }
 
   local new_themes_multipliers =
