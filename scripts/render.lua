@@ -2544,7 +2544,12 @@ chunk.goal.action = "S1_OpenDoor"  -- FIXME IT SHOULD BE SET WHEN JOINER IS REND
   -- FIXME : reqs.shape
 
   -- room kind and (for joiners) neighbor room kind
-  z1 = A.floor_h
+
+  -- park chunks have a pre-assigned z1
+  if A.room and A.room:get_env() ~= "park" then
+    z1 = A.floor_h
+  end
+
   if A.room then
     reqs.env = A.room:get_env()
 
