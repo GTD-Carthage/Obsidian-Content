@@ -1636,6 +1636,33 @@ OBS_RESOURCE_PACK_MATERIALS = {
   G_OTBBFC = { t="G_OTBBWC", f="G_OTBBFC"},
   G_OTBBFD = { t="G_OTBBW6", f="G_OTBBFD"},
 
+  -- vent mania
+  G_OVNTW1 = { t="G_OVNTW1", f="G_OVNTF1"},
+  G_OVNTW2 = { t="G_OVNTW2", f="G_OVNTF2"},
+  G_OVNTW3 = { t="G_OVNTW3", f="G_OVNTF3"},
+  G_OVNTW4 = { t="G_OVNTW4", f="G_OVNTF4"},
+  G_OVNTW5 = { t="G_OVNTW5", f="G_OVNTF5"},
+  G_OVNTW6 = { t="G_OVNTW6", f="G_OVNTF6"},
+  G_OVNTW7 = { t="G_OVNTW7", f="G_OVNTF7"},
+  G_OVNTW8 = { t="G_OVNTW8", f="G_OVNTF8"},
+  G_OVNTW9 = { t="G_OVNTW9", f="G_OVNTF9"},
+  G_OVNTWA = { t="G_OVNTWA", f="G_OVNTFA"},
+  G_OVNTWB = { t="G_OVNTWB", f="G_OVNTFB"},
+  G_OVNTWC = { t="G_OVNTWC", f="G_OVNTFC"},
+  -- flats
+  G_OVNTF1 = { t="G_OVNTW1", f="G_OVNTF1"},
+  G_OVNTF2 = { t="G_OVNTW2", f="G_OVNTF2"},
+  G_OVNTF3 = { t="G_OVNTW3", f="G_OVNTF3"},
+  G_OVNTF4 = { t="G_OVNTW4", f="G_OVNTF4"},
+  G_OVNTF5 = { t="G_OVNTW5", f="G_OVNTF5"},
+  G_OVNTF6 = { t="G_OVNTW6", f="G_OVNTF6"},
+  G_OVNTF7 = { t="G_OVNTW7", f="G_OVNTF7"},
+  G_OVNTF8 = { t="G_OVNTW8", f="G_OVNTF8"},
+  G_OVNTF9 = { t="G_OVNTW9", f="G_OVNTF9"},
+  G_OVNTFA = { t="G_OVNTWA", f="G_OVNTFA"},
+  G_OVNTFB = { t="G_OVNTWB", f="G_OVNTFB"},
+  G_OVNTFC = { t="G_OVNTWC", f="G_OVNTFC"},
+
   -- tech wood
   G_OTWDW1 = { t="G_OTWDW1", f="G_OTWDF1"},
   G_OTWDW2 = { t="G_OTWDW2", f="G_OTWDF2"},
@@ -1660,6 +1687,10 @@ OBS_RESOURCE_PACK_MATERIALS = {
   G_OTWDF6 = { t="G_OTWDW6", f="G_OTWDF1"},
   G_OTWDF7 = { t="G_OTWDW7", f="G_OTWDF3"},
   G_OTWDF8 = { t="G_OTWDW8", f="G_OTWDF5"},
+  -- lights
+  G_OTWDL1 = { t="G_OTWDL1", f="G_OTWDF6"},
+  G_OTWDL2 = { t="G_OTWDL2", f="G_OTWDF5"},
+  G_OTWDL3 = { t="G_OTWDL3", f="G_OTWDF4"},
 
   -- copper rust
   G_OCURW1 = { t="G_OCURW1", f="G_OCURF1"},
@@ -2794,22 +2825,22 @@ brightmap texture SD_TWLW3
   map STWLW3BR
 }
 
-brightmap texture SD_TSGW7
+brightmap texture G_OVNTW7
 {
   map STGSW7BR
 }
 
-brightmap texture SD_TSGW9
+brightmap texture G_OVNTW9
 {
   map STGSW9BR
 }
 
-brightmap texture SD_TSGWA
+brightmap texture G_OVNTWA
 {
   map STGSWABR
 }
 
-brightmap texture SD_TSGWC
+brightmap texture G_OVNTWC
 {
   map STGSWCBR
 }

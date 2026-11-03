@@ -1764,6 +1764,127 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  tech_silver_grate = --50
+  {
+    env = "building",
+    prob = 50,
+
+    walls =
+    {
+      G_OVNTW1 = 24,
+      G_OVNTW2 = 24,
+      G_OVNTW3 = 24,
+      G_OVNTW4 = 24,
+      G_OVNTW5 = 24,
+      G_OVNTW6 = 24,
+      G_OVNTW7 = 24,
+      G_OVNTW8 = 24,
+      G_OVNTW9 = 24,
+      G_OVNTWA = 24,
+      G_OVNTWB = 24,
+      G_OVNTWC = 24,
+
+      BRONZEG1 = 5,
+      BROWN2 = 5,
+      BRONZEG2 = 5,
+      BRONZEG3 = 5,
+      BRIKS32 = 5,
+
+      GRAY6 = 5,
+      GRAY8 = 5,
+      GRAY9 = 5,
+      GRAYMET5 = 5,
+
+      SHAWN01C = 5,
+      SHAWN01D = 5,
+      SHAWN01E = 5,
+      SHAWN01F = 5,
+
+      SHAWN4 = 5,
+      SHAWN5 = 5,
+      SHAWSH04 = 5,
+
+      SNOWWAL1 = 5,
+      SNOWWAL2 = 5,
+      SNOWWAL3 = 5
+    },
+
+    floors =
+    {
+      G_OVNTF1 = 20,
+      G_OVNTF2 = 20,
+      G_OVNTF3 = 20,
+      G_OVNTF4 = 20,
+      G_OVNTF5 = 20,
+      G_OVNTF6 = 20,
+      G_OVNTF7 = 20,
+      G_OVNTF8 = 20,
+      G_OVNTF9 = 20,
+      G_OVNTFA = 20,
+      G_OVNTFB = 20,
+      G_OVNTFC = 20,
+
+      GRATE1 = 6,
+      GRATE6 = 6,
+      SHINY04 = 6,
+
+      G_OM_FT1 = 5,
+      G_OM_FT2 = 5,
+      G_OM_FT3 = 5,
+      G_OM_FT4 = 5,
+      G_OM_FT5 = 5,
+      G_OM_FT6 = 5,
+      G_OM_FT7 = 5,
+      G_OM_FT9 = 5,
+      G_OM_FTA = 5,
+
+      OBTBSFL1 = 5,
+      OBTBSFL2 = 5,
+      OBTBSFL3 = 5,
+      OBTSVBF1 = 5,
+      OBTSVBF2 = 5,
+      OBTSVBF3 = 5
+    },
+
+    ceilings =
+    {
+      G_OVNTF1 = 20,
+      G_OVNTF2 = 20,
+      G_OVNTF3 = 20,
+      G_OVNTF4 = 20,
+      G_OVNTF5 = 20,
+      G_OVNTF6 = 20,
+      G_OVNTF7 = 20,
+      G_OVNTF8 = 20,
+      G_OVNTF9 = 20,
+      G_OVNTFA = 20,
+      G_OVNTFB = 20,
+      G_OVNTFC = 20,
+
+      GRATE1 = 6,
+      GRATE6 = 6,
+      SHINY04 = 6,
+
+      G_OM_FT1 = 5,
+      G_OM_FT2 = 5,
+      G_OM_FT3 = 5,
+      G_OM_FT4 = 5,
+      G_OM_FT5 = 5,
+      G_OM_FT6 = 5,
+      G_OM_FT7 = 5,
+      G_OM_FT9 = 5,
+      G_OM_FTA = 5,
+
+      FLAT1 = 6,
+      FLAT18 = 6,
+      FLAT19 = 6,
+      FLAT3 = 6,
+      FLOOR0_3 = 6,
+      FLOOR0_5 = 6,
+      SLIME14 = 6
+    }
+  },
+
   tech_iStuff = --30
   {
     env = "building",
@@ -4909,6 +5030,108 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  urban_silver_grate = --35
+  {
+    env = "building",
+    prob = 35,
+
+    walls =
+    {
+      G_OVNTW1 = 24,
+      G_OVNTW2 = 24,
+      G_OVNTW3 = 24,
+      G_OVNTW4 = 24,
+      G_OVNTW5 = 24,
+      G_OVNTW6 = 24,
+      G_OVNTW7 = 24,
+      G_OVNTW8 = 24,
+      G_OVNTW9 = 24,
+      G_OVNTWA = 24,
+      G_OVNTWB = 24,
+      G_OVNTWC = 24,
+
+      BRONZEG1 = 5,
+      BROWN2 = 5,
+      BRONZEG2 = 5,
+      BRONZEG3 = 5,
+      BRIKS32 = 5,
+
+      GRAY6 = 5,
+      GRAY8 = 5,
+      GRAY9 = 5,
+      GRAYMET5 = 5,
+
+      SHAWN01C = 5,
+      SHAWN01D = 5,
+      SHAWN01E = 5,
+      SHAWN01F = 5,
+
+      SHAWN4 = 5,
+      SHAWN5 = 5,
+      SHAWSH04 = 5,
+
+      SNOWWAL1 = 5,
+      SNOWWAL2 = 5,
+      SNOWWAL3 = 5
+    },
+
+    floors =
+    {
+      G_OVNTF1 = 20,
+      G_OVNTF2 = 20,
+      G_OVNTF3 = 20,
+      G_OVNTF4 = 20,
+      G_OVNTF5 = 20,
+      G_OVNTF6 = 20,
+
+      GRATE1 = 6,
+      GRATE6 = 6,
+      SHINY04 = 6,
+
+      G_OM_FT1 = 5,
+      G_OM_FT2 = 5,
+      G_OM_FT3 = 5,
+      G_OM_FT4 = 5,
+      G_OM_FT5 = 5,
+      G_OM_FT6 = 5,
+      G_OM_FT7 = 5,
+      G_OM_FT9 = 5,
+      G_OM_FTA = 5
+    },
+
+    ceilings =
+    {
+      G_OVNTF1 = 20,
+      G_OVNTF2 = 20,
+      G_OVNTF3 = 20,
+      G_OVNTF4 = 20,
+      G_OVNTF5 = 20,
+      G_OVNTF6 = 20,
+
+      GRATE1 = 6,
+      GRATE6 = 6,
+      SHINY04 = 6,
+
+      G_OM_FT1 = 5,
+      G_OM_FT2 = 5,
+      G_OM_FT3 = 5,
+      G_OM_FT4 = 5,
+      G_OM_FT5 = 5,
+      G_OM_FT6 = 5,
+      G_OM_FT7 = 5,
+      G_OM_FT9 = 5,
+      G_OM_FTA = 5,
+
+      FLAT1 = 6,
+      FLAT18 = 6,
+      FLAT19 = 6,
+      FLAT3 = 6,
+      FLOOR0_3 = 6,
+      FLOOR0_5 = 6,
+      SLIME14 = 6
+    }
+  },
+
   urban_wood_lab = --40
   {
     env = "building",
@@ -6522,6 +6745,15 @@ OBS_RESOURCE_PACK_THEMES =
       G_OTWDWC = 12,
       G_OTWDWD = 12,
       G_OTWDWE = 12,
+
+      G_OVNTW1 = 20,
+      G_OVNTW4 = 20,
+      G_OVNTW5 = 20,
+      G_OVNTW6 = 20,
+      G_OVNTW7 = 20,
+      G_OVNTW8 = 20,
+      G_OVNTWB = 20,
+      G_OVNTWC = 20
     },
 
     fences =
