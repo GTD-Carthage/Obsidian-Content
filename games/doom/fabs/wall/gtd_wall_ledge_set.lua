@@ -30,6 +30,7 @@ PREFABS.Wall_gtd_ledge_alt =
   template = "Wall_gtd_ledge_1",
   map = "MAP03",
 
+  rank = 1,
   group = "gtd_ledge_alt_set",
 
   height = 169,
@@ -41,10 +42,39 @@ PREFABS.Wall_gtd_ledge_alt_diag =
   template = "Wall_gtd_ledge_1",
   map = "MAP04",
 
+  rank = 1,
   group = "gtd_ledge_alt_set",
 
   where = "diagonal",
 
   height = 169,
   bound_z2 = 169
+}
+
+PREFABS.Wall_gtd_ledge_alt_low =
+{
+  template = "Wall_gtd_ledge_1",
+  map = "MAP05",
+
+  group = "gtd_ledge_alt_set",
+
+  height = {88 , 168},
+  bound_z2 = 88,
+
+  z_fit = "bottom"
+}
+
+PREFABS.Wall_gtd_ledge_alt_low_diag =
+{
+  template = "Wall_gtd_ledge_1",
+  map = "MAP05",
+
+  where = "diagonal",
+
+  group = "gtd_ledge_alt_set",
+
+  height = {88 , 168},
+  bound_z2 = 88,
+
+  z_fit = "bottom"
 }

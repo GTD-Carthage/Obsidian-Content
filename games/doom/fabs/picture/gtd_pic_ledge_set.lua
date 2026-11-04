@@ -18,5 +18,18 @@ PREFABS.Pic_gtd_ledge =
   bound_z1 = 0,
   bound_z2 = 96,
 
-  x_fit = "frame",
+  x_fit = "frame"
+}
+
+PREFABS.Pic_gtd_ledge_higher =
+{
+  template = "Pic_gtd_ledge",
+  map = "MAP02",
+
+  group = "gtd_ledge_alt_set",
+
+  height = 169,
+  bound_z2 = 169,
+
+  x_fit = "frame"
 }
