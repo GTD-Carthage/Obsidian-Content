@@ -2773,46 +2773,6 @@ end
 
 function Layout_handle_corners(LEVEL)
 
-
-  local function near_porch(corner)
-    local near_porch = false
-    local has_sky = false
-    local has_ceiling = false
-
-    for _,A in pairs(corner.areas) do
-      if A.is_porch or A.is_porch_neighbor then
-        near_porch = true
-      end
-
-      if A:is_open_to_sky() then
-        has_sky = true
-      end
-
-      if A:is_closed_to_sky() then
-        has_ceiling = true
-      end
-    end
-
-    if near_porch or (has_sky == true and has_ceiling == true) then
-      return true
-    else
-      return false
-    end
-  end
-
-
-  local function near_indoor_fence(junc)
-
-    if junc.A1.room and junc.A1.room:get_env() == "building" or
-    junc.A2.room and junc.A2.room:get_env() == "building" then
-      if junc.E1 and junc.E1.kind == "fence" then return true end
-      if junc.E2 and junc.E2.kind == "fence" then return true end
-    end
-
-    return false
-  end
-
-
   local function fetch_good_pillar_material(corner)
 
     local mostly_env = Corner_get_env(corner)
@@ -2940,6 +2900,61 @@ function Layout_handle_corners(LEVEL)
 
 
   local function check_need_pillar(corner)
+
+    local function edge_of_wall(corner)
+      local wall_count = 0
+
+      for _, junc in ipairs(corner.junctions) do
+        local E = junc.E1
+
+        if E and Edge_is_wallish(E) then
+          wall_count = wall_count + 1
+        end
+      end
+
+      if wall_count == 1 then
+        return true
+      end
+    end
+
+    local function near_porch(corner)
+      local near_porch = false
+      local has_sky = false
+      local has_ceiling = false
+
+      for _,A in pairs(corner.areas) do
+        if A.is_porch or A.is_porch_neighbor then
+          near_porch = true
+        end
+
+        if A:is_open_to_sky() then
+          has_sky = true
+        end
+
+        if A:is_closed_to_sky() then
+          has_ceiling = true
+        end
+      end
+
+      if near_porch or (has_sky == true and has_ceiling == true) then
+        return true
+      else
+        return false
+      end
+    end
+
+    local function near_indoor_fence(junc)
+
+      if junc.A1.room and junc.A1.room:get_env() == "building" or
+      junc.A2.room and junc.A2.room:get_env() == "building" then
+        if junc.E1 and junc.E1.kind == "fence" then return true end
+        if junc.E2 and junc.E2.kind == "fence" then return true end
+      end
+
+      return false
+    end
+
+
     if corner.kind then return end
 
     local pillar_it = false
@@ -2961,7 +2976,8 @@ function Layout_handle_corners(LEVEL)
       -- create support pillars on the corners
       -- where sky and ceilings of any other texture meet 
       if near_porch(corner)
-      or near_indoor_fence(junc) then
+      or near_indoor_fence(junc)
+      or edge_of_wall(corner) then
         pillar_it = true
       end
 
@@ -2978,8 +2994,8 @@ function Layout_handle_corners(LEVEL)
   local function check_corner(cx, cy)
     local corner = Corner_lookup(LEVEL, cx, cy)
 
-    check_need_fencepost(corner)
     check_need_pillar(corner)
+    check_need_fencepost(corner)
   end
 
 
