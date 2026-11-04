@@ -1390,120 +1390,81 @@ end
 
 
 
+
 function Corner_is_at_area_corner(corner)
-  local junctions = corner.junctions
-  local seeds     = corner.seeds
-  local areas     = corner.areas
 
-  -- no pillar when the corner is along colinear or multiple walls
-  local wall_count = 0
+  local seeds = corner.seeds
 
-  for _, junc in ipairs(junctions) do
-    local E = junc.E1
-
-    if E and Edge_is_wallish(E) then
-      wall_count = wall_count + 1
-    end
-  end
-
-  if wall_count >= 2 then
+  -- require exactly four surrounding seeds.
+  if #seeds ~= 4 then
     return false
   end
 
-  -- no pillars if every junction is beam/wall-like
-  local beamish_count = 0
+  -- organize seeds by their actual position around this vertex.
+  -- this avoids relying on the insertion order of corner.seeds.
 
-  for _, junc in ipairs(junctions) do
-    local E = junc.E1
+  local around = {}
 
-    if E and (E.kind == "beams" or Edge_is_wallish(E)) then
-      beamish_count = beamish_count + 1
+  for _,S in ipairs(seeds) do
+    local dir
+
+    if S.sx == corner.cx and S.sy == corner.cy then
+      dir = 1
+    elseif S.sx == corner.cx - 1 and S.sy == corner.cy then
+      dir = 3
+    elseif S.sx == corner.cx - 1 and S.sy == corner.cy - 1 then
+      dir = 9
+    elseif S.sx == corner.cx and S.sy == corner.cy - 1 then
+      dir = 7
+    else
+      return false
     end
+
+    -- don't allow two seeds from the same surrounding cell.
+    if around[dir] then
+      return false
+    end
+
+    around[dir] = S
   end
 
-  if beamish_count == #junctions then
+  -- ensure all four surrounding cells are represented.
+  if not (around[1] and around[3] and around[9] and around[7]) then
     return false
   end
 
-  -- more than two areas meeting here is definitely a corner
-  if #areas > 2 then
-    return true
-  end
+  -- read their areas in circular order.
+  local areas =
+  {
+    around[1].area,
+    around[3].area,
+    around[9].area,
+    around[7].area
+  }
 
-  -- 4 surrounding seeds
-  if #seeds == 4 then
+  -- find where the area boundary changes direction.
+  local transitions = {}
 
-    -- detect non-parallel diagonal boundaries
-    local expected_diagonal =
-    {
-      [1] = 3, -- NW
-      [2] = 1, -- SW
-      [3] = 1, -- NE
-      [4] = 3  -- SE
-    }
+  for i = 1,4 do
+    local prev = (i == 1) and 4 or (i - 1)
 
-    local diagonal_dirs = {}
-
-    for i = 1,4 do
-      local S = seeds[i]
-
-      if S.diagonal and S.diagonal == expected_diagonal[i] then
-        diagonal_dirs[#diagonal_dirs + 1] = S.diagonal
-      end
-    end
-
-    -- opposing / parallel diagonal pairs
-    local parallel_pair =
-      function(a, b)
-        return (a == 1 and b == 9) or
-               (a == 9 and b == 1) or
-               (a == 3 and b == 7) or
-               (a == 7 and b == 3)
-      end
-
-    for i = 1,#diagonal_dirs do
-      for j = i + 1,#diagonal_dirs do
-        if not parallel_pair(diagonal_dirs[i], diagonal_dirs[j]) then
-          return true
-        end
-      end
-    end
-
-    -- detect a uniquely different area
-    for i = 1,4 do
-      local unique = true
-
-      for j = 1,4 do
-        if i ~= j and seeds[i].area == seeds[j].area then
-          unique = false
-          break
-        end
-      end
-
-      if unique then
-        return true
-      end
+    if areas[i] ~= areas[prev] then
+      table.insert(transitions, i)
     end
   end
 
-  -- corner is next to multiple areas and has exactly one
-  -- top/bottom diagonal boundary.
-  if #areas > 1 then
-    local diagonal_score = 0
-
-    for _, S in ipairs(seeds) do
-      if S.top or S.bottom then
-        diagonal_score = diagonal_score + 1
-      end
-    end
-
-    if diagonal_score == 1 then
-      return true
-    end
+  -- all four surrounding cells belong to the same area.
+  if #transitions == 0 then
+    return false
   end
 
+  -- two opposing transitions indicate a straight boundary.
+  if #transitions == 2 then
+    return (transitions[2] - transitions[1]) ~= 2
+  end
 
-  return false
+  -- multiple boundaries or a turning boundary.
+  return true
 end
 
 

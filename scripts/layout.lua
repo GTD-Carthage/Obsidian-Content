@@ -2915,6 +2915,8 @@ function Layout_handle_corners(LEVEL)
       if wall_count == 1 then
         return true
       end
+
+      return false
     end
 
     local function near_porch(corner)
