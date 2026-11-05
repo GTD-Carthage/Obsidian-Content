@@ -913,6 +913,43 @@ DOOM.SINKS =
 
   --
 
+  ceil_with_w =
+  {
+    mat = "_WALL",
+    dz = 64,
+  },
+
+  ceil_with_w_tall =
+  {
+    mat = "_WALL",
+    dz = 128,
+  },
+
+  ceil_with_w_ultratall =
+  {
+    mat = "_WALL",
+    dz = 256,
+  },
+
+  ceil_with_f =
+  {
+    mat = "_FLOOR",
+    dz = 64,
+  },
+
+  ceil_with_f_tall =
+  {
+    mat = "_FLOOR",
+    dz = 128,
+  },
+
+  ceil_with_f_ultratall =
+  {
+    mat = "_FLOOR",
+    dz = 256,
+  },
+  --
+
   ceil_mix_with_f =
   {
     mat = "_FLOOR",
@@ -1203,7 +1240,14 @@ DOOM.THEMES =
       ceil_mix_with_f_tall = 75,
       ceil_mix_with_w_tall = 35,
       ceil_mix_with_f_ultratall = 50,
-      ceil_mix_with_w_ultratall = 25
+      ceil_mix_with_w_ultratall = 25,
+
+      ceil_with_w = 100,
+      ceil_with_w_tall = 75,
+      ceil_with_w_ultratall = 35,
+      ceil_with_f = 75,
+      ceil_with_f_tall = 50,
+      ceil_with_f_ultrall = 25
     },
 
     stair_wall_groups =
