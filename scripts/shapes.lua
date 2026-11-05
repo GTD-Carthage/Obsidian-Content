@@ -18436,6 +18436,29 @@ GROW_TIE_LOOP =
   }
 },
 
+GROW_TIE_LOOP_ALT =
+{
+  prob = 14,
+  skip_prob = 70,
+
+  structure =
+  {
+    "xxx.....xx","xxx/AAA%xx",
+    "1.........","11/A/1%A%1",
+    "1.........","11AA111AA1",
+    "x.........","x1%A%1/A/1",
+    "xxx.....xx","xxx%AAA/xx"
+  },
+
+  diagonals =
+  {
+         ".A","A.",
+    "1A","A1","1A","A1",
+    "1A","A1","1A","A1",
+         ".A","A."
+  }
+},
+
 GROW_GLASSES =
 {
   prob = 25,
