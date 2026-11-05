@@ -45,11 +45,14 @@ PREFABS.Pic_arm_gtd_vented_fan =
   map = "MAP02",
 
   prob = 15,
+  height = 96,
 
   env = "!cave",
 
   x_fit = { 148,160 },
-  z_fit = { 48,56 },
+  z_fit = { 31,32 },
+
+  bound_z2 = 96
 }
 
 PREFABS.Pic_arm_gtd_vented_fan_double =

@@ -25,7 +25,7 @@ PREFABS.Cage_dem_garage_ambush1 =
   seed_h = 2,
 
   deep   = 16,
- 
+
   x_fit = "frame",
   y_fit = "frame",
 
@@ -81,7 +81,7 @@ PREFABS.Cage_dem_garage_ambush2 =
   seed_h = 2,
 
   deep   = 16,
-  
+
   x_fit = "frame",
   y_fit  = "frame",
 
@@ -117,7 +117,7 @@ PREFABS.Cage_dem_store_ambush =
   seed_h = 2,
 
   deep = 16,
-  
+
   x_fit = "frame",
   y_fit  = "frame",
 
@@ -174,7 +174,7 @@ PREFABS.Cage_dem_store_ambush_vanilla =
   seed_h = 2,
 
   deep = 16,
-  
+
   x_fit = "frame",
   y_fit  = "frame",
 
@@ -278,23 +278,22 @@ PREFABS.Cage_dem_bunker_ambush3 =
 
 PREFABS.Cage_dem_ledge_ambush1 =
 {
-  file   = "cage/dem_cages.wad",
-  map    = "MAP07",
+  file = "cage/dem_cages.wad",
+  map = "MAP07",
 
-  prob   = 700,
+  prob = 700,
 
-  theme  = "!hell",
+  theme = "!hell",
 
-  env = "!building",
-  park_mode = "no_nature",
+  env = "park",
 
-  where  = "seeds",
-  shape  = "U",
+  where = "seeds",
+  shape = "U",
 
   seed_w = 3,
   seed_h = 1,
 
-  deep   = 16,
+  deep = 16,
 
   bound_z1 = 0,
   bound_z2 = 128,
@@ -308,7 +307,7 @@ PREFABS.Cage_dem_ledge_ambush2 =
   template = "Cage_dem_ledge_ambush1",
 
   map = "MAP08",
-  env    = "cave",
+  env = "cave",
 
   x_fit = "frame",
   z_fit = { 16,24 }
@@ -366,25 +365,25 @@ PREFABS.Cage_dem_ledge_ambush5 =
 
 PREFABS.Cage_dem_shrineC =
 {
-  file   = "cage/dem_cages.wad",
-  map    = "MAP10",
+  file = "cage/dem_cages.wad",
+  map = "MAP10",
 
   port = "zdoom",
 
-  prob   = 700,
+  prob = 700,
 
-  theme  = "!hell",
+  theme = "!hell",
 
   env = "cave",
 
-  where  = "seeds",
-  shape  = "U",
+  where = "seeds",
+  shape = "U",
 
   seed_w = 3,
   seed_h = 2,
 
-  deep   = 16,
-  
+  deep = 16,
+
   bound_z1 = 0,
   bound_z2 = 128,
 
@@ -424,7 +423,7 @@ PREFABS.Cage_dem_ruinsN1amb =
   seed_h = 2,
 
   deep = 16,
-  
+
   bound_z1 = 0,
   bound_z2 = 144,
 
@@ -458,7 +457,7 @@ PREFABS.Cage_dem_ruinsC1amb =
   seed_h = 2,
 
   deep = 16,
-  
+
   bound_z1 = 0,
   bound_z2 = 128,
 

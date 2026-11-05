@@ -793,7 +793,7 @@ PREFABS.Wall_tech_outdoor_dfan_full =
 
   group = "tech_o_dfan_full",
 
-  z_fit = { 8,32 },
+  z_fit = { 15,17 , 32,34 },
 
   tex_DFAN1 =
   {
@@ -818,7 +818,7 @@ PREFABS.Wall_tech_outdoor_dfan_full_compat =
 
   group = "tech_o_dfan_full",
 
-  z_fit = { 8,32 },
+  z_fit = { 15,17 , 32,34 },
 
   tex_DFAN1 = "BLAKWAL1",
   tex_DFAN2 = "BLAKWAL1",
