@@ -2901,7 +2901,9 @@ function Layout_handle_corners(LEVEL)
 
   local function check_need_pillar(corner)
 
-    local function edge_of_wall(corner)
+    -- check for when there are exactly one wall-ish junctions
+    -- meaning it's at the end of a wall
+    local function at_wall_cap(corner)
       local wall_count = 0
 
       for _, junc in ipairs(corner.junctions) do
@@ -2918,6 +2920,26 @@ function Layout_handle_corners(LEVEL)
 
       return false
     end
+
+
+    local function at_junction_meeting_point(corner)
+      local wall_count = 0
+
+      for _, junc in ipairs(corner.junctions) do
+        local E = junc.E1
+
+        if E and Edge_is_wallish(E) then
+          wall_count = wall_count + 1
+        end
+      end
+
+      if wall_count >= 2 then
+        return true
+      end
+
+      return false
+    end
+
 
     local function near_porch(corner)
       local near_porch = false
@@ -2945,17 +2967,6 @@ function Layout_handle_corners(LEVEL)
       end
     end
 
-    local function near_indoor_fence(junc)
-
-      if junc.A1.room and junc.A1.room:get_env() == "building" or
-      junc.A2.room and junc.A2.room:get_env() == "building" then
-        if junc.E1 and junc.E1.kind == "fence" then return true end
-        if junc.E2 and junc.E2.kind == "fence" then return true end
-      end
-
-      return false
-    end
-
 
     if corner.kind then return end
 
@@ -2977,9 +2988,9 @@ function Layout_handle_corners(LEVEL)
 
       -- create support pillars on the corners
       -- where sky and ceilings of any other texture meet 
-      if near_porch(corner)
-      or near_indoor_fence(junc)
-      or edge_of_wall(corner) then
+      if (near_porch(corner)
+      or at_wall_cap(corner))
+      and not at_junction_meeting_point(corner) then
         pillar_it = true
       end
 
