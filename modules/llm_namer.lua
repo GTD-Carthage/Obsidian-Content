@@ -2015,7 +2015,7 @@ flavors = {
     "Recover ancient artifact",
     "Locate UAC shrine",
     "Protect UAC archives",
-    "Recover UAC standard",
+    "Recover UAC blackbox",
     "Defend sacred chamber",
     "Destroy corrupted altar",
     "Purify ritual grounds",
