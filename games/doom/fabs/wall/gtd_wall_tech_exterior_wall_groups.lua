@@ -824,3 +824,15 @@ PREFABS.Wall_tech_outdoor_dfan_full_compat =
   tex_DFAN2 = "BLAKWAL1",
   tex_FENCE2 = "MIDSPACE"
 }
+
+--
+
+PREFABS.Wall_tech_outdoor_trapezoid_blue =
+{
+  template = "Wall_tech_outdoor_dfan",
+  map = "MAP32",
+
+  group = "tech_o_trapezoid_blue",
+
+  z_fit = "top"
+}
