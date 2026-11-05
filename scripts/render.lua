@@ -315,7 +315,9 @@ function Render_edge(LEVEL, E, SEEDS)
             if A.room.stair_wall_group and not chunk.dest_area.dead_end then
               reqs.group = A.room.stair_wall_group
             else
-              if A.room:get_env() == "building" and HC.floor_group and HC.floor_group.wall_group then
+              if A.room:get_env() == "outdoor" then
+                reqs.group = LEVEL.outdoor_wall_group
+              elseif A.room:get_env() == "building" and HC.floor_group and HC.floor_group.wall_group then
                 reqs.group = HC.floor_group.wall_group
               end
             end
