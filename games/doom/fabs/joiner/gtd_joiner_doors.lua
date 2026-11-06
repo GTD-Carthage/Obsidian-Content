@@ -6,7 +6,7 @@ PREFABS.Joiner_gtd_door_diagonal_1x2 =
   kind = "joiner",
   style = "doors",
 
-  prob = 75,
+  prob = 30,
 
   theme = "!hell",
 
@@ -38,8 +38,6 @@ PREFABS.Joiner_gtd_door_diagonal_1x2_hell =
   template = "Joiner_gtd_door_diagonal_1x2",
   map = "MAP01",
 
-  prob = 80,
-
   seed_h = 2,
 
   theme = "hell",
@@ -67,4 +65,82 @@ PREFABS.Joiner_gtd_door_diagonal_2x2_hell =
   tex_SPCDOOR3 = "SPCDOOR4",
   flat_FLOOR4_6 = "RROCK12",
   flat_FLAT1 = "CEIL5_2"
+}
+
+--
+
+PREFABS.Joiner_gtd_door_diagonal_1x2_flipped =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP03"
+}
+
+PREFABS.Joiner_gtd_door_diagonal_2x2_flipped =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP04",
+
+  seed_h = 2,
+
+  y_fit = {16,20 , 268,272}
+}
+
+PREFABS.Joiner_gtd_door_diagonal_1x2_hell_flipped =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP03",
+
+  seed_h = 2,
+
+  theme = "hell",
+
+  tex_SUPPORT2 = "SUPPORT3",
+  tex_SPCDOOR3 = "SPCDOOR4",
+  flat_FLOOR4_6 = "RROCK12",
+  flat_FLAT1 = "CEIL5_2"
+}
+
+PREFABS.Joiner_gtd_door_diagonal_2x2_hell_flipped =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP04",
+
+  seed_h = 2,
+
+  theme = "hell",
+
+  y_fit = {16,20 , 268,272},
+
+  tex_SUPPORT2 = "SUPPORT3",
+  tex_SPCDOOR3 = "SPCDOOR4",
+  flat_FLOOR4_6 = "RROCK12",
+  flat_FLAT1 = "CEIL5_2"
+}
+
+--
+
+PREFABS.Joiner_gtd_door_ex =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP05",
+
+  theme = "!hell",
+  prob = 500,
+
+  y_fit = "frame"
+}
+
+PREFABS.Joiner_gtd_door_ex_hell =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP05",
+
+  theme = "hell",
+  prob = 75,
+
+  y_fit = "frame",
+
+  tex_BIGDOOR2 = "BIGDOOR5",
+  tex_LITEBLU1 = "BFALL1",
+  tex_METAL5 = "SLOPPY1"
 }
