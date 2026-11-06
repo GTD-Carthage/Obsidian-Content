@@ -2792,103 +2792,90 @@ function Layout_handle_corners(LEVEL)
 
 
   local function check_need_fencepost(corner)
+
+    -- find the highest fence top connected to this corner.
+    local function get_tallest_fence_top(corner)
+      local tallest_h = -EXTREME_H
+
+      for _, junc in pairs(corner.junctions) do
+        local fence_top_z = junc.E1 and junc.E1.fence_top_z
+
+        if fence_top_z then
+          tallest_h = math.max(tallest_h, fence_top_z)
+        end
+      end
+
+      return tallest_h
+    end
+
+    -- determine how high a railing post needs to extend.
+    local function get_railing_post_top_z(corner, rail_offset)
+      local tallest_floor = -EXTREME_H
+      local tallest_ceil = -EXTREME_H
+      local lowest_ceil = EXTREME_H
+
+      local open_to_sky = false
+      local closed_to_sky = false
+
+      for _, A in pairs(corner.areas) do
+        tallest_floor = math.max(tallest_floor, A.floor_h)
+        tallest_ceil = math.max(tallest_ceil, A.ceil_h)
+        lowest_ceil = math.min(lowest_ceil, A.ceil_h)
+
+        if A:is_closed_to_sky() then
+          closed_to_sky = true
+        elseif A:is_open_to_sky() then
+          open_to_sky = true
+        end
+      end
+
+      corner.h_diff = tallest_ceil - lowest_ceil
+
+      -- mixed open and closed areas, or uneven ceilings, require a full-height post.
+      if (open_to_sky and closed_to_sky) or corner.h_diff > 0 then
+        return EXTREME_H
+      end
+
+      return tallest_floor + rail_offset
+    end
+
+
     -- already used?
     if corner.kind then return end
 
-    local post_top_z
-
     corner.post_top_h = -EXTREME_H
 
-    for _,junc in pairs(corner.junctions) do
+    for _, junc in pairs(corner.junctions) do
       if junc.A2 == "map_edge" then return end
-      if not junc.E1 then goto skip end
 
-      -- code for fancy fenceposts
-      if (junc.E1.kind == "fence" and junc.E1.area:is_open_to_sky()) then
-        if Corner_touches_wall(corner) then return end
+      local E = junc.E1
 
-        if corner.posted then return end
+      -- decide what kind of fencepost (fancy or rail)
+      if E then
 
-        local tallest_h = -EXTREME_H
-        for _,xjunc in pairs(corner.junctions) do
-          if xjunc.E1 and xjunc.E1.fence_top_z then
-            tallest_h = math.max(tallest_h, xjunc.E1.fence_top_z)
-          end
+        -- cannot place posts next to a wall, as the wall already
+        -- supports the fence
+        if Corner_touches_wall(corner) then
+          return
         end
-
-        if Corner_is_at_area_corner(corner) then
-          corner.post_mat = corner.areas[1].zone.fence_mat
-          corner.kind = "post"
-          corner.post_type = assert(corner.areas[1].zone.post_type)
-
-          if corner.post_top_h < tallest_h then
-            corner.post_top_h = tallest_h + 32
-          end
-        end
-
-        -- original fenceposts on railings code
-        -- (slightly cleaned up by MSSP) from Andrew
-      elseif junc.E1.kind == "railing" then
-
-        -- cannot place posts next to a wall
-        if Corner_touches_wall(corner) then return end
-
         if not Corner_is_at_area_corner(corner) then return end
 
-        local tallest_floor = -EXTREME_H
-        local tallest_ceil = -EXTREME_H
-        local lowest_ceil = EXTREME_H
-
-        local sky_facing_roof = false
-        local open_to_sky = false
-        local closed_to_sky = false
-
-        for _,A in pairs(corner.areas) do
-          tallest_floor = math.max(tallest_floor, A.floor_h)
-          tallest_ceil = math.max(tallest_ceil, A.ceil_h)
-          lowest_ceil = math.min(lowest_ceil, A.ceil_h)
-
-          corner.h_diff = tallest_ceil - lowest_ceil
-        end
-
-        for _,A in pairs(corner.areas) do
-          -- extend posts all the way to the roof if
-          -- neighboring porches
-          if A:is_closed_to_sky() then
-            closed_to_sky = true
-          elseif A:is_open_to_sky() then
-            open_to_sky = true
-          end
-
-          if open_to_sky == true and closed_to_sky == true then
-            post_top_z = EXTREME_H
-            goto skip
-          end
-
-          if A.vista_type == "simple_fence" and A.fence_type ~= "railing" then
-            tallest_floor = math.max(tallest_floor, A.floor_h)
-          end
-          post_top_z = tallest_floor + junc.E1.rail_offset
-
-          ::skip::
-        end
-
-        if corner.h_diff > 0 then
-          post_top_z = EXTREME_H
-        end
-
         corner.kind = "post"
-        assert(post_top_z, "No post height found for corner with post\n!" --[[..
-            table.tostr(corner.areas[1],1) .. "\n" ..
-            table.tostr(corner.areas[2],1) .. "\n" ..
-            table.tostr(corner.areas[3],1) .. "\n" ..
-            table.tostr(corner.areas[4],1)]]
-          )
-        if corner.post_top_h < post_top_z then
-          corner.post_top_h = post_top_z
+        if E.kind == "fence" and E.area:is_open_to_sky() then
+
+          local tallest_h = get_tallest_fence_top(corner)
+
+          corner.post_mat = corner.areas[1].zone.fence_mat
+          corner.post_type = assert(corner.areas[1].zone.post_type)
+          corner.post_top_h = math.max(corner.post_top_h, tallest_h + 32)
+
+        elseif E.kind == "railing" then
+          local post_top_z = get_railing_post_top_z(corner, E.rail_offset)
+          assert(post_top_z, "No post height found for corner with post!")
+
+          corner.post_top_h = math.max(corner.post_top_h, post_top_z)
         end
       end
-      ::skip::
     end
   end
 
@@ -2922,7 +2909,7 @@ function Layout_handle_corners(LEVEL)
     end
 
 
-    local function at_junction_meeting_point(corner)
+    local function at_multi_wall_corner(corner)
       local wall_count = 0
 
       for _, junc in ipairs(corner.junctions) do
@@ -2934,6 +2921,38 @@ function Layout_handle_corners(LEVEL)
       end
 
       if wall_count >= 2 then
+        return true
+      end
+
+      return false
+    end
+
+
+    local function within_same_ceiling_group_sink(corner)
+      local unique_sinks = {}
+      local has_roof = false
+      local has_sky = false
+
+      for _, A in ipairs(corner.areas) do
+        if A.ceil_group then
+          if A:is_closed_to_sky() then
+            has_roof = true
+          elseif A:is_open_to_sky() then
+            has_sky = true
+          end
+          if A.ceil_group.sink then
+            table.add_unique(unique_sinks, A.ceil_group.sink)
+          else
+            table.add_unique(unique_sinks, "PLAIN")
+          end
+        end
+      end
+
+      if (has_roof == true and has_sky == true) then
+        return false
+      end
+
+      if #unique_sinks == 1 then
         return true
       end
 
@@ -2986,11 +3005,15 @@ function Layout_handle_corners(LEVEL)
         end
       end
 
+      -- wall end caps always have a pillar
+      if at_wall_cap(corner) then
+        pillar_it = true
+      end
+
       -- create support pillars on the corners
       -- where sky and ceilings of any other texture meet 
-      if (near_porch(corner)
-      or at_wall_cap(corner))
-      and not at_junction_meeting_point(corner) then
+      if near_porch(corner) and not
+      (at_multi_wall_corner(corner) and within_same_ceiling_group_sink(corner)) then
         pillar_it = true
       end
 
