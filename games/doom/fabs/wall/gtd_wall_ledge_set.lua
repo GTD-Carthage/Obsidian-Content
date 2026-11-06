@@ -67,7 +67,7 @@ PREFABS.Wall_gtd_ledge_alt_low =
 PREFABS.Wall_gtd_ledge_alt_low_diag =
 {
   template = "Wall_gtd_ledge_1",
-  map = "MAP05",
+  map = "MAP06",
 
   where = "diagonal",
 
