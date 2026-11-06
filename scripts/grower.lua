@@ -2913,7 +2913,9 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
 
 
       if r.kind == "stair" then
-        chunk.dest_area = assert(new_area)
+        chunk.dest_area = assert(new_area,
+        "Grower: Stair has no destination area. " .. 
+        "Please check LOG for last shape rule print.")
         assert(new_intconn)
         new_intconn.stair_chunk = chunk
 
