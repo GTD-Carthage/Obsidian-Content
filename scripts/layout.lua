@@ -2928,32 +2928,15 @@ function Layout_handle_corners(LEVEL)
     end
 
 
-    local function within_same_ceiling_group_sink(corner)
-      local unique_sinks = {}
-      local has_roof = false
-      local has_sky = false
+    local function has_height_difference(corner)
+      local unique_heights = {}
 
       for _, A in ipairs(corner.areas) do
-        if A.ceil_group then
-          if A:is_closed_to_sky() then
-            has_roof = true
-          elseif A:is_open_to_sky() then
-            has_sky = true
-          end
-          if A.ceil_group.sink then
-            table.add_unique(unique_sinks, A.ceil_group.sink)
-          else
-            table.add_unique(unique_sinks, "PLAIN")
-          end
+        if A.ceil_h then
+          table.add_unique(unique_heights, A.ceil_h)
         end
-      end
 
-      if (has_roof == true and has_sky == true) then
-        return false
-      end
-
-      if #unique_sinks == 1 then
-        return true
+        if #unique_heights > 1 then return true end
       end
 
       return false
@@ -2990,10 +2973,11 @@ function Layout_handle_corners(LEVEL)
     if corner.kind then return end
 
     local pillar_it = false
+
+    if not Corner_is_at_area_corner(corner) then return end
+
     for _,junc in pairs(corner.junctions) do
       if junc.A2 == "map_edge" then return end
-
-      if not Corner_is_at_area_corner(corner) then return end
 
       -- don't put pillars adjacent to joiners and closets
       for _,S in pairs(corner.seeds) do
@@ -3005,19 +2989,21 @@ function Layout_handle_corners(LEVEL)
         end
       end
 
-      -- wall end caps always have a pillar
-      if at_wall_cap(corner) then
+      if junc.beamed then
         pillar_it = true
       end
+    end
 
-      -- create support pillars on the corners
-      -- where sky and ceilings of any other texture meet 
-      if near_porch(corner) and not
-      (at_multi_wall_corner(corner) and within_same_ceiling_group_sink(corner)) then
-        pillar_it = true
-      end
+    -- wall end caps always have a pillar
+    if at_wall_cap(corner) then
+      pillar_it = true
+    end
 
-      if junc.beamed then pillar_it = true end
+    -- create support pillars on the corners
+    -- where sky and ceilings of any other texture meet 
+    if near_porch(corner) and not
+    (at_multi_wall_corner(corner) and has_height_difference(corner)) then
+      pillar_it = true
     end
 
     if pillar_it then
