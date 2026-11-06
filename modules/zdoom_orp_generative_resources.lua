@@ -300,52 +300,26 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
 
   -- cable/socket catacombs (lolwhat?2)
   -- walls
-  SDHCCBW1 = { t="SDHCCBW1", f="S_W2WFR1"},
-  SDHCCBW2 = { t="SDHCCBW2", f="S_W2WFR2"},
-  SDHCCBW3 = { t="SDHCCBW3", f="S_W2WFR3"},
-  SDHCCBW4 = { t="SDHCCBW4", f="S_W2WFR4"},
-  SDHCCBW5 = { t="SDHCCBW5", f="S_W2WFR5"},
-  SDHCCBW6 = { t="SDHCCBW6", f="S_W2WFR6"},
-  SDHCCBW7 = { t="SDHCCBW7", f="S_W2WFR7"},
-  SDHCCBW8 = { t="SDHCCBW8", f="S_W2WFR8"},
-  SDHCCBW9 = { t="SDHCCBW9", f="S_W2WFR1"},
-  SDHCCBWA = { t="SDHCCBWA", f="S_W2WFR2"},
-  SDHCCBWB = { t="SDHCCBWB", f="S_W2WFR3"},
-  SDHCCBWC = { t="SDHCCBWC", f="S_W2WFR5"},
-  SDHCCBWD = { t="SDHCCBWD", f="S_W2WFR6"},
-  SDHCCBWE = { t="SDHCCBWE", f="S_W2WFR8"},
+  SDHCCBW1 = { t="SDHCCBW1", f="G_OM_FT3"},
+  SDHCCBW2 = { t="SDHCCBW2", f="G_OM_FT4"},
+  SDHCCBW3 = { t="SDHCCBW3", f="G_OM_FT5"},
+  SDHCCBW4 = { t="SDHCCBW4", f="G_OM_FT6"},
+  SDHCCBW5 = { t="SDHCCBW5", f="G_OM_FT7"},
+  SDHCCBW6 = { t="SDHCCBW6", f="G_OM_FT8"},
+  SDHCCBW7 = { t="SDHCCBW7", f="G_OM_FT9"},
+  SDHCCBW8 = { t="SDHCCBW8", f="G_OM_FTA"},
+  SDHCCBW9 = { t="SDHCCBW9", f="G_OM_FT3"},
+  SDHCCBWA = { t="SDHCCBWA", f="G_OM_FT5"},
+  SDHCCBWB = { t="SDHCCBWB", f="G_OM_FT6"},
+  SDHCCBWC = { t="SDHCCBWC", f="G_OM_FT7"},
+  SDHCCBWD = { t="SDHCCBWD", f="G_OM_FT8"},
+  SDHCCBWE = { t="SDHCCBWE", f="G_OM_FTA"},
 
   --
   TOFFBOX1 = {t="TOFFBOX1", f="FLAT23"},
   TOFFBOX2 = {t="TOFFBOX2", f="FLAT23"},
   TOFFPSW1 = {t="TOFFPSW1", f="FLAT5_5"},
   TOFFPSW2 = {t="TOFFPSW2", f="FLAT5_5"},
-
-  -- aww2 tech
-  -- walls
-  S_W2WAL1 = {t="S_W2WAL1", f="S_W2WFR1"},
-  S_W2WAL2 = {t="S_W2WAL2", f="S_W2WFR2"},
-  S_W2WAL3 = {t="S_W2WAL3", f="S_W2WFR3"},
-  S_W2WAL4 = {t="S_W2WAL4", f="S_W2WFR4"},
-  S_W2WAL5 = {t="S_W2WAL5", f="S_W2WFR5"},
-  S_W2WAL6 = {t="S_W2WAL6", f="S_W2WFR6"},
-  S_W2WAL7 = {t="S_W2WAL7", f="S_W2WFR7"},
-  S_W2WAL8 = {t="S_W2WAL8", f="S_W2WFR8"},
-  S_W2WAL9 = {t="S_W2WAL9", f="S_W2WFR1"},
-  S_W2WALA = {t="S_W2WALA", f="S_W2WFR2"},
-  S_W2WALB = {t="S_W2WALB", f="S_W2WFR3"},
-  S_W2WALC = {t="S_W2WALC", f="S_W2WFR5"},
-  S_W2WALD = {t="S_W2WALD", f="S_W2WFR6"},
-  S_W2WALE = {t="S_W2WALE", f="S_W2WFR8"},
-  -- flats
-  S_W2WFR1 = {t="S_W2WAL1", f="S_W2WFR1"},
-  S_W2WFR2 = {t="S_W2WAL3", f="S_W2WFR1"},
-  S_W2WFR3 = {t="S_W2WAL5", f="S_W2WFR1"},
-  S_W2WFR4 = {t="S_W2WAL7", f="S_W2WFR1"},
-  S_W2WFR5 = {t="S_W2WAL9", f="S_W2WFR1"},
-  S_W2WFR6 = {t="S_W2WALA", f="S_W2WFR1"},
-  S_W2WFR7 = {t="S_W2WALC", f="S_W2WFR1"},
-  S_W2WFR8 = {t="S_W2WALE", f="S_W2WFR1"},
 
   -- bunker theme
   SDTBNKW1 = {t="SDTBNKW1", f="FLAT18"},
@@ -370,7 +344,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
   tech_AITextures = --50
   {
     env = "building",
-    prob = 50,
+    prob = 25,
 
     is_generative = true,
 
@@ -387,34 +361,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_GTHW9 = 2,
       SD_GTHWA = 2,
       SD_GTHWB = 2,
-      SD_GTHWC = 2,
-
-      S_W2WAL1 = 2,
-      S_W2WAL2 = 2,
-      S_W2WAL3 = 2,
-      S_W2WAL4 = 2,
-      S_W2WAL5 = 2,
-      S_W2WAL6 = 2,
-      S_W2WAL7 = 2,
-      S_W2WAL8 = 2,
-      S_W2WAL9 = 2,
-      S_W2WALA = 2,
-      S_W2WALB = 2,
-      S_W2WALC = 2,
-      S_W2WALD = 2,
-      S_W2WALE = 2,
-
-      G_IPHWL1 = 4,
-      G_IPHWL2 = 4,
-      G_IPHWL3 = 4,
-      G_IPHWL4 = 4,
-      G_IPHWL5 = 4,
-      G_IPHWL6 = 4,
-      G_IPHWL7 = 4,
-      G_IPHWL8 = 4,
-      G_IPHWL9 = 4,
-      G_IPHWLA = 4,
-      G_IPHWLB = 4
+      SD_GTHWC = 2
     },
 
     floors =
@@ -862,101 +809,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
     }
   },
 
-  tech_aww2 = --50
-  {
-    env = "building",
-    prob = 50,
-
-    is_generative = true,
-
-    walls =
-    {
-      S_W2WAL1 = 50,
-      S_W2WAL2 = 50,
-      S_W2WAL3 = 50,
-      S_W2WAL4 = 50,
-      S_W2WAL5 = 50,
-      S_W2WAL6 = 50,
-      S_W2WAL7 = 50,
-      S_W2WAL8 = 50,
-      S_W2WAL9 = 50,
-      S_W2WALA = 50,
-      S_W2WALB = 50,
-      S_W2WALC = 50,
-      S_W2WALD = 50,
-      S_W2WALE = 50
-    },
-
-    floors =
-    {
-      S_W2WFR1 = 50,
-      S_W2WFR2 = 50,
-      S_W2WFR3 = 50,
-      S_W2WFR4 = 50,
-      S_W2WFR5 = 50,
-      S_W2WFR6 = 50,
-      S_W2WFR7 = 50,
-      S_W2WFR8 = 50,
-
-      CEIL3_5 = 25,
-      FLAT1 = 25,
-      MFLR8_1 = 25,
-      SLIME14 = 25,
-
-      DARKF03 = 30,
-      DARKM01 = 30,
-      G15 = 30,
-      GMET01 = 20,
-      GMET02 = 20,
-      GMET03 = 20,
-      GMET04 = 20,
-      GMET05 = 20,
-      GMET06 = 20,
-      GRATE1 = 20,
-      GRATE2 = 20,
-      GRATE3 = 20,
-      GRATE4 = 20,
-      GRATE5 = 20,
-      GRATE6 = 20,
-      GRATE7 = 20,
-    },
-
-    ceilings =
-    {
-      S_W2WFR1 = 50,
-      S_W2WFR2 = 50,
-      S_W2WFR3 = 50,
-      S_W2WFR4 = 50,
-      S_W2WFR5 = 50,
-      S_W2WFR6 = 50,
-      S_W2WFR7 = 50,
-      S_W2WFR8 = 50,
-
-
-      CEIL3_5 = 25,
-      FLAT1 = 25,
-      MFLR8_1 = 25,
-      SLIME14 = 25,
-
-      DARKF03 = 30,
-      DARKM01 = 30,
-      G15 = 30,
-      GMET01 = 20,
-      GMET02 = 20,
-      GMET03 = 20,
-      GMET04 = 20,
-      GMET05 = 20,
-      GMET06 = 20,
-      GRATE1 = 20,
-      GRATE2 = 20,
-      GRATE3 = 20,
-      GRATE4 = 20,
-      GRATE5 = 20,
-      GRATE6 = 20,
-      GRATE7 = 20,
-    }
-  },
-
   tech_bunker = --60
   {
     env = "building",
@@ -1097,14 +949,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      S_W2WFR1 = 10,
-      S_W2WFR2 = 10,
-      S_W2WFR3 = 10,
-      S_W2WFR4 = 10,
-      S_W2WFR5 = 10,
-      S_W2WFR6 = 10,
-      S_W2WFR7 = 10,
-      S_W2WFR8 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
       SD_HCCF5 = 10,
@@ -1138,14 +982,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      S_W2WFR1 = 10,
-      S_W2WFR2 = 10,
-      S_W2WFR3 = 10,
-      S_W2WFR4 = 10,
-      S_W2WFR5 = 10,
-      S_W2WFR6 = 10,
-      S_W2WFR7 = 10,
-      S_W2WFR8 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
       SD_HCCF5 = 10,
@@ -1180,18 +1016,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
     env  = "outdoor",
     prob = 50,
 
-    floors =
-    {
-      S_W2WFR1 = 15,
-      S_W2WFR2 = 15,
-      S_W2WFR3 = 15,
-      S_W2WFR4 = 15,
-      S_W2WFR5 = 15,
-      S_W2WFR6 = 15,
-      S_W2WFR7 = 15,
-      S_W2WFR8 = 15
-    },
-
     porch_floors =
     {
       G_OM_FG1 = 20,
@@ -1204,16 +1028,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SDSLDFT5 = 12,
       SDSLDFT6 = 12,
       SDSLDFT7 = 12,
-      SDSLDFT8 = 12,
-
-      S_W2WFR1 = 15,
-      S_W2WFR2 = 15,
-      S_W2WFR3 = 15,
-      S_W2WFR4 = 15,
-      S_W2WFR5 = 15,
-      S_W2WFR6 = 15,
-      S_W2WFR7 = 15,
-      S_W2WFR8 = 15
+      SDSLDFT8 = 12
     }
   },
 
@@ -2193,14 +2008,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      S_W2WFR1 = 10,
-      S_W2WFR2 = 10,
-      S_W2WFR3 = 10,
-      S_W2WFR4 = 10,
-      S_W2WFR5 = 10,
-      S_W2WFR6 = 10,
-      S_W2WFR7 = 10,
-      S_W2WFR8 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
       SD_HCCF5 = 10,
@@ -2234,14 +2041,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      S_W2WFR1 = 10,
-      S_W2WFR2 = 10,
-      S_W2WFR3 = 10,
-      S_W2WFR4 = 10,
-      S_W2WFR5 = 10,
-      S_W2WFR6 = 10,
-      S_W2WFR7 = 10,
-      S_W2WFR8 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
       SD_HCCF5 = 10,
@@ -3236,37 +3035,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       G_OM_FT9 = 10,
       G_OM_FTA = 10
     }
-  },
+  }
 
-  urban_Outdoors_generic = --50
-  {
-    env  = "outdoor",
-    prob = 50,
-
-    floors =
-    {
-      S_W2WFR1 = 7,
-      S_W2WFR2 = 7,
-      S_W2WFR3 = 7,
-      S_W2WFR4 = 7,
-      S_W2WFR5 = 7,
-      S_W2WFR6 = 7,
-      S_W2WFR7 = 7,
-      S_W2WFR8 = 7,
-
-      G_OM_FT1 = 7,
-      G_OM_FT2 = 7,
-      G_OM_FT3 = 7,
-      G_OM_FT4 = 7,
-      G_OM_FT5 = 7,
-      G_OM_FT6 = 7,
-      G_OM_FT9 = 7,
-      G_OM_FTA = 7,
-
-      G_OM_FG1 = 10,
-      G_OM_FG2 = 10
-    }
-  },
 -- END OF THEMES TABLES
 }
 
@@ -3299,16 +3069,6 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
       SD_TWLWA = 20,
       SD_TWLWB = 20,
       SD_TWLWC = 20,
-
-      S_W2WAL1 = 20,
-      S_W2WAL2 = 20,
-      S_W2WAL3 = 20,
-      S_W2WAL8 = 20,
-      S_W2WAL9 = 20,
-      S_W2WALA = 20,
-      S_W2WALC = 20,
-      S_W2WALD = 20,
-      S_W2WALE = 20,
 
       SDTBNKW1 = 15,
       SDTBNKW2 = 15,
