@@ -1594,6 +1594,43 @@ function print_area(area)
 end
 
 
+-- place the GZDoom particle spray entity in four directions
+-- from the provided position - defaults to white
+function place_debug_marker(pos, color_pick)
+  local E = {}
+
+  local colors =
+  {
+    red = 9027,
+    green = 9028,
+    blue = 9029,
+    yellow = 9030,
+    purple = 9031,
+    black = 9032,
+    white = 9033
+  }
+
+  E.id = 9033
+  if color_pick and colors[color_pick] then
+    E.id = colors[color_pick]
+  end
+
+  E.z = pos.z
+
+  E.x = pos.x + 64
+  E.y = pos.y
+  raw_add_entity(E)
+  E.x = pos.x
+  E.y = pos.y + 64
+  raw_add_entity(E)
+  E.x = pos.x - 64
+  E.y = pos.y
+  raw_add_entity(E)
+  E.x = pos.x
+  E.y = pos.y - 64
+  raw_add_entity(E)
+end
+
 --------========| A* PATHING ALGORITHM |========--------
 
 
