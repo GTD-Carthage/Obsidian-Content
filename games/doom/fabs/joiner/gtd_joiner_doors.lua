@@ -126,8 +126,6 @@ PREFABS.Joiner_gtd_door_ex =
 
   theme = "!hell",
   prob = 500,
-
-  y_fit = "frame"
 }
 
 PREFABS.Joiner_gtd_door_ex_hell =
@@ -136,11 +134,45 @@ PREFABS.Joiner_gtd_door_ex_hell =
   map = "MAP05",
 
   theme = "hell",
-  prob = 75,
-
-  y_fit = "frame",
+  prob = 50,
 
   tex_BIGDOOR2 = "BIGDOOR5",
   tex_LITEBLU1 = "BFALL1",
   tex_METAL5 = "SLOPPY1"
+}
+
+PREFABS.Joiner_gtd_door_techno_pillar_3x =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP06",
+
+  theme = "!hell",
+  prob = 75,
+
+  y_fit = {40,48 , 112,128}
+}
+
+PREFABS.Joiner_gtd_door_techno_pillar_3x_hell =
+{
+  template = "Joiner_gtd_door_diagonal_1x2",
+  map = "MAP06",
+
+  theme = "hell",
+  prob = 75,
+
+  y_fit = {40,48 , 112,128},
+
+  flat_FLAT20 = "FLOOR7_2",
+  flat_FLAT14 = "FLAT5_3",
+  flat_CEIL4_3 = "FLAT5_3",
+  tex_DOORSTOP = "BROWN144",
+  tex_SUPPORT2 = "BROWNHUG",
+  tex_SPCDOOR2 =
+  {
+    SW1LION = 1,
+    SW1GARG = 1,
+    SW1SATYR = 1
+  },
+  tex_COMPBLUE = "BFALL1",
+  tex_LITEBLU4 = "STEP6"
 }
