@@ -10,13 +10,13 @@ PREFABS.Pic_armaetus_double_fans =
   texture_pack = "armaetus",
 
   where = "seeds",
-  height = 128,
+  height = 112,
 
   seed_w = 2,
   seed_h = 1,
 
   bound_z1 = 0,
-  bound_z2 = 128,
+  bound_z2 = 112,
 
   deep = 16,
   over = -16,
@@ -61,9 +61,12 @@ PREFABS.Pic_arm_gtd_vented_fan_double =
   map = "MAP03",
 
   prob = 15,
+  height = 120,
 
   env = "!cave",
 
   x_fit = { 104,120 },
   z_fit = "top",
+
+  bound_z2 = 120
 }
