@@ -90,7 +90,7 @@ PREFABS.Window_round_diag =
 {
   template = "Window_round1",
 
-  map      = "MAP03",
+  map      = "MAP11",
   theme    = "!tech",
 
   where = "diagonal"
@@ -99,7 +99,7 @@ PREFABS.Window_round_diag =
 PREFABS.Window_round_diag_tech =
 {
   template = "Window_round1",
-  map    = "MAP03",
+  map    = "MAP11",
   theme =  "tech",
 
   tex_METAL = "SHAWN2",
