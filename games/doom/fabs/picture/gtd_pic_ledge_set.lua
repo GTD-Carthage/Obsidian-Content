@@ -19,7 +19,7 @@ PREFABS.Pic_gtd_ledge =
   bound_z2 = 96,
 
   x_fit = "frame",
-  y_fit = "frame"
+  y_fit = "top"
 }
 
 PREFABS.Pic_gtd_ledge_higher =
@@ -33,5 +33,5 @@ PREFABS.Pic_gtd_ledge_higher =
   bound_z2 = 169,
 
   x_fit = "frame",
-  y_fit = "frame"
+  y_fit = "top"
 }
