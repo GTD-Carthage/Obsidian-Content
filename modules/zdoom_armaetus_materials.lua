@@ -2845,51 +2845,6 @@ brightmap texture G_OVNTWC
   map STGSWCBR
 }
 
-brightmap texture SD_HCCW1
-{
-  map SDBRHCW1
-}
-
-brightmap texture SD_HCCW2
-{
-  map SDBRHCW2
-}
-  
-brightmap texture SD_HCCW3
-{
-  map SDBRHCW3
-}
-
-brightmap texture SD_HCCW4
-{
-  map SDBRHCW4
-}
-
-brightmap texture SD_HCCW6
-{
-  map SDBRHCW6
-}
-
-brightmap texture SD_HCCW7
-{
-  map SDBRHCW7
-}
-  
-brightmap texture SD_HCCW8
-{
-  map SDBRHCW8
-}
-
-brightmap texture SD_HCCW9
-{
-  map SDBRHCW9
-}
-
-brightmap texture SD_HCCWC
-{
-  map SDBRHCWC
-}
-
 brightmap texture G_OTWDW3
 {
   map OBRTWTW3
