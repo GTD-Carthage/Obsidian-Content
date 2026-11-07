@@ -2892,6 +2892,11 @@ function Layout_handle_corners(LEVEL)
     -- meaning it's at the end of a wall
     local function at_wall_cap(corner)
       local wall_count = 0
+      local unique_areas = {}
+
+      for _, A in ipairs(corner.areas) do
+        table.add_unique(unique_areas, A.id)
+      end
 
       for _, junc in ipairs(corner.junctions) do
         local E = junc.E1
@@ -2901,26 +2906,7 @@ function Layout_handle_corners(LEVEL)
         end
       end
 
-      if wall_count == 1 then
-        return true
-      end
-
-      return false
-    end
-
-
-    local function at_multi_wall_corner(corner)
-      local wall_count = 0
-
-      for _, junc in ipairs(corner.junctions) do
-        local E = junc.E1
-
-        if E and Edge_is_wallish(E) then
-          wall_count = wall_count + 1
-        end
-      end
-
-      if wall_count >= 2 then
+      if wall_count == 1 and #unique_areas >=3 then
         return true
       end
 
@@ -2930,13 +2916,23 @@ function Layout_handle_corners(LEVEL)
 
     local function has_height_difference(corner)
       local unique_heights = {}
+      local unique_sinks = {}
+      local areas_with_ceil_groups = 0
 
       for _, A in ipairs(corner.areas) do
         if A.ceil_h then
           table.add_unique(unique_heights, A.ceil_h)
         end
+        if A.ceil_group and A.ceil_group.sink then
+          areas_with_ceil_groups = areas_with_ceil_groups + 1
+          table.add_unique(unique_sinks, A.ceil_group.sink)
+        end
 
         if #unique_heights > 1 then return true end
+
+        if areas_with_ceil_groups ~= 4 then return true end
+
+        if #unique_sinks > 1 then return true end
       end
 
       return false
@@ -2976,6 +2972,23 @@ function Layout_handle_corners(LEVEL)
 
     if not Corner_is_at_area_corner(corner) then return end
 
+    -- never pillars along void areas
+    -- and building to scenic as these are *always*
+    -- walled up
+    local partially_building = false
+    local partially_scenic = false
+    for _, A in ipairs(corner.areas) do
+      if A.mode == "void" then return end
+      if A.room and A.room:get_env("building") then
+        partially_building = true
+      end
+      if A.mode == "scenic" then
+        partially_scenic = true
+      end
+    end
+    if partially_building == true and partially_scenic == true then return end
+
+    -- no pillars on the map edge
     for _,junc in pairs(corner.junctions) do
       if junc.A2 == "map_edge" then return end
 
@@ -2988,10 +3001,6 @@ function Layout_handle_corners(LEVEL)
           end
         end
       end
-
-      if junc.beamed then
-        pillar_it = true
-      end
     end
 
     -- wall end caps always have a pillar
@@ -3001,8 +3010,8 @@ function Layout_handle_corners(LEVEL)
 
     -- create support pillars on the corners
     -- where sky and ceilings of any other texture meet 
-    if near_porch(corner) and not
-    (at_multi_wall_corner(corner) and has_height_difference(corner)) then
+    if near_porch(corner) and
+    (has_height_difference(corner)) then
       pillar_it = true
     end
 
