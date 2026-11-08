@@ -11,10 +11,10 @@ PREFABS.Wall_generic_beamed_inset =
 
   where = "edge",
   deep = 16,
-  height = 128,
+  height = 96,
 
   bound_z1 = 0,
-  bound_z2 = 128,
+  bound_z2 = 96,
 
   z_fit = {64, 70},
 }
