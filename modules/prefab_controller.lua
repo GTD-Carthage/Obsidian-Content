@@ -205,11 +205,11 @@ function PREFAB_CONTROL.fine_tune_filters()
     hell_AztecClay = 8,
     urban_AztecClay = 8,]]
 
-    tech_silver_grate = 12,
-    urban_silver_grate = 12,
+    tech_silver_grate = 8,
+    urban_silver_grate = 8,
 
-    hell_computerCatacombs = 4,
-    urban_computerCatacombs = 4
+    hell_computerCatacombs = 12,
+    urban_computerCatacombs = 16
   }
 
   local themes =
