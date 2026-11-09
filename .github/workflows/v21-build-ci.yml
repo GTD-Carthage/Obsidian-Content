@@ -1,0 +1,102 @@
+# .github/workflows/cmake-multi-platform.yml
+name: CI build (Linux, Windows)
+
+on:
+  push:
+    branches: [ "v21-dev", "v21-content-unstable" ]
+  pull_request:
+    branches: [ "v21-dev", "v21-content-unstable" ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            cpp_compiler: clang++
+            c_compiler: clang
+          - os: windows-latest
+            cpp_compiler: cl
+            c_compiler: cl
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux dependencies (FLTK/X11/fontconfig)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            make cmake binutils \
+            gcc g++ clang \
+            libfontconfig1-dev libxft-dev libx11-dev \
+            libfltk1.3-dev
+
+      - name: Set build directory
+        id: dirs
+        shell: bash
+        run: |
+          echo "build-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+      - name: Configure CMake
+        shell: bash
+        run: >
+          cmake -S "${{ github.workspace }}"
+          -B "${{ steps.dirs.outputs.build-dir }}"
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_CXX_STANDARD=17
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+
+      - name: Build
+        shell: bash
+        run: >
+          cmake --build "${{ steps.dirs.outputs.build-dir }}"
+          --config Release -j$(nproc)
+
+      - name: Locate built binary (Linux)
+        if: runner.os == 'Linux'
+        id: binlinux
+        shell: bash
+        run: |
+          if [ -f "${{ steps.dirs.outputs.build-dir }}/obsidian" ]; then
+            echo "path=${{ steps.dirs.outputs.build-dir }}/obsidian" >> "$GITHUB_OUTPUT"
+          else
+            found="$(find "${{ steps.dirs.outputs.build-dir }}" -maxdepth 4 -type f -name 'obsidian' | head -n 1)"
+            echo "path=$found" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Locate built binary (Windows)
+        if: runner.os == 'Windows'
+        id: binwin
+        shell: pwsh
+        run: |
+          $candidates = @(
+            "${{ steps.dirs.outputs.build-dir }}\Release\obsidian.exe",
+            "${{ steps.dirs.outputs.build-dir }}\obsidian.exe"
+          )
+          $found = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $found) {
+            $found = Get-ChildItem -Path "${{ steps.dirs.outputs.build-dir }}" -Recurse -Filter "obsidian.exe" | Select-Object -First 1
+            if ($found) { $found = $found.FullName }
+          }
+          "path=$found" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Upload artifact (Linux)
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsidian-linux
+          path: ${{ steps.binlinux.outputs.path }}
+          if-no-files-found: error
+
+      - name: Upload artifact (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: obsidian-windows
+          path: ${{ steps.binwin.outputs.path }}
+          if-no-files-found: error
