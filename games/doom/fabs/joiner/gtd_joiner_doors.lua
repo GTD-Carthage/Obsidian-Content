@@ -125,7 +125,7 @@ PREFABS.Joiner_gtd_door_ex =
   map = "MAP05",
 
   theme = "!hell",
-  prob = 500,
+  prob = 50,
 }
 
 PREFABS.Joiner_gtd_door_ex_hell =
