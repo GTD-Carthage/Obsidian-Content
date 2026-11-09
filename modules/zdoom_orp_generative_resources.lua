@@ -1958,7 +1958,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HCCF7 = 25,
       SD_HCCF8 = 25,
 
-
       FLAT18 = 3,
       FLAT3 = 3,
       FLAT5_4 = 3,
@@ -2906,7 +2905,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HCCF6 = 25,
       SD_HCCF7 = 25,
       SD_HCCF8 = 25,
-
 
       FLAT18 = 3,
       FLAT3 = 3,
