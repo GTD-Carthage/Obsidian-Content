@@ -2970,6 +2970,11 @@ brightmap texture SD_HCCWB
   map SDHCWBRB
 }
 
+brightmap texture SD_HCCWC
+{
+  map SDHCWBRC
+}
+
 brightmap texture SDSLDWL1
 {
   map SDSLDBR1
