@@ -274,30 +274,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SD_HRFF7 = { t="SD_HRFWC", f="SD_HRFF7"},
   SD_HRFF8 = { t="SD_HRFWE", f="SD_HRFF8"},
 
-  -- computer catacombs (lolwhat?)
-  -- walls
-  SD_HCCW1 = { t="SD_HCCW1", f="SD_HCCF1"},
-  SD_HCCW2 = { t="SD_HCCW2", f="SD_HCCF2"},
-  SD_HCCW3 = { t="SD_HCCW3", f="SD_HCCF3"},
-  SD_HCCW4 = { t="SD_HCCW4", f="SD_HCCF4"},
-  SD_HCCW5 = { t="SD_HCCW5", f="SD_HCCF5"},
-  SD_HCCW6 = { t="SD_HCCW6", f="SD_HCCF6"},
-  SD_HCCW7 = { t="SD_HCCW7", f="SD_HCCF7"},
-  SD_HCCW8 = { t="SD_HCCW8", f="SD_HCCF8"},
-  SD_HCCW9 = { t="SD_HCCW9", f="SD_HCCF2"},
-  SD_HCCWA = { t="SD_HCCWA", f="SD_HCCF4"},
-  SD_HCCWB = { t="SD_HCCWB", f="SD_HCCF6"},
-  SD_HCCWC = { t="SD_HCCWC", f="SD_HCCF8"},
-  -- flats
-  SD_HCCF1 = { t="SD_HCCW1", f="SD_HCCF1"},
-  SD_HCCF2 = { t="SD_HCCW2", f="SD_HCCF2"},
-  SD_HCCF3 = { t="SD_HCCW3", f="SD_HCCF3"},
-  SD_HCCF4 = { t="SD_HCCW5", f="SD_HCCF4"},
-  SD_HCCF5 = { t="SD_HCCW7", f="SD_HCCF5"},
-  SD_HCCF6 = { t="SD_HCCW9", f="SD_HCCF6"},
-  SD_HCCF7 = { t="SD_HCCWA", f="SD_HCCF7"},
-  SD_HCCF8 = { t="SD_HCCWC", f="SD_HCCF8"},
-
   -- cable/socket catacombs (lolwhat?2)
   -- walls
   SDHCCBW1 = { t="SDHCCBW1", f="G_OM_FT3"},
@@ -951,7 +927,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF3 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
-      SD_HCCF5 = 10,
+      GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
 
@@ -984,7 +960,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF3 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
-      SD_HCCF5 = 10,
+      GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
 
@@ -1895,88 +1871,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
     }
   },
 
-  hell_computerCatacombs = --50
-  {
-    prob = 50,
-    env = "building",
-
-    is_generative = true,
-
-    walls =
-    {
-      SD_HCCW1 = 25,
-      SD_HCCW2 = 25,
-      SD_HCCW3 = 25,
-      SD_HCCW4 = 25,
-      SD_HCCW5 = 25,
-      SD_HCCW6 = 25,
-      SD_HCCW7 = 25,
-      SD_HCCW8 = 25,
-      SD_HCCW9 = 25,
-      SD_HCCWA = 25,
-      SD_HCCWB = 25,
-      SD_HCCWC = 25
-    },
-
-    floors =
-    {
-      SD_HCCF1 = 25,
-      SD_HCCF2 = 25,
-      SD_HCCF3 = 25,
-      SD_HCCF4 = 25,
-      SD_HCCF5 = 25,
-      SD_HCCF6 = 25,
-      SD_HCCF7 = 25,
-      SD_HCCF8 = 25,
-
-      FLAT18 = 3,
-      FLAT3 = 3,
-      FLAT5_4 = 3,
-      FLOOR0_5 = 3,
-
-      FFLAT01 = 8,
-      FLOOR4_7 = 8,
-      FLOOR7_3 = 8,
-      TILES1 = 8,
-      TILES4 = 8,
-      TILES5 = 8,
-      TILES6 = 8,
-
-      SDM_HGF1 = 8,
-      SDM_HGF2 = 8,
-      SDM_HGF3 = 8,
-    },
-
-    ceilings =
-    {
-      SD_HCCF1 = 25,
-      SD_HCCF2 = 25,
-      SD_HCCF3 = 25,
-      SD_HCCF4 = 25,
-      SD_HCCF5 = 25,
-      SD_HCCF6 = 25,
-      SD_HCCF7 = 25,
-      SD_HCCF8 = 25,
-
-      FLAT18 = 3,
-      FLAT3 = 3,
-      FLAT5_4 = 3,
-      FLOOR0_5 = 3,
-
-      FFLAT01 = 8,
-      FLOOR4_7 = 8,
-      FLOOR7_3 = 8,
-      TILES1 = 8,
-      TILES4 = 8,
-      TILES5 = 8,
-      TILES6 = 8,
-
-      SDM_HGF1 = 8,
-      SDM_HGF2 = 8,
-      SDM_HGF3 = 8,
-    }
-  },
-
   hell_cableSocketCatacombs = --50
   {
     prob = 50,
@@ -2009,7 +1903,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF3 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
-      SD_HCCF5 = 10,
+      GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
 
@@ -2042,7 +1936,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF3 = 10,
       SD_GTHF1 = 10,
       SD_GTHF2 = 10,
-      SD_HCCF5 = 10,
+      GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
 
@@ -2840,88 +2734,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       FLAT5_2 = 3,
       FLOOR0_3 = 3,
       FLOOR5_4 = 3
-    }
-  },
-
-  urban_computerCatacombs = --10
-  {
-    prob = 10,
-    env = "building",
-
-    is_generative = true,
-
-    walls =
-    {
-      SD_HCCW1 = 25,
-      SD_HCCW2 = 25,
-      SD_HCCW3 = 25,
-      SD_HCCW4 = 25,
-      SD_HCCW5 = 25,
-      SD_HCCW6 = 25,
-      SD_HCCW7 = 25,
-      SD_HCCW8 = 25,
-      SD_HCCW9 = 25,
-      SD_HCCWA = 25,
-      SD_HCCWB = 25,
-      SD_HCCWC = 25
-    },
-
-    floors =
-    {
-      SD_HCCF1 = 25,
-      SD_HCCF2 = 25,
-      SD_HCCF3 = 25,
-      SD_HCCF4 = 25,
-      SD_HCCF5 = 25,
-      SD_HCCF6 = 25,
-      SD_HCCF7 = 25,
-      SD_HCCF8 = 25,
-
-      FLAT18 = 3,
-      FLAT3 = 3,
-      FLAT5_4 = 3,
-      FLOOR0_5 = 3,
-
-      FFLAT01 = 8,
-      FLOOR4_7 = 8,
-      FLOOR7_3 = 8,
-      TILES1 = 8,
-      TILES4 = 8,
-      TILES5 = 8,
-      TILES6 = 8,
-
-      SDM_HGF1 = 8,
-      SDM_HGF2 = 8,
-      SDM_HGF3 = 8,
-    },
-
-    ceilings =
-    {
-      SD_HCCF1 = 25,
-      SD_HCCF2 = 25,
-      SD_HCCF3 = 25,
-      SD_HCCF4 = 25,
-      SD_HCCF5 = 25,
-      SD_HCCF6 = 25,
-      SD_HCCF7 = 25,
-      SD_HCCF8 = 25,
-
-      FLAT18 = 3,
-      FLAT3 = 3,
-      FLAT5_4 = 3,
-      FLOOR0_5 = 3,
-
-      FFLAT01 = 8,
-      FLOOR4_7 = 8,
-      FLOOR7_3 = 8,
-      TILES1 = 8,
-      TILES4 = 8,
-      TILES5 = 8,
-      TILES6 = 8,
-
-      SDM_HGF1 = 8,
-      SDM_HGF2 = 8,
-      SDM_HGF3 = 8,
     }
   },
 

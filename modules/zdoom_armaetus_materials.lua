@@ -967,7 +967,7 @@ OBS_RESOURCE_PACK_MATERIALS = {
   D64TEL04 = { t="BROWNHUG",  f="D64TEL04" }, -- Hellish teleporter
 
 
-  
+
  -- ------------------ --
  --  END DOOM 64 STUFF --
  -- ------------------ --
@@ -1754,6 +1754,30 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GO_MHZF6 = { t="GO_MHZW6", f="GO_MHZF6"},
   GO_MHZF7 = { t="GO_MHZW7", f="GO_MHZF7"},
   GO_MHZF8 = { t="GO_MHZW8", f="GO_MHZF8"},
+
+  -- computer catacombs (lolwhat?)
+  -- walls
+  GO_HCCW1 = { t="GO_HCCW1", f="GO_HCCF1"},
+  GO_HCCW2 = { t="GO_HCCW2", f="GO_HCCF2"},
+  GO_HCCW3 = { t="GO_HCCW3", f="GO_HCCF3"},
+  GO_HCCW4 = { t="GO_HCCW4", f="GO_HCCF4"},
+  GO_HCCW5 = { t="GO_HCCW5", f="GO_HCCF5"},
+  GO_HCCW6 = { t="GO_HCCW6", f="GO_HCCF6"},
+  GO_HCCW7 = { t="GO_HCCW7", f="GO_HCCF7"},
+  GO_HCCW8 = { t="GO_HCCW8", f="GO_HCCF8"},
+  GO_HCCW9 = { t="GO_HCCW9", f="GO_HCCF2"},
+  GO_HCCWA = { t="GO_HCCWA", f="GO_HCCF4"},
+  GO_HCCWB = { t="GO_HCCWB", f="GO_HCCF6"},
+  GO_HCCWC = { t="GO_HCCWC", f="GO_HCCF8"},
+  -- flats
+  GO_HCCF1 = { t="GO_HCCW1", f="GO_HCCF1"},
+  GO_HCCF2 = { t="GO_HCCW2", f="GO_HCCF2"},
+  GO_HCCF3 = { t="GO_HCCW3", f="GO_HCCF3"},
+  GO_HCCF4 = { t="GO_HCCW5", f="GO_HCCF4"},
+  GO_HCCF5 = { t="GO_HCCW7", f="GO_HCCF5"},
+  GO_HCCF6 = { t="GO_HCCW9", f="GO_HCCF6"},
+  GO_HCCF7 = { t="GO_HCCWA", f="GO_HCCF7"},
+  GO_HCCF8 = { t="GO_HCCWC", f="GO_HCCF8"},
 
   ----------------------
   -- Special Textures --
@@ -2940,37 +2964,37 @@ brightmap texture SDHCCBWC
   map SDHCCBRC
 }
 
-brightmap texture SD_HCCW3
+brightmap texture GO_HCCW3
 {
   map SDHCWBR3
 }
 
-brightmap texture SD_HCCW7
+brightmap texture GO_HCCW7
 {
   map SDHCWBR7
 }
 
-brightmap texture SD_HCCW8
+brightmap texture GO_HCCW8
 {
   map SDHCWBR8
 }
 
-brightmap texture SD_HCCW9
+brightmap texture GO_HCCW9
 {
   map SDHCWBR9
 }
 
-brightmap texture SD_HCCWA
+brightmap texture GO_HCCWA
 {
   map SDHCWBRA
 }
 
-brightmap texture SD_HCCWB
+brightmap texture GO_HCCWB
 {
   map SDHCWBRB
 }
 
-brightmap texture SD_HCCWC
+brightmap texture GO_HCCWC
 {
   map SDHCWBRC
 }
@@ -3049,7 +3073,7 @@ OBS_RESOURCE_PACK_TEXTURE_SET_ALIASES =
   {
     materials =
     {
-      "G_OM_WL1", "G_OM_WL2", "G_OM_WL3", 
+      "G_OM_WL1", "G_OM_WL2", "G_OM_WL3",
       "G_OM_WL4", "G_OM_WL5", "G_OM_WL6"
     }
   },

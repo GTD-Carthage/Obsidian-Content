@@ -3483,6 +3483,148 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  hell_computerCatacombs = --50
+  {
+    prob = 50,
+    env = "building",
+
+    walls =
+    {
+      GO_HCCW1 = 25,
+      GO_HCCW2 = 25,
+      GO_HCCW3 = 25,
+      GO_HCCW4 = 25,
+      GO_HCCW5 = 25,
+      GO_HCCW6 = 25,
+      GO_HCCW7 = 25,
+      GO_HCCW8 = 25,
+      GO_HCCW9 = 25,
+      GO_HCCWA = 25,
+      GO_HCCWB = 25,
+      GO_HCCWC = 25
+    },
+
+    floors =
+    {
+      GO_HCCF1 = 25,
+      GO_HCCF2 = 25,
+      GO_HCCF3 = 25,
+      GO_HCCF4 = 25,
+      GO_HCCF5 = 25,
+      GO_HCCF6 = 25,
+      GO_HCCF7 = 25,
+      GO_HCCF8 = 25,
+
+      FLAT18 = 3,
+      FLAT3 = 3,
+      FLAT5_4 = 3,
+      FLOOR0_5 = 3,
+
+      FFLAT01 = 8,
+      FLOOR4_7 = 8,
+      FLOOR7_3 = 8,
+      TILES1 = 8,
+      TILES4 = 8,
+      TILES5 = 8,
+      TILES6 = 8,
+
+      GMET01 = 7,
+      GMET02 = 7,
+      GMET03 = 7,
+      GMET04 = 7,
+      GMET05 = 7,
+      GMET06 = 7,
+      GMET07 = 7,
+
+      GRATE1 = 7,
+      GRATE2 = 7,
+      GRATE3 = 7,
+      GRATE4 = 7,
+      GRATE5 = 7,
+      GRATE6 = 7,
+      GRATE7 = 7,
+      GRATE8 = 7,
+
+      G_OVNTF1 = 6,
+      G_OVNTF2 = 6,
+      G_OVNTF3 = 6,
+      G_OVNTF4 = 6,
+      G_OVNTF5 = 6,
+      G_OVNTF6 = 6,
+      G_OVNTF7 = 6,
+      G_OVNTF8 = 6,
+      G_OVNTF9 = 6,
+      G_OVNTFA = 6,
+      G_OVNTFB = 6,
+      G_OVNTFC = 6,
+
+      SD_GTHF1 = 7,
+      SD_GTHF2 = 7,
+      SD_GTHF3 = 7,
+      SD_GTHF4 = 7,
+      SD_GTHF5 = 7,
+      SD_GTHF6 = 7,
+      SD_GTHF7 = 7,
+      SD_GTHF8 = 7
+    },
+
+    ceilings =
+    {
+      GO_HCCF1 = 25,
+      GO_HCCF2 = 25,
+      GO_HCCF3 = 25,
+      GO_HCCF4 = 25,
+      GO_HCCF5 = 25,
+      GO_HCCF6 = 25,
+      GO_HCCF7 = 25,
+      GO_HCCF8 = 25,
+
+      FLAT18 = 3,
+      FLAT3 = 3,
+      FLAT5_4 = 3,
+      FLOOR0_5 = 3,
+
+      FFLAT01 = 8,
+      FLOOR4_7 = 8,
+      FLOOR7_3 = 8,
+      TILES1 = 8,
+      TILES4 = 8,
+      TILES5 = 8,
+      TILES6 = 8,
+
+      GRATE1 = 7,
+      GRATE2 = 7,
+      GRATE3 = 7,
+      GRATE4 = 7,
+      GRATE5 = 7,
+      GRATE6 = 7,
+      GRATE7 = 7,
+      GRATE8 = 7,
+
+      G_OVNTF1 = 6,
+      G_OVNTF2 = 6,
+      G_OVNTF3 = 6,
+      G_OVNTF4 = 6,
+      G_OVNTF5 = 6,
+      G_OVNTF6 = 6,
+      G_OVNTF7 = 6,
+      G_OVNTF8 = 6,
+      G_OVNTF9 = 6,
+      G_OVNTFA = 6,
+      G_OVNTFB = 6,
+      G_OVNTFC = 6,
+
+      SD_GTHF1 = 7,
+      SD_GTHF2 = 7,
+      SD_GTHF3 = 7,
+      SD_GTHF4 = 7,
+      SD_GTHF5 = 7,
+      SD_GTHF6 = 7,
+      SD_GTHF7 = 7,
+      SD_GTHF8 = 7
+    }
+  },
+
   -- Hell has frozen over!
   hell_icecave = --50
   {
@@ -5403,6 +5545,156 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       GO_MHZF8 = 25
     }
   },
+
+  urban_computerCatacombs = --35
+  {
+    prob = 35,
+    env = "building",
+
+    walls =
+    {
+      GO_HCCW1 = 25,
+      GO_HCCW2 = 25,
+      GO_HCCW3 = 25,
+      GO_HCCW4 = 25,
+      GO_HCCW5 = 25,
+      GO_HCCW6 = 25,
+      GO_HCCW7 = 25,
+      GO_HCCW8 = 25,
+      GO_HCCW9 = 25,
+      GO_HCCWA = 25,
+      GO_HCCWB = 25,
+      GO_HCCWC = 25
+    },
+
+    floors =
+    {
+      GO_HCCF1 = 25,
+      GO_HCCF2 = 25,
+      GO_HCCF3 = 25,
+      GO_HCCF4 = 25,
+      GO_HCCF5 = 25,
+      GO_HCCF6 = 25,
+      GO_HCCF7 = 25,
+      GO_HCCF8 = 25,
+
+      FLAT18 = 3,
+      FLAT3 = 3,
+      FLAT5_4 = 3,
+      FLOOR0_5 = 3,
+
+      FFLAT01 = 8,
+      FLOOR4_7 = 8,
+      FLOOR7_3 = 8,
+      TILES1 = 8,
+      TILES4 = 8,
+      TILES5 = 8,
+      TILES6 = 8,
+
+      GMET01 = 7,
+      GMET02 = 7,
+      GMET03 = 7,
+      GMET04 = 7,
+      GMET05 = 7,
+      GMET06 = 7,
+      GMET07 = 7,
+
+      GRATE1 = 7,
+      GRATE2 = 7,
+      GRATE3 = 7,
+      GRATE4 = 7,
+      GRATE5 = 7,
+      GRATE6 = 7,
+      GRATE7 = 7,
+      GRATE8 = 7,
+
+      G_OVNTF1 = 6,
+      G_OVNTF2 = 6,
+      G_OVNTF3 = 6,
+      G_OVNTF4 = 6,
+      G_OVNTF5 = 6,
+      G_OVNTF6 = 6,
+      G_OVNTF7 = 6,
+      G_OVNTF8 = 6,
+      G_OVNTF9 = 6,
+      G_OVNTFA = 6,
+      G_OVNTFB = 6,
+      G_OVNTFC = 6,
+
+      SD_GTHF1 = 7,
+      SD_GTHF2 = 7,
+      SD_GTHF3 = 7,
+      SD_GTHF4 = 7,
+      SD_GTHF5 = 7,
+      SD_GTHF6 = 7,
+      SD_GTHF7 = 7,
+      SD_GTHF8 = 7
+    },
+
+    ceilings =
+    {
+      GO_HCCF1 = 25,
+      GO_HCCF2 = 25,
+      GO_HCCF3 = 25,
+      GO_HCCF4 = 25,
+      GO_HCCF5 = 25,
+      GO_HCCF6 = 25,
+      GO_HCCF7 = 25,
+      GO_HCCF8 = 25,
+
+      FLAT18 = 3,
+      FLAT3 = 3,
+      FLAT5_4 = 3,
+      FLOOR0_5 = 3,
+
+      FFLAT01 = 8,
+      FLOOR4_7 = 8,
+      FLOOR7_3 = 8,
+      TILES1 = 8,
+      TILES4 = 8,
+      TILES5 = 8,
+      TILES6 = 8,
+
+      GMET01 = 7,
+      GMET02 = 7,
+      GMET03 = 7,
+      GMET04 = 7,
+      GMET05 = 7,
+      GMET06 = 7,
+      GMET07 = 7,
+
+      GRATE1 = 7,
+      GRATE2 = 7,
+      GRATE3 = 7,
+      GRATE4 = 7,
+      GRATE5 = 7,
+      GRATE6 = 7,
+      GRATE7 = 7,
+      GRATE8 = 7,
+
+      G_OVNTF1 = 6,
+      G_OVNTF2 = 6,
+      G_OVNTF3 = 6,
+      G_OVNTF4 = 6,
+      G_OVNTF5 = 6,
+      G_OVNTF6 = 6,
+      G_OVNTF7 = 6,
+      G_OVNTF8 = 6,
+      G_OVNTF9 = 6,
+      G_OVNTFA = 6,
+      G_OVNTFB = 6,
+      G_OVNTFC = 6,
+
+      SD_GTHF1 = 7,
+      SD_GTHF2 = 7,
+      SD_GTHF3 = 7,
+      SD_GTHF4 = 7,
+      SD_GTHF5 = 7,
+      SD_GTHF6 = 7,
+      SD_GTHF7 = 7,
+      SD_GTHF8 = 7
+    }
+  },
 -- END OF THEMES TABLES
 }
 
@@ -6753,7 +7045,7 @@ OBS_RESOURCE_PACK_THEMES =
       G_OVNTW7 = 20,
       G_OVNTW8 = 20,
       G_OVNTWB = 20,
-      G_OVNTWC = 20
+      G_OVNTWC = 20,
     },
 
     fences =
@@ -7248,7 +7540,20 @@ OBS_RESOURCE_PACK_THEMES =
       GO_MHZW5 = 5,
       GO_MHZW6 = 5,
       GO_MHZW7 = 5,
-      GO_MHZW8 = 5
+      GO_MHZW8 = 5,
+
+      GO_HCCW1 = 6,
+      GO_HCCW2 = 6,
+      GO_HCCW3 = 6,
+      GO_HCCW4 = 6,
+      GO_HCCW5 = 6,
+      GO_HCCW6 = 6,
+      GO_HCCW7 = 6,
+      GO_HCCW8 = 6,
+      GO_HCCW9 = 6,
+      GO_HCCWA = 6,
+      GO_HCCWB = 6,
+      GO_HCCWC = 6
     },
 
     fences =
@@ -7758,7 +8063,20 @@ OBS_RESOURCE_PACK_THEMES =
       GO_MHZW5 = 18,
       GO_MHZW6 = 18,
       GO_MHZW7 = 18,
-      GO_MHZW8 = 18
+      GO_MHZW8 = 18,
+
+      GO_HCCW1 = 18,
+      GO_HCCW2 = 18,
+      GO_HCCW3 = 18,
+      GO_HCCW4 = 18,
+      GO_HCCW5 = 18,
+      GO_HCCW6 = 18,
+      GO_HCCW7 = 18,
+      GO_HCCW8 = 18,
+      GO_HCCW9 = 18,
+      GO_HCCWA = 18,
+      GO_HCCWB = 18,
+      GO_HCCWC = 18
     },
 
     fences =
