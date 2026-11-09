@@ -3025,8 +3025,8 @@ function Layout_handle_corners(LEVEL)
   local function check_corner(cx, cy)
     local corner = Corner_lookup(LEVEL, cx, cy)
 
-    check_need_pillar(corner)
     check_need_fencepost(corner)
+    check_need_pillar(corner)
   end
 
 
