@@ -1391,77 +1391,123 @@ end
 
 function Corner_is_at_area_corner(corner)
 
-  local seeds = corner.seeds
+  -- divide the space around the corner into eight 45-degree sectors
+  -- direction 0 is east, increasing counter-clockwise
+  local sectors = {}
 
-  -- require exactly four surrounding seeds.
-  if #seeds ~= 4 then
-    return false
+  local function direction_index(point)
+    local dx = point.x - corner.x
+    local dy = point.y - corner.y
+
+    if dx > 0 then
+      if dy > 0 then return 1 end
+      if dy < 0 then return 7 end
+      return 0
+    elseif dx < 0 then
+      if dy > 0 then return 3 end
+      if dy < 0 then return 5 end
+      return 4
+    elseif dy > 0 then
+      return 2
+    elseif dy < 0 then
+      return 6
+    end
   end
 
-  -- organize seeds by their actual position around this vertex.
-  -- this avoids relying on the insertion order of corner.seeds.
 
-  local around = {}
+  -- collect the area occupying each 45-degree sector
+  for _,S in ipairs(corner.seeds) do
 
-  for _,S in ipairs(seeds) do
-    local dir
+    if not S.area then return false end
 
-    if S.sx == corner.cx and S.sy == corner.cy then
-      dir = 1
-    elseif S.sx == corner.cx - 1 and S.sy == corner.cy then
-      dir = 3
-    elseif S.sx == corner.cx - 1 and S.sy == corner.cy - 1 then
-      dir = 9
-    elseif S.sx == corner.cx and S.sy == corner.cy - 1 then
-      dir = 7
-    else
+    -- get the actual polygon, including diagonal geometry
+    local vertices = S:make_brush()
+    local corner_index
+
+    -- find this corner in the seed polygon
+    for i,vertex in ipairs(vertices) do
+      if vertex.x == corner.x and vertex.y == corner.y then
+        corner_index = i
+        break
+      end
+    end
+
+    if not corner_index then return false end
+
+    -- find the vertices immediately before and after this corner
+    local next_index = corner_index + 1
+    if next_index > #vertices then next_index = 1 end
+
+    local prev_index = corner_index - 1
+    if prev_index == 0 then prev_index = #vertices end
+
+    local first_dir = direction_index(vertices[next_index])
+    local last_dir  = direction_index(vertices[prev_index])
+
+    if first_dir == nil or last_dir == nil then
       return false
     end
 
-    -- don't allow two seeds from the same surrounding cell.
-    if around[dir] then
+    -- the polygon's interior angle determines how many sectors this seed occupies
+    -- squares contribute 90 degrees
+    -- triangles contribute either 45 or 90 degrees
+    local width = (last_dir - first_dir) % 8
+
+    if width < 1 or width > 2 then
       return false
     end
 
-    around[dir] = S
-  end
+    -- assign the sectors to this seed's area.
+    for step = 0, width - 1 do
+      local sector = (first_dir + step) % 8 + 1
 
-  -- ensure all four surrounding cells are represented.
-  if not (around[1] and around[3] and around[9] and around[7]) then
-    return false
-  end
+      -- overlapping geometry means this is not a valid arrangement
+      if sectors[sector] then return false end
 
-  -- read their areas in circular order.
-  local areas =
-  {
-    around[1].area,
-    around[3].area,
-    around[9].area,
-    around[7].area
-  }
-
-  -- find where the area boundary changes direction.
-  local transitions = {}
-
-  for i = 1,4 do
-    local prev = (i == 1) and 4 or (i - 1)
-
-    if areas[i] ~= areas[prev] then
-      table.insert(transitions, i)
+      sectors[sector] = S.area
     end
   end
 
-  -- all four surrounding cells belong to the same area.
-  if #transitions == 0 then
+
+  -- all eight sectors must be represented.
+  -- this preserves the old behavior of rejecting incomplete
+  -- corners at the edge of the seed grid
+  for i = 1, 8 do
+    if not sectors[i] then return false end
+  end
+
+
+  -- find where ownership changes between adjacent sectors
+  local first_transition
+  local second_transition
+  local transition_count = 0
+
+  for i = 1, 8 do
+    local prev = (i == 1) and 8 or (i - 1)
+
+    if sectors[i] ~= sectors[prev] then
+      transition_count = transition_count + 1
+
+      if transition_count == 1 then
+        first_transition = i
+      elseif transition_count == 2 then
+        second_transition = i
+      end
+    end
+  end
+
+
+  -- all sectors belong to the same area
+  if transition_count == 0 then
     return false
   end
 
-  -- two opposing transitions indicate a straight boundary.
-  if #transitions == 2 then
-    return (transitions[2] - transitions[1]) ~= 2
+  -- two opposing transitions indicate a straight boundary
+  if transition_count == 2 then
+    return (second_transition - first_transition) ~= 4
   end
 
-  -- multiple boundaries or a turning boundary.
+  -- multiple boundaries indicate an actual corner
   return true
 end
 

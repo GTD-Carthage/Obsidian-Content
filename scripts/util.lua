@@ -1601,16 +1601,16 @@ function place_debug_marker(pos, color_pick)
 
   local colors =
   {
-    red = 9027,
-    green = 9028,
-    blue = 9029,
-    yellow = 9030,
-    purple = 9031,
+    red = 30004,
+    green = 30002,
+    blue = 30000,
+    yellow = 30001,
+    purple = 30003,
     black = 9032,
     white = 9033
   }
 
-  E.id = 9033
+  E.id = 30000
   if color_pick and colors[color_pick] then
     E.id = colors[color_pick]
   end

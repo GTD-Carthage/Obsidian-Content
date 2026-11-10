@@ -2861,7 +2861,7 @@ function Layout_handle_corners(LEVEL)
         if not Corner_is_at_area_corner(corner) then return end
 
         corner.kind = "post"
-        if E.kind == "fence" and E.area:is_open_to_sky() then
+        if E.kind == "fence" then
 
           local tallest_h = get_tallest_fence_top(corner)
 
