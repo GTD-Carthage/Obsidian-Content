@@ -209,7 +209,10 @@ function PREFAB_CONTROL.fine_tune_filters()
     urban_silver_grate = 8,
 
     hell_computerCatacombs = 12,
-    urban_computerCatacombs = 16
+    urban_computerCatacombs = 24,
+
+    tech_cableSocketCatacombs = 8,
+    hell_cableSocketCatacombs = 4
   }
 
   local themes =
