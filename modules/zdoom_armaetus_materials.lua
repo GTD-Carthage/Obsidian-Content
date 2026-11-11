@@ -2944,6 +2944,11 @@ brightmap texture SDHCCBW6
   map SDHCCBR6
 }
 
+brightmap texture SDHCCBW7
+{
+  map SDHCCBR7
+}
+
 brightmap texture SDHCCBW8
 {
   map SDHCCBR8
