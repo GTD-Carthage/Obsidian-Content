@@ -2747,10 +2747,6 @@ chunk.goal.action = "S1_OpenDoor"  -- FIXME IT SHOULD BE SET WHEN JOINER IS REND
       z2 = chunk.from_area.ceil_h
     end
 
-    if R.is_outdoor then
-      z2 = z2 + 16
-    end
-
     if z2 then
       Trans.set_fitted_z(T, z1, z2)
     end
