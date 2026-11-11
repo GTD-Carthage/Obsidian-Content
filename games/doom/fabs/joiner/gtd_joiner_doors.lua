@@ -141,6 +141,8 @@ PREFABS.Joiner_gtd_door_ex_hell =
   tex_METAL5 = "SLOPPY1"
 }
 
+--
+
 PREFABS.Joiner_gtd_door_techno_pillar_3x =
 {
   template = "Joiner_gtd_door_diagonal_1x2",

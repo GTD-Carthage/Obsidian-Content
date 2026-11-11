@@ -2973,20 +2973,17 @@ function Layout_handle_corners(LEVEL)
     if not Corner_is_at_area_corner(corner) then return end
 
     -- never pillars along void areas
-    -- and building to scenic as these are *always*
-    -- walled up
-    local partially_building = false
-    local partially_scenic = false
+    -- and between actual rooms as they are
+    -- always walled-up 
+    local unique_rooms = {}
     for _, A in ipairs(corner.areas) do
-      if A.mode == "void" then return end
-      if A.room and A.room:get_env("building") then
-        partially_building = true
-      end
-      if A.mode == "scenic" then
-        partially_scenic = true
+      if A.room then
+        table.add_unique(unique_rooms, A.room.id)
+      elseif not A.room then
+        table.add_unique(unique_rooms, "void")
       end
     end
-    if partially_building == true and partially_scenic == true then return end
+    if #unique_rooms > 1 then return end
 
     -- no pillars on the map edge
     for _,junc in pairs(corner.junctions) do
