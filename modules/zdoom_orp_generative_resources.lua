@@ -289,7 +289,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SDHCCBWB = { t="SDHCCBWB", f="G_OM_FT6"},
   SDHCCBWC = { t="SDHCCBWC", f="G_OM_FT7"},
   SDHCCBWD = { t="SDHCCBWD", f="G_OM_FT8"},
-  SDHCCBWE = { t="SDHCCBWE", f="G_OM_FTA"},
 
   --
   TOFFBOX1 = {t="TOFFBOX1", f="FLAT23"},
@@ -916,8 +915,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SDHCCBWA = 5,
       SDHCCBWB = 5,
       SDHCCBWC = 5,
-      SDHCCBWD = 5,
-      SDHCCBWE = 5
+      SDHCCBWD = 5
     },
 
     floors =
@@ -1892,8 +1890,7 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SDHCCBWA = 5,
       SDHCCBWB = 5,
       SDHCCBWC = 5,
-      SDHCCBWD = 5,
-      SDHCCBWE = 5
+      SDHCCBWD = 5
     },
 
     floors =
