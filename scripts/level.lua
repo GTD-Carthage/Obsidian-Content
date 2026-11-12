@@ -2388,7 +2388,7 @@ function Level_choose_misc(LEVEL)
   elseif PARAM.room_height_limit == "none" then
     LEVEL.room_height_limit = EXTREME_H
   else
-    LEVEL.room_height_limit = PARAM.room_height_limit
+    LEVEL.room_height_limit = tonumber(PARAM.room_height_limit)
   end
 
   if rand.odds(style_sel("outdoors", 0, 33, 66, 100)) then
