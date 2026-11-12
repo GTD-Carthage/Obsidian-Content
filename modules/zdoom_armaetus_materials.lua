@@ -2979,6 +2979,11 @@ brightmap texture GO_HCCW3
   map SDHCWBR3
 }
 
+brightmap texture GO_HCCW4
+{
+  map SDHCWBR4
+}
+
 brightmap texture GO_HCCW7
 {
   map SDHCWBR7
