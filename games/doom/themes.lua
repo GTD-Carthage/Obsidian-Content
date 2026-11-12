@@ -2166,6 +2166,7 @@ DOOM.THEMES =
       gtd_ind_modwall_1 = 20,
       gtd_ind_modwall_2 = 20,
       gtd_ind_modwall_3 = 20,
+      gtd_ind_modwall_arched = 20,
       --
       gtd_greywall_1 = 25,
       gtd_greytall_trim = 25,
@@ -2749,6 +2750,7 @@ DOOM.THEMES =
       gtd_ind_modwall_1 = 20,
       gtd_ind_modwall_2 = 20,
       gtd_ind_modwall_3 = 20,
+      gtd_ind_modwall_arched = 50,
       --
       gtd_modquake_set = 20,
       gtd_modquake_jawlike = 20,

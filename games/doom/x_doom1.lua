@@ -1558,6 +1558,7 @@ ULTDOOM.THEMES =
       gtd_ind_modwall_1 = 20,
       gtd_ind_modwall_2 = 20,
       gtd_ind_modwall_3 = 20,
+      gtd_ind_modwall_arched = 5,
 
       gtd_greywall_1 = 25,
       gtd_greytall_trim = 25,
@@ -2006,6 +2007,7 @@ ULTDOOM.THEMES =
       gtd_ind_modwall_1 = 20,
       gtd_ind_modwall_2 = 20,
       gtd_ind_modwall_3 = 20,
+      gtd_ind_modwall_arched = 30,
       --
       gtd_greywall_1 = 25,
       gtd_greytall_trim = 25,
@@ -2460,6 +2462,7 @@ ULTDOOM.THEMES =
       gtd_ind_modwall_1 = 20,
       gtd_ind_modwall_2 = 20,
       gtd_ind_modwall_3 = 20,
+      gtd_ind_modwall_arched = 50,
       --
       gtd_greywall_1 = 25,
       gtd_greytall_trim = 25,

@@ -185,7 +185,9 @@ function PREFAB_CONTROL.fine_tune_filters()
     gtd_ledge_set = 8,
     gtd_ledge_alt_set = 8,
 
-    tech_o_trapezoid_blue = 12]]
+    tech_o_trapezoid_blue = 12,]]
+
+    gtd_ind_modwall_arched = 20
   }
 
   local new_themes_multipliers =
