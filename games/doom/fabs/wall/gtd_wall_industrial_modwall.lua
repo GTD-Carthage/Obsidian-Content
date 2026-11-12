@@ -122,9 +122,21 @@ PREFABS.Wall_industrial_modwall_arched =
   template = "Wall_industrial_modwall_1",
   map = "MAP61",
 
+  prob = 10,
+
   group = "gtd_ind_modwall_arched",
 
   z_fit = "top"
+}
+
+PREFABS.Wall_industrial_modwall_arched =
+{
+  template = "Wall_industrial_modwall_1",
+  map = "MAP62",
+
+  group = "gtd_ind_modwall_arched",
+
+  z_fit = {52,53}
 }
 
 PREFABS.Wall_industrial_modwall_arched_diag =
