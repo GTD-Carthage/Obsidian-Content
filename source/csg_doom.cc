@@ -1164,15 +1164,33 @@ static vertex_c *MakeVertex(int x, int y)
 
 static int NaturalXOffset(Doom::linedef_c *L, int side)
 {
+    // Doom-family maps use a shifted world-alignment origin
+    constexpr int DOOM_ALIGN_ORIGIN_X = 32;
+    constexpr int DOOM_ALIGN_ORIGIN_Y = 32;
+
     double along;
 
     if (side == 0)
     {
-        along = AlongDist(0, 0, L->start->x, L->start->y, L->end->x, L->end->y);
+        along = AlongDist(
+            DOOM_ALIGN_ORIGIN_X,
+            DOOM_ALIGN_ORIGIN_Y,
+            L->start->x,
+            L->start->y,
+            L->end->x,
+            L->end->y
+        );
     }
     else
     {
-        along = AlongDist(0, 0, L->end->x, L->end->y, L->start->x, L->start->y);
+        along = AlongDist(
+            DOOM_ALIGN_ORIGIN_X,
+            DOOM_ALIGN_ORIGIN_Y,
+            L->end->x,
+            L->end->y,
+            L->start->x,
+            L->start->y
+        );
     }
 
     return OBSIDIAN_I_ROUND(-along);
@@ -1798,55 +1816,17 @@ static void MergeColinearLines(bool show_count = true)
     }
 }
 
-static linedef_c *FindSimilarLine(linedef_c *L, vertex_c *V)
-{
-    linedef_c *best       = NULL;
-    int        best_score = -1;
-
-    for (auto *M : V->lines)
-    {
-        if (!M)
-        {
-            break;
-        }
-        if (M == L)
-        {
-            continue;
-        }
-
-        SYS_ASSERT(M->isValid());
-
-        if (!L->isFrontSimilar(M))
-        {
-            continue;
-        }
-
-        int score = 0;
-
-        if (!L->back && !M->back)
-        {
-            score += 20;
-        }
-
-        if (L->ColinearWith(M))
-        {
-            score += 10;
-        }
-
-        if (score > best_score)
-        {
-            best       = M;
-            best_score = score;
-        }
-    }
-
-    return best;
-}
-
 static void AlignTextures()
 {
-    int i     = 0;
+    // world-aligned front sidedefs participate in curved-chain
+    // propagation while explicit prefab offsets must remain untouched
+    std::unordered_map<linedef_c *, bool> world_front;
+
+    // establish vertex adjacency
+    std::unordered_map<vertex_c *, std::vector<linedef_c *>> adjacency;
+
     int count = 0;
+    int curved_count = 0;
 
     for (auto *L : linedefs)
     {
@@ -1855,76 +1835,201 @@ static void AlignTextures()
             continue;
         }
 
-        L->sim_prev = FindSimilarLine(L, L->start);
-        L->sim_next = FindSimilarLine(L, L->end);
+        if (L->front && L->front->x_offset == IVAL_NONE)
+        {
+            world_front[L] = true;
+        }
 
-        if (L->front->x_offset == IVAL_NONE && !L->sim_prev && !L->sim_next)
+        adjacency[L->start].push_back(L);
+        adjacency[L->end].push_back(L);
+    }
+
+    // establish the independent world-origin baseline
+    for (auto *L : linedefs)
+    {
+        if (!L->isValid())
+        {
+            continue;
+        }
+
+        if (L->front && L->front->x_offset == IVAL_NONE)
         {
             L->front->x_offset = NaturalXOffset(L, 0);
+            count++;
         }
 
         if (L->back && L->back->x_offset == IVAL_NONE)
         {
             L->back->x_offset = NaturalXOffset(L, 1);
+            count++;
         }
     }
 
-    // when there are line loops where every x_offset is IVAL_NONE, then
-    // it's a chicken and egg problem.  Hence we perform a bunch of passes,
-    // the first pass checks every 256 lines for IVAL_NONE (which will then
-    // propagate to similar neighbors), the next pass checks 128, 64, etc..
+    // find unambiguous forward continuations
+    std::unordered_map<linedef_c *, linedef_c *> next_line;
+    std::unordered_map<linedef_c *, int> predecessor_count;
 
-    for (int pass = 12; pass >= 0; pass--)
+    constexpr double MIN_TURN_CROSS = 0.0174524; // sin(1 degree)
+    constexpr double MIN_TURN_DOT   = 0.7071068; // cos(45 degrees)
+
+    for (auto *L : linedefs)
     {
-        int prev_count = 0;
-        int next_count = 0;
-
-        for (auto *L : linedefs)
+        if (!L->isValid() || world_front.find(L) == world_front.end())
         {
-            if (!L->isValid())
+            continue;
+        }
+
+        auto found = adjacency.find(L->end);
+
+        if (found == adjacency.end())
+        {
+            continue;
+        }
+
+        linedef_c *candidate = NULL;
+        int candidate_count = 0;
+
+        for (auto *M : found->second)
+        {
+            if (M == L || !M->isValid())
             {
                 continue;
             }
 
-            if (L->front->x_offset == IVAL_NONE)
+            // continuation must proceed from L's end to M's start
+            if (M->start != L->end)
             {
-                if (pass >= 12)
-                {
-                    continue;
-                }
-
-                int mask = (1 << pass) - 1;
-
-                if ((i & mask) == 0)
-                {
-                    L->front->x_offset = NaturalXOffset(L, 0);
-                }
+                continue;
             }
 
-            linedef_c *P = L;
-            linedef_c *N = L;
-
-            while (P->sim_prev && P->sim_prev->front->x_offset == IVAL_NONE)
+            if (world_front.find(M) == world_front.end())
             {
-                P->sim_prev->front->x_offset = P->front->x_offset - OBSIDIAN_I_ROUND(P->sim_prev->length);
-                P                            = P->sim_prev;
-                prev_count++;
+                continue;
             }
 
-            while (N->sim_next && N->sim_next->front->x_offset == IVAL_NONE)
+            if (!L->isFrontSimilar(M))
             {
-                N->sim_next->front->x_offset = N->front->x_offset + OBSIDIAN_I_ROUND(N->length);
-                N                            = N->sim_next;
-                next_count++;
+                continue;
             }
 
-            i += 1;
+            candidate = M;
+            candidate_count++;
         }
 
-        count += prev_count + next_count;
+        // do not guess at branching or ambiguous junctions
+        if (candidate_count != 1)
+        {
+            continue;
+        }
+
+        // measure the change in direction
+        double ax = L->end->x - L->start->x;
+        double ay = L->end->y - L->start->y;
+        double bx = candidate->end->x - candidate->start->x;
+        double by = candidate->end->y - candidate->start->y;
+
+        double a_len = sqrt(ax * ax + ay * ay);
+        double b_len = sqrt(bx * bx + by * by);
+
+        if (a_len <= 0.0 || b_len <= 0.0)
+        {
+            continue;
+        }
+
+        double dot = (ax * bx + ay * by) / (a_len * b_len);
+        double cross = fabs(ax * by - ay * bx) / (a_len * b_len);
+
+        // accept smooth turns, but not straight runs or sharp corners
+        if (cross < MIN_TURN_CROSS || dot < MIN_TURN_DOT)
+        {
+            continue;
+        }
+
+        next_line[L] = candidate;
+        predecessor_count[candidate]++;
     }
 
-    LogPrint("Aligned %d textures\n", count);
+    // remove links whose destination has multiple possible predecessors
+    for (auto it = next_line.begin(); it != next_line.end(); )
+    {
+        if (predecessor_count[it->second] != 1)
+        {
+            it = next_line.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    // propagate offsets along a chain, using unrounded cumulative
+    // distances only insofar as each segment's stored length permits
+    std::unordered_map<linedef_c *, bool> visited;
+
+    auto align_chain = [&](linedef_c *seed)
+    {
+        if (visited[seed])
+        {
+            return;
+        }
+
+        seed->front->x_offset = NaturalXOffset(seed, 0);
+        visited[seed] = true;
+        curved_count++;
+
+        linedef_c *current = seed;
+
+        while (next_line.find(current) != next_line.end())
+        {
+            linedef_c *next = next_line[current];
+
+            if (visited[next])
+            {
+                break;
+            }
+
+            next->front->x_offset =
+                current->front->x_offset + OBSIDIAN_I_ROUND(current->length);
+
+            visited[next] = true;
+            curved_count++;
+
+            current = next;
+        }
+    };
+
+    // first process open chains from their natural starting points
+    for (auto *L : linedefs)
+    {
+        if (!L->isValid() || world_front.find(L) == world_front.end())
+        {
+            continue;
+        }
+
+        if (predecessor_count[L] == 0)
+        {
+            align_chain(L);
+        }
+    }
+
+    // remaining components are closed loops
+    // pick a deterministic seed
+    // and propagate around the loop; final seam does not close exactly
+    for (auto *L : linedefs)
+    {
+        if (!L->isValid() || world_front.find(L) == world_front.end())
+        {
+            continue;
+        }
+
+        if (!visited[L])
+        {
+            align_chain(L);
+        }
+    }
+
+    LogPrint("Aligned %d textures (%d curved segments)\n",
+             count, curved_count);
 }
 } // namespace Doom
 
