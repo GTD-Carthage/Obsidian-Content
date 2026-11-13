@@ -129,7 +129,7 @@ PREFABS.Wall_industrial_modwall_arched =
   z_fit = "top"
 }
 
-PREFABS.Wall_industrial_modwall_arched =
+PREFABS.Wall_industrial_modwall_arched_tall =
 {
   template = "Wall_industrial_modwall_1",
   map = "MAP62",
