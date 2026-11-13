@@ -2975,6 +2975,18 @@ function Layout_handle_corners(LEVEL)
     -- never pillars along void areas
     -- and between actual rooms as they are
     -- always walled-up 
+    local wall_nearby = false
+    local other_edge_nearby = false
+    for _, J in ipairs(corner.junctions) do
+      if J.E1 then
+        if Edge_is_wallish(J.E1) then
+          wall_nearby = true
+        else
+          other_edge_nearby = true
+        end
+      end
+    end
+
     local unique_rooms = {}
     for _, A in ipairs(corner.areas) do
       if A.room then
@@ -2983,7 +2995,9 @@ function Layout_handle_corners(LEVEL)
         table.add_unique(unique_rooms, "void")
       end
     end
-    if #unique_rooms > 1 then return end
+    if not (other_edge_nearby == true and wall_nearby == true) then
+      if #unique_rooms > 1 then return end
+    end
 
     -- no pillars on the map edge
     for _,junc in pairs(corner.junctions) do
