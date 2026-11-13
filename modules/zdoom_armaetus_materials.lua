@@ -2809,11 +2809,6 @@ brightmap texture GRNSTONE
 }
 
 // SD stuff
-brightmap texture G_OM_WL2
-{
-  map SDMWL2BR
-}
-
 brightmap texture G_OM_WL5
 {
   map SDMWL5BR
@@ -2937,11 +2932,6 @@ brightmap texture SDHCCBW4
 brightmap texture SDHCCBW5
 {
   map SDHCCBR5
-}
-
-brightmap texture SDHCCBW6
-{
-  map SDHCCBR6
 }
 
 brightmap texture SDHCCBW7
