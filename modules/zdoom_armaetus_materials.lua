@@ -2814,6 +2814,11 @@ brightmap texture G_OM_WL5
   map SDMWL5BR
 }
 
+brightmap texture G_OM_WL9
+{
+  map SDMWL9BR
+}
+
 brightmap texture SD_GTHW1
 {
   map SDGHW1BR
