@@ -4354,7 +4354,7 @@ Rules:
 - the selected Story Plot controls the actual objective and resolution
 - if the acronym UAC is used, it means "Union Aerospace Corporation"
 - do not use story writing structures such as negations e.g. "not X, just Y", "not afraid, just careful", and so on
-- do not mention the smell of ozone, nexus points, junction points, cores, 'shuddering', unless it is explicitly required by the plot
+- absolutely do use the words: the smell of ozone, nexus points, junction points, cores, 'shuddering', pulsing
 - no Warhammer 40k
 - keep plot legible with continuity across chapters
 - do not mention Earth, it is only for locational context
