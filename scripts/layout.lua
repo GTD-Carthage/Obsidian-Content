@@ -2992,7 +2992,9 @@ function Layout_handle_corners(LEVEL)
       if A.room then
         table.add_unique(unique_rooms, A.room.id)
       elseif not A.room then
-        table.add_unique(unique_rooms, "void")
+        -- never a reason to have a pillar
+        -- on a void corner, it's a solid thick space
+        return
       end
     end
     if not (other_edge_nearby == true and wall_nearby == true) then
