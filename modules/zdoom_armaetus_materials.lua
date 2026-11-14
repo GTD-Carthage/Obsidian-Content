@@ -1779,6 +1779,22 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GO_HCCF7 = { t="GO_HCCWA", f="GO_HCCF7"},
   GO_HCCF8 = { t="GO_HCCWC", f="GO_HCCF8"},
 
+  -- cable/socket catacombs (lolwhat?2)
+  -- walls
+  GO_CACW1 = { t="GO_CACW1", f="G_OM_FT3"},
+  GO_CACW2 = { t="GO_CACW2", f="G_OM_FT4"},
+  GO_CACW3 = { t="GO_CACW3", f="G_OM_FT5"},
+  GO_CACW4 = { t="GO_CACW4", f="G_OM_FT6"},
+  GO_CACW5 = { t="GO_CACW5", f="G_OM_FT7"},
+  GO_CACW6 = { t="GO_CACW6", f="G_OM_FT8"},
+  GO_CACW7 = { t="GO_CACW7", f="G_OM_FT9"},
+  GO_CACW8 = { t="GO_CACW8", f="G_OM_FTA"},
+  GO_CACW9 = { t="GO_CACW9", f="G_OM_FT3"},
+  GO_CACWA = { t="GO_CACWA", f="G_OM_FT5"},
+  GO_CACWB = { t="GO_CACWB", f="G_OM_FT6"},
+  GO_CACWC = { t="GO_CACWC", f="G_OM_FT7"},
+  GO_CACWD = { t="GO_CACWD", f="G_OM_FT8"},
+
   ----------------------
   -- Special Textures --
   ----------------------
@@ -2914,54 +2930,54 @@ brightmap texture SDTBNKWE
   map SDTBKBRE
 }
 
-brightmap texture SDHCCBW1
+brightmap texture GO_CACW1
 {
-  map SDHCCBR1
+  map GO_CACR1
 }
 
-brightmap texture SDHCCBW2
+brightmap texture GO_CACW2
 {
-  map SDHCCBR2
+  map GO_CACR2
 }
 
-brightmap texture SDHCCBW3
+brightmap texture GO_CACW3
 {
-  map SDHCCBR3
+  map GO_CACR3
 }
 
-brightmap texture SDHCCBW4
+brightmap texture GO_CACW4
 {
-  map SDHCCBR4
+  map GO_CACR4
 }
 
-brightmap texture SDHCCBW5
+brightmap texture GO_CACW5
 {
-  map SDHCCBR5
+  map GO_CACR5
 }
 
-brightmap texture SDHCCBW7
+brightmap texture GO_CACW7
 {
-  map SDHCCBR7
+  map GO_CACR7
 }
 
-brightmap texture SDHCCBW8
+brightmap texture GO_CACW8
 {
-  map SDHCCBR8
+  map GO_CACR8
 }
 
-brightmap texture SDHCCBW9
+brightmap texture GO_CACW9
 {
-  map SDHCCBR9
+  map GO_CACR9
 }
 
-brightmap texture SDHCCBWA
+brightmap texture GO_CACWA
 {
-  map SDHCCBRA
+  map GO_CACRA
 }
 
-brightmap texture SDHCCBWC
+brightmap texture GO_CACWC
 {
-  map SDHCCBRC
+  map GO_CACRC
 }
 
 brightmap texture GO_HCCW3

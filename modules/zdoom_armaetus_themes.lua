@@ -2110,6 +2110,97 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  tech_cableSocketCatacombs = --10
+  {
+    prob = 10,
+    env = "building",
+
+    theme_override = "deimos",
+
+    walls =
+    {
+      GO_CACW1 = 5,
+      GO_CACW2 = 5,
+      GO_CACW3 = 5,
+      GO_CACW4 = 5,
+      GO_CACW5 = 5,
+      GO_CACW6 = 5,
+      GO_CACW7 = 5,
+      GO_CACW8 = 5,
+      GO_CACW9 = 5,
+      GO_CACWA = 5,
+      GO_CACWB = 5,
+      GO_CACWC = 5,
+      GO_CACWD = 5
+    },
+
+    floors =
+    {
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+      SD_GTHF1 = 10,
+      SD_GTHF2 = 10,
+      GO_HCCF5 = 10,
+      SD_UHMF3 = 7,
+      SD_UHMF4 = 7,
+
+      DARKF01 = 6,
+      DARKF02 = 6,
+      DARKF03 = 6,
+      G06 = 6,
+      G07 = 6,
+      G08 = 6,
+      G15 = 6,
+      G19 = 6,
+      GRATE2 = 6,
+      GRATE3 = 6,
+      GSTN02 = 6,
+      MEM01 = 5,
+      QFLAT06 = 5,
+      QFLAT09 = 5,
+
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      MFLR8_1 = 5,
+      SLIME14 = 5
+    },
+
+    ceilings =
+    {
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+      SD_GTHF1 = 10,
+      SD_GTHF2 = 10,
+      GO_HCCF5 = 10,
+      SD_UHMF3 = 7,
+      SD_UHMF4 = 7,
+
+      DARKF01 = 6,
+      DARKF02 = 6,
+      DARKF03 = 6,
+      G06 = 6,
+      G07 = 6,
+      G08 = 6,
+      G15 = 6,
+      G19 = 6,
+      GRATE2 = 6,
+      GRATE3 = 6,
+      GSTN02 = 6,
+      MEM01 = 5,
+      QFLAT06 = 5,
+      QFLAT09 = 5,
+
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      MFLR8_1 = 5,
+      SLIME14 = 5
+    }
+  },
+
   tech_Outdoors_generic = --50
   {
     env  = "outdoor",
@@ -7553,7 +7644,21 @@ OBS_RESOURCE_PACK_THEMES =
       GO_HCCW9 = 6,
       GO_HCCWA = 6,
       GO_HCCWB = 6,
-      GO_HCCWC = 6
+      GO_HCCWC = 6,
+
+      GO_CACW1 = 6,
+      GO_CACW2 = 6,
+      GO_CACW3 = 6,
+      GO_CACW4 = 6,
+      GO_CACW5 = 6,
+      GO_CACW6 = 6,
+      GO_CACW7 = 6,
+      GO_CACW8 = 6,
+      GO_CACW9 = 6,
+      GO_CACWA = 6,
+      GO_CACWB = 6,
+      GO_CACWC = 6,
+      GO_CACWD = 6
     },
 
     fences =
@@ -8076,7 +8181,21 @@ OBS_RESOURCE_PACK_THEMES =
       GO_HCCW9 = 18,
       GO_HCCWA = 18,
       GO_HCCWB = 18,
-      GO_HCCWC = 18
+      GO_HCCWC = 18,
+
+      GO_CACW1 = 18,
+      GO_CACW2 = 18,
+      GO_CACW3 = 18,
+      GO_CACW4 = 18,
+      GO_CACW5 = 18,
+      GO_CACW6 = 18,
+      GO_CACW7 = 18,
+      GO_CACW8 = 18,
+      GO_CACW9 = 18,
+      GO_CACWA = 18,
+      GO_CACWB = 18,
+      GO_CACWC = 18,
+      GO_CACWD = 18
     },
 
     fences =
@@ -8725,6 +8844,89 @@ ORP_DESERT_ROOM_THEMES =
       DESROCK3 = 20,
       DESROCK4 = 25,
       DESROCK5 = 20
+    }
+  },
+
+  hell_cableSocketCatacombs = --50
+  {
+    prob = 50,
+    env = "building",
+
+    theme_override = "deimos",
+
+    walls =
+    {
+      GO_CACW1 = 5,
+      GO_CACW2 = 5,
+      GO_CACW3 = 5,
+      GO_CACW4 = 5,
+      GO_CACW5 = 5,
+      GO_CACW6 = 5,
+      GO_CACW7 = 5,
+      GO_CACW8 = 5,
+      GO_CACW9 = 5,
+      GO_CACWA = 5,
+      GO_CACWB = 5,
+      GO_CACWC = 5,
+      GO_CACWD = 5
+    },
+
+    floors =
+    {
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+      GO_HCCF5 = 10,
+
+      DARKF01 = 6,
+      DARKF02 = 6,
+      DARKF03 = 6,
+      G06 = 6,
+      G07 = 6,
+      G08 = 6,
+      G15 = 6,
+      G19 = 6,
+      GRATE2 = 6,
+      GRATE3 = 6,
+      GSTN02 = 6,
+      MEM01 = 5,
+      QFLAT06 = 5,
+      QFLAT09 = 5,
+
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      MFLR8_1 = 5,
+      SLIME14 = 5
+    },
+
+    ceilings =
+    {
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+      GO_HCCF5 = 10,
+
+      DARKF01 = 6,
+      DARKF02 = 6,
+      DARKF03 = 6,
+      G06 = 6,
+      G07 = 6,
+      G08 = 6,
+      G15 = 6,
+      G19 = 6,
+      GRATE2 = 6,
+      GRATE3 = 6,
+      GSTN02 = 6,
+      MEM01 = 5,
+      QFLAT06 = 5,
+      QFLAT09 = 5,
+
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      MFLR8_1 = 5,
+      SLIME14 = 5
     }
   },
 
