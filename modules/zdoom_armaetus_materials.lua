@@ -2959,11 +2959,6 @@ brightmap texture SDHCCBWA
   map SDHCCBRA
 }
 
-brightmap texture SDHCCBWB
-{
-  map SDHCCBRB
-}
-
 brightmap texture SDHCCBWC
 {
   map SDHCCBRC
