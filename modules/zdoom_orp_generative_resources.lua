@@ -58,20 +58,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SDMSRCP1 = { t="SDMSRCP1", f="G_OM_FT1"},
   SDMSRCP2 = { t="SDMSRCP2", f="G_OM_FT4"},
   SDMSRCP3 = { t="SDMSRCP3", f="G_OM_FT6"},
-  -- flats
-  G_OM_FT1 = { t="G_OM_WL1", f="G_OM_FT1"},
-  G_OM_FT2 = { t="G_OM_WL2", f="G_OM_FT2"},
-  G_OM_FT3 = { t="G_OM_WL3", f="G_OM_FT3"},
-  G_OM_FT4 = { t="G_OM_WL4", f="G_OM_FT4"},
-  G_OM_FT5 = { t="G_OM_WL3", f="G_OM_FT5"},
-  G_OM_FT6 = { t="G_OM_WL2", f="G_OM_FT6"},
-  G_OM_FT7 = { t="G_OM_WL1", f="G_OM_FT7"},
-  G_OM_FT8 = { t="G_OM_WL4", f="G_OM_FT8"},
-  G_OM_FT9 = { t="G_OM_WL2", f="G_OM_FT9"},
-  G_OM_FTA = { t="G_OM_WL3", f="G_OM_FTA"},
-  -- flats: green
-  G_OM_FG1 = { t="G_OM_WG1", f="G_OM_FG1"},
-  G_OM_FG2 = { t="G_OM_WG2", f="G_OM_FG2"},
 
   -- shipping containers with optional meme
   SDM_CTR1 = { t="SDM_CTR1", f="SDMCTRF1"},

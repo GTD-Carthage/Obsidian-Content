@@ -1795,6 +1795,21 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GO_CACWC = { t="GO_CACWC", f="G_OM_FT7"},
   GO_CACWD = { t="GO_CACWD", f="G_OM_FT8"},
 
+  -- flats
+  G_OM_FT1 = { t="G_OM_WL1", f="G_OM_FT1"},
+  G_OM_FT2 = { t="G_OM_WL2", f="G_OM_FT2"},
+  G_OM_FT3 = { t="G_OM_WL3", f="G_OM_FT3"},
+  G_OM_FT4 = { t="G_OM_WL4", f="G_OM_FT4"},
+  G_OM_FT5 = { t="G_OM_WL3", f="G_OM_FT5"},
+  G_OM_FT6 = { t="G_OM_WL2", f="G_OM_FT6"},
+  G_OM_FT7 = { t="G_OM_WL1", f="G_OM_FT7"},
+  G_OM_FT8 = { t="G_OM_WL4", f="G_OM_FT8"},
+  G_OM_FT9 = { t="G_OM_WL2", f="G_OM_FT9"},
+  G_OM_FTA = { t="G_OM_WL3", f="G_OM_FTA"},
+  -- flats: green
+  G_OM_FG1 = { t="G_OM_WG1", f="G_OM_FG1"},
+  G_OM_FG2 = { t="G_OM_WG2", f="G_OM_FG2"},
+
   ----------------------
   -- Special Textures --
   ----------------------

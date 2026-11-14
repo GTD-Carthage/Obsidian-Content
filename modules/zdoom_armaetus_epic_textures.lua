@@ -972,6 +972,11 @@ function OBS_RESOURCE_PACK_EPIC_TEXTURES.generate_environment_themes(self, LEVEL
 
     for _,T in pairs(sand_tab) do
       for _,TG in pairs(T) do
+        if type(TG) == "table" then
+          gui.printf(table.tostr(TG,1))
+        else
+          gui.printf(TG)
+        end
         for key,prob in pairs(TG) do
           if LEVEL.outdoor_theme == "snow"
           or LEVEL.outdoor_theme == "temperate" then
@@ -985,12 +990,14 @@ function OBS_RESOURCE_PACK_EPIC_TEXTURES.generate_environment_themes(self, LEVEL
 
     for _,T in pairs(snow_tab) do
       for _,TG in pairs(T) do
-        for key,prob in pairs(TG) do
-          if LEVEL.outdoor_theme == "desert"
-          or LEVEL.outdoor_theme == "temperate" then
-            TG[key] = 0 -- disable the wrong flats
-          else
-            TG[key] = prob * 32 -- feature the correct flats
+        if type(T) == "table" then
+          for key,prob in pairs(TG) do
+            if LEVEL.outdoor_theme == "desert"
+            or LEVEL.outdoor_theme == "temperate" then
+              TG[key] = 0 -- disable the wrong flats
+            else
+              TG[key] = prob * 32 -- feature the correct flats
+            end
           end
         end
       end
