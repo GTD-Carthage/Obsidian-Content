@@ -4353,8 +4353,9 @@ Rules:
 - Hell is always the ultimate enemy and its demons are the immediate mission threat but be a person, faction, archive, ritual, weapon shipment, infestation, command post, collaborator, or cover-up may interfere
 - the selected Story Plot controls the actual objective and resolution
 - if the acronym UAC is used, it means "Union Aerospace Corporation"
-- do not use story writing structures such as negations e.g. "not X, just Y", "not afraid, just careful", and so on
-- absolutely do use the words: the smell of ozone, nexus points, junction points, cores, 'shuddering', pulsing
+- do not use story writing structures such as negations e.g. "not X, just Y", or repeating words like "pulsing pulse" or "core's core"
+- absolutely do not use the words: the smell of ozone, nexus points, junction points, cores, shuddering, pulsing, humming
+- sentences must be readable, legible, with proper grammar on word count adjustment
 - no Warhammer 40k
 - keep plot legible with continuity across chapters
 - do not mention Earth, it is only for locational context
@@ -4363,13 +4364,6 @@ The silent marine protagonist is the Doomslayer and needs no introduction, forev
 Hell continues to be humanity's problem and the Doomslayer's exploits bring him to the current location. Every step denies Hell something concrete: bodies, weapons, territory, command, records, rituals, collaborators, supplies, or time.
 The Doomslayer always emerges victorious in this current story but there will always be a new story, another battle with Hell elsewhere.
 Please avoid cliffhangers or "to be continued" endings.
-
-Plot Discipline:
-- treat Story Plot as mandatory, not inspirational
-- the Objective in Story Plot must be the objective that gets resolved
-- the Twist in Story Plot must complicate that objective, not replace it
-- do not invent a plot not covered by the Story Plot, Objective, and Twist
-- the ending must resolve the stated objective directly
 
 Protagonist Notes:
 - the protagonist will never choose to work with Hell
