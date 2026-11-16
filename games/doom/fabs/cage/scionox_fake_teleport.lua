@@ -5,7 +5,7 @@ PREFABS.Cage_scionox_fake_teleport =
   file   = "cage/scionox_fake_teleport.wad",
   map    = "MAP01",
 
-  prob   = 33,
+  prob   = 20,
   theme  = "!tech",
   style  = "traps",
 
