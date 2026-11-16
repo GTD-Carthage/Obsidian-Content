@@ -2850,9 +2850,24 @@ brightmap texture G_OM_WL9
   map SDMWL9BR
 }
 
-brightmap texture SD_GTHW1
+brightmap texture GO_GTHW1
 {
   map SDGHW1BR
+}
+
+brightmap texture GO_GTHW2
+{
+  map SDGHW2BR
+}
+
+brightmap texture GO_GTHW3
+{
+  map SDGHW3BR
+}
+
+brightmap texture GO_GTHW4
+{
+  map SDGHW4BR
 }
 
 brightmap texture SD_GTLW1
@@ -2903,21 +2918,6 @@ brightmap texture G_OVNTWC
 brightmap texture G_OTWDW3
 {
   map OBRTWTW3
-}
-
-brightmap texture SDMSRCP1
-{
-  map OBRMRCP1
-}
-
-brightmap texture SDMSRCP2
-{
-  map OBRMRCP2
-}
-
-brightmap texture SDMSRCP3
-{
-  map OBRMRCP3
 }
 
 brightmap texture SDTBNKW7

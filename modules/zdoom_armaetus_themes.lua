@@ -2139,8 +2139,8 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      SD_GTHF1 = 10,
-      SD_GTHF2 = 10,
+      GO_GTHF1 = 10,
+      GO_GTHF2 = 10,
       GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
@@ -2172,8 +2172,8 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       OBTSVBF1 = 10,
       OBTSVBF2 = 10,
       OBTSVBF3 = 10,
-      SD_GTHF1 = 10,
-      SD_GTHF2 = 10,
+      GO_GTHF1 = 10,
+      GO_GTHF2 = 10,
       GO_HCCF5 = 10,
       SD_UHMF3 = 7,
       SD_UHMF4 = 7,
@@ -3649,14 +3649,14 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       G_OVNTFB = 6,
       G_OVNTFC = 6,
 
-      SD_GTHF1 = 7,
-      SD_GTHF2 = 7,
-      SD_GTHF3 = 7,
-      SD_GTHF4 = 7,
-      SD_GTHF5 = 7,
-      SD_GTHF6 = 7,
-      SD_GTHF7 = 7,
-      SD_GTHF8 = 7
+      GO_GTHF1 = 7,
+      GO_GTHF2 = 7,
+      GO_GTHF3 = 7,
+      GO_GTHF4 = 7,
+      GO_GTHF5 = 7,
+      GO_GTHF6 = 7,
+      GO_GTHF7 = 7,
+      GO_GTHF8 = 7
     },
 
     ceilings =
@@ -3705,14 +3705,14 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       G_OVNTFB = 6,
       G_OVNTFC = 6,
 
-      SD_GTHF1 = 7,
-      SD_GTHF2 = 7,
-      SD_GTHF3 = 7,
-      SD_GTHF4 = 7,
-      SD_GTHF5 = 7,
-      SD_GTHF6 = 7,
-      SD_GTHF7 = 7,
-      SD_GTHF8 = 7
+      GO_GTHF1 = 7,
+      GO_GTHF2 = 7,
+      GO_GTHF3 = 7,
+      GO_GTHF4 = 7,
+      GO_GTHF5 = 7,
+      GO_GTHF6 = 7,
+      GO_GTHF7 = 7,
+      GO_GTHF8 = 7
     }
   },
 
@@ -5795,14 +5795,14 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       G_OVNTFB = 6,
       G_OVNTFC = 6,
 
-      SD_GTHF1 = 7,
-      SD_GTHF2 = 7,
-      SD_GTHF3 = 7,
-      SD_GTHF4 = 7,
-      SD_GTHF5 = 7,
-      SD_GTHF6 = 7,
-      SD_GTHF7 = 7,
-      SD_GTHF8 = 7
+      GO_GTHF1 = 7,
+      GO_GTHF2 = 7,
+      GO_GTHF3 = 7,
+      GO_GTHF4 = 7,
+      GO_GTHF5 = 7,
+      GO_GTHF6 = 7,
+      GO_GTHF7 = 7,
+      GO_GTHF8 = 7
     },
 
     ceilings =
@@ -5859,14 +5859,14 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       G_OVNTFB = 6,
       G_OVNTFC = 6,
 
-      SD_GTHF1 = 7,
-      SD_GTHF2 = 7,
-      SD_GTHF3 = 7,
-      SD_GTHF4 = 7,
-      SD_GTHF5 = 7,
-      SD_GTHF6 = 7,
-      SD_GTHF7 = 7,
-      SD_GTHF8 = 7
+      GO_GTHF1 = 7,
+      GO_GTHF2 = 7,
+      GO_GTHF3 = 7,
+      GO_GTHF4 = 7,
+      GO_GTHF5 = 7,
+      GO_GTHF6 = 7,
+      GO_GTHF7 = 7,
+      GO_GTHF8 = 7
     }
   },
 -- END OF THEMES TABLES
