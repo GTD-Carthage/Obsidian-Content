@@ -93,28 +93,19 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SD_GTLW4 = { t="SD_GTLW4", f="GO_GTHF4"},
 
   -- lab wood
-  SD_TWLW1 = { t="SD_TWLW1", f="SD_TWLF1"},
-  SD_TWLW2 = { t="SD_TWLW2", f="SD_TWLF2"},
-  SD_TWLW3 = { t="SD_TWLW3", f="SD_TWLF3"},
-  SD_TWLW4 = { t="SD_TWLW4", f="SD_TWLF4"},
-  SD_TWLW5 = { t="SD_TWLW5", f="SD_TWLF5"},
-  SD_TWLW6 = { t="SD_TWLW6", f="SD_TWLF6"},
-  SD_TWLW7 = { t="SD_TWLW7", f="SD_TWLF7"},
-  SD_TWLW8 = { t="SD_TWLW8", f="SD_TWLF8"},
-  SD_TWLW9 = { t="SD_TWLW9", f="SD_TWLF1"},
-  SD_TWLWA = { t="SD_TWLWA", f="SD_TWLF3"},
-  SD_TWLWB = { t="SD_TWLWB", f="SD_TWLF4"},
-  SD_TWLWC = { t="SD_TWLWC", f="SD_TWLF6"},
-  SD_TWLWD = { t="SD_TWLWD", f="SD_TWLF8"},
-  -- flats
-  SD_TWLF1 = { t="SD_TWLW1", f="SD_TWLF1"},
-  SD_TWLF2 = { t="SD_TWLW3", f="SD_TWLF2"},
-  SD_TWLF3 = { t="SD_TWLW5", f="SD_TWLF3"},
-  SD_TWLF4 = { t="SD_TWLW7", f="SD_TWLF4"},
-  SD_TWLF5 = { t="SD_TWLW9", f="SD_TWLF5"},
-  SD_TWLF6 = { t="SD_TWLWA", f="SD_TWLF6"},
-  SD_TWLF7 = { t="SD_TWLWB", f="SD_TWLF7"},
-  SD_TWLF8 = { t="SD_TWLWC", f="SD_TWLF8"},
+  SD_TWLW1 = { t="SD_TWLW1", f="G_OTWDF1"},
+  SD_TWLW2 = { t="SD_TWLW2", f="G_OTWDF2"},
+  SD_TWLW3 = { t="SD_TWLW3", f="G_OTWDF3"},
+  SD_TWLW4 = { t="SD_TWLW4", f="G_OTWDF4"},
+  SD_TWLW5 = { t="SD_TWLW5", f="G_OTWDF5"},
+  SD_TWLW6 = { t="SD_TWLW6", f="G_OTWDF6"},
+  SD_TWLW7 = { t="SD_TWLW7", f="G_OTWDF7"},
+  SD_TWLW8 = { t="SD_TWLW8", f="G_OTWDF8"},
+  SD_TWLW9 = { t="SD_TWLW9", f="G_OTWDF1"},
+  SD_TWLWA = { t="SD_TWLWA", f="G_OTWDF3"},
+  SD_TWLWB = { t="SD_TWLWB", f="G_OTWDF4"},
+  SD_TWLWC = { t="SD_TWLWC", f="G_OTWDF6"},
+  SD_TWLWD = { t="SD_TWLWD", f="G_OTWDF8"},
 
   -- MSSP-URBAN --
   -- New Yorker art deco
@@ -698,14 +689,14 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     floors =
     {
-      SD_TWLF1 = 5,
-      SD_TWLF2 = 5,
-      SD_TWLF3 = 5,
-      SD_TWLF4 = 5,
-      SD_TWLF5 = 5,
-      SD_TWLF6 = 5,
-      SD_TWLF7 = 5,
-      SD_TWLF8 = 5,
+      G_OTWDF1 = 20,
+      G_OTWDF2 = 20,
+      G_OTWDF3 = 20,
+      G_OTWDF4 = 20,
+      G_OTWDF5 = 20,
+      G_OTWDF6 = 20,
+      G_OTWDF7 = 20,
+      G_OTWDF8 = 20,
 
       FLAT5_1 = 5,
       FLAT5_2 = 5,
@@ -727,14 +718,14 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     ceilings =
     {
-      SD_TWLF1 = 5,
-      SD_TWLF2 = 5,
-      SD_TWLF3 = 5,
-      SD_TWLF4 = 5,
-      SD_TWLF5 = 5,
-      SD_TWLF6 = 5,
-      SD_TWLF7 = 5,
-      SD_TWLF8 = 5,
+      G_OTWDF1 = 20,
+      G_OTWDF2 = 20,
+      G_OTWDF3 = 20,
+      G_OTWDF4 = 20,
+      G_OTWDF5 = 20,
+      G_OTWDF6 = 20,
+      G_OTWDF7 = 20,
+      G_OTWDF8 = 20,
 
       FLAT5_1 = 5,
       FLAT5_2 = 5,
@@ -2001,14 +1992,14 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     floors =
     {
-      SD_TWLF1 = 5,
-      SD_TWLF2 = 5,
-      SD_TWLF3 = 5,
-      SD_TWLF4 = 5,
-      SD_TWLF5 = 5,
-      SD_TWLF6 = 5,
-      SD_TWLF7 = 5,
-      SD_TWLF8 = 5,
+      G_OTWDF1 = 20,
+      G_OTWDF2 = 20,
+      G_OTWDF3 = 20,
+      G_OTWDF4 = 20,
+      G_OTWDF5 = 20,
+      G_OTWDF6 = 20,
+      G_OTWDF7 = 20,
+      G_OTWDF8 = 20,
 
       FLAT5_1 = 5,
       FLAT5_2 = 5,
@@ -2030,14 +2021,14 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     ceilings =
     {
-      SD_TWLF1 = 5,
-      SD_TWLF2 = 5,
-      SD_TWLF3 = 5,
-      SD_TWLF4 = 5,
-      SD_TWLF5 = 5,
-      SD_TWLF6 = 5,
-      SD_TWLF7 = 5,
-      SD_TWLF8 = 5,
+      G_OTWDF1 = 20,
+      G_OTWDF2 = 20,
+      G_OTWDF3 = 20,
+      G_OTWDF4 = 20,
+      G_OTWDF5 = 20,
+      G_OTWDF6 = 20,
+      G_OTWDF7 = 20,
+      G_OTWDF8 = 20,
 
       FLAT5_1 = 5,
       FLAT5_2 = 5,
