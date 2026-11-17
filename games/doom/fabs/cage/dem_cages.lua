@@ -338,7 +338,7 @@ PREFABS.Cage_dem_ledge_ambush4 =
   deep = 16,
 
   bound_z1 = 0,
-  bound_z2 = 136,
+  bound_z2 = 128,
 
   z_fit = "frame"
 }
@@ -356,7 +356,7 @@ PREFABS.Cage_dem_ledge_ambush5 =
   deep = 16,
 
   bound_z1 = 0,
-  bound_z2 = 136,
+  bound_z2 = 128,
 
   z_fit = "frame"
 }
