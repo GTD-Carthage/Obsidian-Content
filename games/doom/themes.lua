@@ -1638,7 +1638,9 @@ DOOM.THEMES =
       gtd_tech_barrier_tek = 50,
       --
       gtd_ledge_set = 25,
-      gtd_ledge_alt_set = 25
+      gtd_ledge_alt_set = 25,
+      --
+      gtd_goth_comp_yellow_stained_glass = 35,
     },
 
     outdoor_wall_groups =
@@ -2785,7 +2787,9 @@ DOOM.THEMES =
       gtd_wall_grated_machines_damaged_wall = 50,
       --
       gtd_ledge_set = 25,
-      gtd_ledge_alt_set = 25
+      gtd_ledge_alt_set = 25,
+      --
+      gtd_goth_comp_yellow_stained_glass = 50
     },
 
     outdoor_wall_groups =

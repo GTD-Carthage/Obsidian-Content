@@ -4,7 +4,7 @@ PREFABS.Pic_goth_comp_yellow_stained_glass =
   map    = "MAP01",
 
   prob   = 50,
-  group = "gtd_AI_goth_comp_yellow_stained_glass",
+  group = "gtd_goth_comp_yellow_stained_glass",
 
   texture_pack = "armaetus",
 

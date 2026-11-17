@@ -5,7 +5,7 @@ PREFABS.Decor_AI_goth_comp_yellow_computer_2x =
 
   prob   = 5000,
 
-  group = "gtd_AI_goth_comp_yellow_stained_glass",
+  group = "gtd_goth_comp_yellow_stained_glass",
 
   height = 161,
   where  = "point",

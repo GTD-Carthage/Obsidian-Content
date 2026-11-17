@@ -4,7 +4,7 @@ PREFABS.Wall_AI_goth_comp_yellow_stained_glass_1 =
   map    = "MAP01",
 
   prob   = 50,
-  group  = "gtd_AI_goth_comp_yellow_stained_glass",
+  group  = "gtd_goth_comp_yellow_stained_glass",
 
   where  = "edge",
   deep   = 16,

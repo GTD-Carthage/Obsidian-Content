@@ -2678,8 +2678,6 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
       gtd_wall_tech_gothic_inset_engine = 20,
       gtd_wall_tech_gothic_inset_red_lite = 20,
       --
-      gtd_AI_goth_comp_yellow_stained_glass = 35,
-      --
       gtd_AI_boiler_room = 35,
       gtd_AI_boiler_control_unit = 35,
       --
@@ -2783,8 +2781,6 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
       gtd_wall_tech_gothic_inset_gargoyle = 20,
       gtd_wall_tech_gothic_inset_engine = 20,
       gtd_wall_tech_gothic_inset_red_lite = 20,
-      --
-      gtd_AI_goth_comp_yellow_stained_glass = 50,
       --
       gtd_AI_corpse_inset = 40
     }
