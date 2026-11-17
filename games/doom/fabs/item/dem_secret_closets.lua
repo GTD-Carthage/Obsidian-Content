@@ -172,7 +172,6 @@ PREFABS.Item_dem_nook_secretcloset =
   x_fit = "stretch",
   z_fit = { 56,64 },
 
-
   thing_43 =
   {
     [43] = 50,
