@@ -19731,16 +19731,17 @@ GROW_TILE_CURVE =
 
 GROW_TILE_CURVE_W_TAIL =
 {
-  prob = 8,
+  prob = 10,
   skip_prob = 85,
 
   structure =
   {
-    "....","/1AA",
-    ".x..","1xAA",
-    "....","AA11",
-    "....","AA1/",
-    "11xx","11xx"
+    ".....","/11AA",
+    ".....","111AA",
+    "..x..","11xAA",
+    ".....","AAA11",
+    ".....","AAA1/",
+    "11xxx","11xxx"
   },
 
   diagonals =
