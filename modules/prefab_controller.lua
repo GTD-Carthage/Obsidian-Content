@@ -185,9 +185,9 @@ function PREFAB_CONTROL.fine_tune_filters()
     gtd_ledge_set = 8,
     gtd_ledge_alt_set = 8,
 
-    tech_o_trapezoid_blue = 12,]]
+    tech_o_trapezoid_blue = 12,
 
-    gtd_ind_modwall_arched = 20
+    gtd_ind_modwall_arched = 20]]
   }
 
   local new_themes_multipliers =
@@ -204,10 +204,10 @@ function PREFAB_CONTROL.fine_tune_filters()
     urban_wood_lab = 2,
 
     hell_AztecClay = 8,
-    urban_AztecClay = 8,]]
+    urban_AztecClay = 8,
 
     tech_silver_grate = 4,
-    urban_silver_grate = 4,
+    urban_silver_grate = 4,]]
 
     hell_computerCatacombs = 16,
     urban_computerCatacombs = 24,
