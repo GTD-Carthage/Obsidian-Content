@@ -25983,6 +25983,8 @@ SPROUT_JOINER_L =
 {
   prob = 200,
 
+  never_in_procedural_gotchas = true,
+
   structure =
   {
     "....", "####",

@@ -2432,7 +2432,7 @@ function Level_choose_misc(LEVEL)
     {1, 0, 0},
     {1, 0, 1},
     {1, 1, 0},
-    {1, 1, 1},
+    {1, 1, 1}
   }
 
   gui.printf("Level shape transform mode: %s\n", LEVEL.shape_transform_mode)

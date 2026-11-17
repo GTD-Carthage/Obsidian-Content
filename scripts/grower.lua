@@ -939,6 +939,10 @@ function Grower_calc_rule_probs(LEVEL)
     prob = prob *  style_factor(rule)
     prob = prob * random_factor(rule)
 
+    if LEVEL.is_procedural_gotcha and rule.never_in_procedural_gotchas then
+      return 0
+    end
+
     return prob
   end
 
@@ -1903,6 +1907,10 @@ function Grower_grammatical_pass(SEEDS, LEVEL, R, pass, apply_num, stop_prob,
       else
         prob = prob * LEVEL.cave_new_factor
       end
+    end
+
+    if LEVEL.is_procedural_gotcha and rule.never_in_procedural_gotchas then
+      return 0
     end
 
     return prob
@@ -2914,7 +2922,7 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
 
       if r.kind == "stair" then
         chunk.dest_area = assert(new_area,
-        "Grower: Stair has no destination area. " .. 
+        "Grower: Stair has no destination area. " ..
         "Please check LOG for last shape rule print.")
         assert(new_intconn)
         new_intconn.stair_chunk = chunk
@@ -3316,21 +3324,17 @@ end
 
     best = { score=-1, areas={} }
 
-    local T
-    local x1, y1, x2, y2
-
-
     -- exit rooms (and auxiliary pieces) do not rotate or mirror
     local found
     if cur_rule.no_rotate then
       found = try_transforms({ {0, 0, 0} })
     else
-      if LEVEL.shape_transform_mode == "random" then
-        LEVEL.shape_transform_possibilities = rand.shuffle(LEVEL.shape_transform_possiblities)
-      end
       found = try_transforms(LEVEL.shape_transform_possiblities)
     end
 
+    if LEVEL.shape_transform_mode == "random" then
+      LEVEL.shape_transform_possibilities = rand.shuffle(LEVEL.shape_transform_possiblities)
+    end
 
     if best.score < 0 then
       --gui.printf(" NOPE!\n")
