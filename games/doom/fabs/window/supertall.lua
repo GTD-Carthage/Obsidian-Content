@@ -44,7 +44,7 @@ PREFABS.Window_supertall_3 =
   seed_w = 3,
 }
 
-PREFABS.Window_supertall_3 =
+PREFABS.Window_supertall_diag =
 {
   template = "Window_supertall_1",
   map = "MAP11",
