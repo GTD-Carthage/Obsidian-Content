@@ -13164,6 +13164,7 @@ GROW_PILLAR_STUPID_BRIDGE_CAGE =
     ".......","11CAC11",
     ".......","11CAC11",
     ".......","11#^#11",
+    ".......","1111111",
     ".......","%11111/",
     "x11xxxx","x11xxxx"
   },
@@ -13188,6 +13189,7 @@ GROW_PILLAR_STUPID_BRIDGE_CAGE_ALT =
     ".......","11CAAAA",
     ".......","11CAAAA",
     ".......","11#^#CC",
+    ".......","1111111",
     ".......","%11111/",
     "x11xxxx","x11xxxx"
   },
@@ -21972,9 +21974,88 @@ GROW_SPIRAL_STAIR_STEP_3 =
   },
 },
 
--- MULTI_AREA shapes
+-- MULTI-AREA shapes
 
-GROW_AREA_NESTED_TEST =
+GROW_MULTI_AREA_S_CURVE_LIQUID =
+{
+  prob = 10,
+  skip_prob = 75,
+
+  structure =
+  {
+    ".....","/BBBB",
+    ".....","BBBBB",
+    ".....","^^~~~",
+    ".....","AAAA%",
+    ".....","%AAAA",
+    ".....","~~~^^",
+    ".....","/1111",
+    ".....","1111/",
+    "11xxx","11xxx",
+  },
+
+  diagonals =
+  {
+    ".B",
+    "A~",
+    "~A",
+    "~1",
+    "1."
+  }
+},
+
+GROW_MULTI_AREA_TIERED_POOLS_LIQUID =
+{
+  prob = 25,
+  skip_prob = 75,
+
+  structure =
+  {
+    "/BBBBBBB%","/BBBBBBB%",
+    ".........","BBBBBBBBB",
+    ".........","^^~~~~~^^",
+    ".........","AAAAAAAAA",
+    ".........","AAAAAAAAA",
+    ".........","^^~~~~~^^",
+    ".........","^^~~~~~^^",
+    ".........","111111111",
+    ".........","%1111111/",
+    "11xxxxxxx","x11xxxxxx",
+  },
+
+  diagonals =
+  {
+    ".B","B.",
+    ".1","1."
+  }
+},
+
+GROW_MULTI_AREA_RAMP_ARTS =
+{
+  prob = 10,
+  skip_prob = 65,
+
+  structure =
+  {
+    "....","BBBB",
+    "....","BBBB",
+    "....","B^^B",
+    "....","/AA%",
+    "....","AAAA",
+    "....","A^^A",
+    "....","/11%",
+    "....","1111",
+    "11xx","11xx",
+  },
+
+  diagonals =
+  {
+    "BA","AB",
+    "A1","1A"
+  }
+},
+
+GROW_MULTI_AREA_NESTED_TEST =
 {
   prob = 30,
   skip_prob = 75,
@@ -21999,7 +22080,7 @@ GROW_AREA_NESTED_TEST =
   }
 },
 
-GROW_AREA_SHRINE_TEST =
+GROW_MULTI_AREA_SHRINE_TEST =
 {
   prob = 50,
   skip_prob = 50,
@@ -22033,7 +22114,7 @@ GROW_AREA_SHRINE_TEST =
   }
 },
 
-GROW_AREA_SPIRAL_TEST =
+GROW_MULTI_AREA_SPIRAL =
 {
   prob = 25,
   skip_prob = 50,
@@ -22053,6 +22134,24 @@ GROW_AREA_SPIRAL_TEST =
   {
     "1A"
   }
+},
+
+GROW_MULTI_AREA_SPIRAL_ALT =
+{
+  prob = 25,
+  skip_prob = 50,
+
+  structure =
+  {
+    "11xxxx","11xxxx",
+    "......","1111BB",
+    "......","1111BB",
+    "......","1111BB",
+    "......","1111BB",
+    "......","vv11^^",
+    "......","AAAAAA",
+    "......","AAAAAA"
+  },
 },
 
 -- END OF GROW RULES
