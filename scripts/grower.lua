@@ -3347,52 +3347,11 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     -- identify which new-area connections are served by stairs
     local stair_destinations = {}
 
-    for _,r in pairs(cur_rule.rects or {}) do
-
+    for _, r in pairs(cur_rule.rects or {}) do
       if r.kind == "stair" then
-
-        -- identify the new area reached by this staircase
         local dest_id = stair_dest_area_id(r)
 
-        local dest_area = assert(new_areas[dest_id])
-        local intconn = assert(new_intconns[dest_id])
-
-        chunk.dest_area = dest_area
-        intconn.stair_chunk = chunk
-
-
-        -- resolve the source area
-        local from_area = chunk.from_area
-
-        if not from_area then
-          from_area = assert(new_area_sources[dest_id])
-          chunk.from_area = from_area
-        end
-
-        if from_area ~= new_area_sources[dest_id] then
-          error(
-            "Grower: Staircase source mismatch in rule " ..
-            cur_rule.name
-          )
-        end
-
-
-        -- defer height assignment until all staircase chunks
-        -- have been created
-        table.insert(stair_chunks,
-        {
-          chunk = chunk,
-          dest_id = dest_id,
-          from_area = from_area,
-        })
-
-
-        mark_stair_seeds(chunk)
-
-      elseif r.dest_area then
-
-        chunk.dest_area = assert(resolve_area_ref(r.dest_area))
-
+        stair_destinations[dest_id] = true
       end
     end
 
