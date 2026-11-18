@@ -21976,6 +21976,49 @@ GROW_SPIRAL_STAIR_STEP_3 =
 
 -- MULTI-AREA shapes
 
+GROW_MULTI_AREA_HERCULEAN_TIERS =
+{
+  prob = 12,
+  skip_prob = 65,
+
+  structure =
+  {
+    "......","BBBBBB",
+    "......","BBBBBB",
+    "......","11AABB",
+    "......","11AA^^",
+    "......","11AAAA",
+    "......","11AAAA",
+    "11xxxx","11xxxx"
+  }
+},
+
+GROW_MULTI_AREA_BLOCK_FORTRESS_HALF =
+{
+  prob = 25,
+  skip_prob = 75,
+
+  structure =
+  {
+    "1........","11111111%",
+    "1........","111BBB111",
+    "x........","x11BBB<AA",
+    "x........","x11BBB<AA",
+    "x........","x111>AAAA",
+    "x........","x111>AAAA",
+    "x........","x11BBB<AA",
+    "x........","x11BBB<AA",
+    "x........","x11BBB111",
+    "x........","x1111111/"
+  },
+
+  diagonals =
+  {
+    "1.",
+    "1."
+  }
+},
+
 GROW_MULTI_AREA_S_CURVE_LIQUID =
 {
   prob = 10,
@@ -22011,7 +22054,7 @@ GROW_MULTI_AREA_TIERED_POOLS_LIQUID =
 
   structure =
   {
-    "/BBBBBBB%","/BBBBBBB%",
+    ".........","/BBBBBBB%",
     ".........","BBBBBBBBB",
     ".........","^^~~~~~^^",
     ".........","AAAAAAAAA",
@@ -22020,7 +22063,7 @@ GROW_MULTI_AREA_TIERED_POOLS_LIQUID =
     ".........","^^~~~~~^^",
     ".........","111111111",
     ".........","%1111111/",
-    "11xxxxxxx","x11xxxxxx",
+    "x11xxxxxx","x11xxxxxx",
   },
 
   diagonals =
@@ -22028,6 +22071,126 @@ GROW_MULTI_AREA_TIERED_POOLS_LIQUID =
     ".B","B.",
     ".1","1."
   }
+},
+
+GROW_MULTI_AREA_MANSION_STAIRS =
+{
+  prob = 12,
+  skip_prob = 75,
+
+  structure =
+  {
+    "xxx..xxx","xxxBBxxx",
+    "........","/A>BB<A%",
+    "........","AA>BB<AA",
+    "........","AAAAAAAA",
+    "........","AAAAAAAA",
+    "........","^^#11#^^",
+    "........","^^1111^^",
+    "........","11111111",
+    "........","%111111/",
+    "x11xxxxx","x11xxxxx",
+  },
+
+  diagonals =
+  {
+    ".A","A.",
+    ".1","1."
+  }
+},
+
+GROW_MULTI_AREA_MANSION_STAIRS_ALT =
+{
+  prob = 12,
+  skip_prob = 75,
+
+  structure =
+  {
+    "xxx..xxx","xxxBBxxx",
+    "........","/A>BB<A%",
+    "........","AA>BB<AA",
+    "........","AA#11#AA",
+    "........","AA1111AA",
+    "........","^^1111^^",
+    "........","^^#11#^^",
+    "........","11111111",
+    "........","%111111/",
+    "x11xxxxx","x11xxxxx",
+  },
+
+  diagonals =
+  {
+    ".A","A.",
+    ".1","1."
+  }
+},
+
+GROW_MULTI_AREA_MANSION_STAIRS_LIQUID_ALT =
+{
+  prob = 12,
+  skip_prob = 75,
+
+  structure =
+  {
+    "xxx..xxx","xxxBBxxx",
+    "........","/A>BB<A%",
+    "........","AA>BB<AA",
+    "........","AA#~~#AA",
+    "........","AA~~~~AA",
+    "........","^^~~~~^^",
+    "........","^^#~~#^^",
+    "........","11111111",
+    "........","%111111/",
+    "x11xxxxx","x11xxxxx",
+  },
+
+  diagonals =
+  {
+    ".A","A.",
+    ".1","1."
+  }
+},
+
+GROW_MULTI_AREA_MANSION_TIERS_DOUBLE =
+{
+  prob = 15,
+  skip_prob = 65,
+
+  structure =
+  {
+    "1........","111111111",
+    "1........","111111111",
+    "x........","xvvAAAAvv",
+    "x........","xAAAAAAAA",
+    "x........","xBBBBBBBB",
+    "x........","xBBBBBBBB",
+    "x........","xAAAAAAAA",
+    "x........","x^^AAAA^^",
+    "x........","x11111111",
+    "x........","x11111111",
+  },
+},
+
+GROW_MULTI_AREA_MANSION_TIERS_TRIPLE =
+{
+  prob = 20,
+  skip_prob = 75,
+
+  structure =
+  {
+    "1........","111111111",
+    "1........","111111111",
+    "x........","xvvAAAAvv",
+    "x........","xAAAAAAAA",
+    "x........","xvvBBBBvv",
+    "x........","xBBBBBBBB",
+    "x........","xBBBBBBBB",
+    "x........","x^^BBBB^^",
+    "x........","xAAAAAAAA",
+    "x........","x^^AAAA^^",
+    "x........","x11111111",
+    "x........","x11111111",
+  },
 },
 
 GROW_MULTI_AREA_RAMP_ARTS =
