@@ -21972,6 +21972,86 @@ GROW_SPIRAL_STAIR_STEP_3 =
   },
 },
 
+-- MULTI_AREA shapes
+
+GROW_AREA_NESTED_TEST =
+{
+  prob = 30,
+  skip_prob = 75,
+
+  structure =
+  {
+    "......","111111",
+    "......","A%11/A",
+    "......","AA11AA",
+    "......","AABBAA",
+    "......","AABBAA",
+    "......","AA11AA",
+    "......","A/11%A",
+    "......","111111",
+    "11xxxx","11xxxx",
+  },
+
+  diagonals =
+  {
+    "A1","1A",
+    "A1","1A"
+  }
+},
+
+GROW_AREA_SHRINE_TEST =
+{
+  prob = 50,
+  skip_prob = 50,
+
+  structure =
+  {
+    "..........","1111111111",
+    "..........","1/AAAAAA%1",
+    "..........","1>AAAAAA<1",
+    "..........","1AA/BB%AA1",
+    "..........","1AA>BB<AA1",
+    "..........","1AABBBBAA1",
+    "..........","1AA>BB<AA1",
+    "..........","1AA%BB/AA1",
+    "..........","1>AAAAAA<1",
+    "..........","1%AAAAAA/1",
+    "..........","1111111111",
+    "11xxxxxxxx","11xxxxxxxx",
+  },
+
+  diagonals =
+  {
+    "1A","A1",
+    "AB","BA",
+    "AB","BA",
+    "1A","A1"
+  }
+},
+
+GROW_AREA_SPIRAL_TEST =
+{
+  prob = 25,
+  skip_prob = 50,
+
+  structure =
+  {
+    "11xxxxx","11xxxxx",
+    ".......","1111BBB",
+    ".......","1111BBB",
+    "......x","11/~^^x",
+    "......x","11~/AAx",
+    "......x","11>AAAx",
+    "......x","11>AAAx"
+  },
+
+  diagonals =
+  {
+    "1~",
+    "~A"
+  }
+},
+
 -- END OF GROW RULES
 
 -- FORGET IT LMAO IT DOESN'T WORK
