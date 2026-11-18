@@ -64,8 +64,10 @@ SHAPE RULE ELEMENTS:
   c    match pattern that is the opposite of 'o'
   s    match pattern for stairs
 
-  A    represents a new AREA, where an AREA represent a new portion of the room with a new ceiling or floor height
-       all stairs must lead to a new AREA, but a new AREA can also be directly connected to the same floor
+  A    represents the first new AREA
+  B    represents the second new AREA
+       each letter identifies a distinct area, and repeated occurrences
+       of the same letter belong to the same area
   R    represents a new ROOM, usually used only in SPROUT rules to show where the imprint of a new ROOM begins
 
   C    represents a CAGE seed
@@ -103,7 +105,12 @@ SHAPE RULE ELEMENTS:
     if ch == 's' then return { kind="magic", what="stairs"} end
 
     -- other stuff
-    if ch == 'A' then return { kind="new_area" } end
+    if ch == 'A' then
+      return { kind="new_area", area=1 }
+    end
+    if ch == 'B' then
+      return { kind="new_area", area=2 }
+    end
     if ch == 'R' then return { kind="new_room" } end
 
     if ch == 'C' then return { kind="cage"   } end
@@ -185,7 +192,7 @@ SHAPE RULE ELEMENTS:
 
   local function check_compatible_elements(E1, E2)
     if E1.kind == "new_area" or E1.kind == "new_room" or E1.kind == "hallway" then
-      error("bad element in " .. def.name .. ": cannot use A/R/H' in match")
+      error("bad element in " .. def.name .. ": cannot use A/B/R/H' in match")
     end
 
     -- changing an area is OK
@@ -253,11 +260,29 @@ SHAPE RULE ELEMENTS:
 
 
   local function check_added_stuff(E)
+
     if E.kind == "new_room" and not def.new_room then
       def.new_room = {}
     end
 
-    if (E.kind == "new_area" or E.kind == "XXX_room") and not def.new_area then
+    if E.kind == "new_area" then
+      local area_id = E.area or 1
+
+      if area_id == 1 then
+        def.new_area = def.new_area or {}
+
+      elseif area_id == 2 then
+        def.new_area2 = def.new_area2 or {}
+        def.has_new_area2 = true
+
+      else
+        error("Unknown new-area ID in rule: " .. def.name)
+      end
+
+      def.has_new_areas = true
+    end
+
+    if E.kind == "XXX_room" and not def.new_area then
       def.new_area = {}
     end
 
@@ -345,6 +370,14 @@ SHAPE RULE ELEMENTS:
     for y = 1, def.input.h do
       finalize_element(x, y)
     end
+    end
+
+    -- multiple new areas are not yet supported with staircases
+    if def.has_new_area2 and def.has_stair then
+      error(
+        "Rule " .. def.name ..
+        ": B cannot currently be combined with staircases."
+      )
     end
   end
 
@@ -1050,7 +1083,7 @@ function Grower_calc_rule_probs(LEVEL)
       --if rand.odds(75) then
       new_factor = rand.range( 100,1000000 ) * rand.range( 0.75,1.25 )
       rule.use_prob = math.round(rule.prob * new_factor)
-      if rule.new_area then
+      if rule.has_new_areas or rule.new_area or rule.new_area2 then
         LEVEL.has_absurd_new_area_rules = true
       end
       --[[else
@@ -1742,6 +1775,13 @@ function Grower_grammatical_pass(SEEDS, LEVEL, R, pass, apply_num, stop_prob,
 
   local new_room
   local new_conn
+
+  -- new areas, indexed by their shape-rule identity
+  -- 1 = A
+  -- 2 = B
+  local new_areas = {}
+  local new_intconns = {}
+
   local new_area
   local new_intconn
 
@@ -1940,7 +1980,11 @@ function Grower_grammatical_pass(SEEDS, LEVEL, R, pass, apply_num, stop_prob,
 
       if rule.pass ~= want_pass then goto skip end
 
-      if no_new_areas and rule.new_area then goto skip end
+      if no_new_areas and
+         (rule.has_new_areas or rule.new_area or rule.new_area2)
+      then
+        goto skip
+      end
 
       local prob = prob_for_rule(rule)
 
@@ -2542,7 +2586,10 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
     end
 
     -- don't create a brand new area when existing area is tiny
-    if not R.is_hallway and cur_rule.new_area and pass ~= "sprout" then
+    if not R.is_hallway and
+      (cur_rule.has_new_areas or cur_rule.new_area or cur_rule.new_area2) and
+      pass ~= "sprout"
+    then
       A:calc_volume()
       local area_min_size = sel(R.symmetry, 8, 4)
       if A.svolume < area_min_size then return false end
@@ -2593,9 +2640,10 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
     end
 
     if E2.kind == "new_area" then
-      assert(new_area)
+      local area_id = E2.area or 1
+      local A = assert(new_areas[area_id])
 
-      set_seed(S, new_area)
+      set_seed(S, A)
       return
     end
 
@@ -3064,29 +3112,95 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
       new_room.grow_pass = info.grow_pass
     end
 
-    if cur_rule.new_area and not new_area then
-      local info = cur_rule.new_area
 
-      new_area = AREA_CLASS.new(LEVEL, "floor")
+    -- gather the metadata for all new areas
+    local area_info =
+    {
+      [1] = cur_rule.new_area,
+      [2] = cur_rule.new_area2,
+    }
 
-      -- max size of new area
-      --new_area.max_size = rand.pick({ 16, 24, 32, 128, 256, 512 })
-      if R.svolume then
-        new_area.max_size = (R.size_limit - R.svolume) * 1.25
+
+    -- first pass: create all required area objects
+
+    for area_id = 1, 2 do
+      local info = area_info[area_id]
+
+      if info and not new_areas[area_id] then
+        local A = AREA_CLASS.new(LEVEL, "floor")
+
+        -- Max size of new area.
+        if R.svolume then
+          A.max_size = (R.size_limit - R.svolume) * 1.25
+        end
+
+        A.no_grow   = info.no_grow
+        A.no_sprout = info.no_sprout
+
+        R:add_area(A)
+
+        new_areas[area_id] = A
       end
-
-      new_area.no_grow   = info.no_grow
-      new_area.no_sprout = info.no_sprout
-
-      R:add_area(new_area)
-
-      local from_area_idx = info.from_area or 1
-      local from_area = assert(area_map[from_area_idx])
-
-      new_area.prelim_h = assert(from_area.prelim_h)
-
-      new_intconn = add_internal_conn(from_area, new_area)
     end
+
+
+    -- second pass: establish the internal connections and
+    -- inherit the preliminary floor heights
+
+    for area_id = 1, 2 do
+      local info = area_info[area_id]
+
+      if info and not new_intconns[area_id] then
+
+        local from_area_ref = info.from_area
+
+        -- default source:
+        --   A inherits from existing area 1
+        --   B inherits from A when A exists, otherwise area 1
+
+        if from_area_ref == nil then
+          if area_id == 2 and new_areas[1] then
+            from_area_ref = "A"
+          else
+            from_area_ref = 1
+          end
+        end
+
+        local from_area
+
+        if from_area_ref == "A" then
+          if area_id ~= 2 then
+            error("Grower: Only B may inherit from new area A.")
+          end
+
+          from_area = assert(new_areas[1],
+            "Grower: B references A, but A does not exist.")
+
+        elseif type(from_area_ref) == "number" then
+          from_area = area_map[from_area_ref]
+
+        else
+          error(
+            "Grower: Invalid from_area reference for new area " ..
+            tostring(area_id) .. " in rule " .. cur_rule.name
+          )
+        end
+
+        assert(from_area,
+          "Grower: Could not locate source area for new area " ..
+          tostring(area_id) .. " in rule " .. cur_rule.name)
+
+        local A = new_areas[area_id]
+
+        A.prelim_h = assert(from_area.prelim_h)
+
+        new_intconns[area_id] = add_internal_conn(from_area, A)
+      end
+    end
+
+    -- old variables for staircase compatibility.
+    new_area   = new_areas[1]
+    new_intconn = new_intconns[1]
 
     if cur_rule.rects then
       install_create_chunks(T)
@@ -3208,8 +3322,10 @@ end
 
 
   local function match_or_install_pattern(what, T)
-    if what == "TEST" then
-    else
+    if what ~= "TEST" then
+      new_areas = {}
+      new_intconns = {}
+
       new_area = nil
       new_intconn = nil
     end
