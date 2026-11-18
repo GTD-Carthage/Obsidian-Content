@@ -1180,6 +1180,52 @@ function Render_sink_part(LEVEL, A, S, where, sink, SEEDS)
   end
 
 
+  -- check whether a particular corner of a seed belongs to an area
+  --
+  -- for diagonal seeds:
+  --   * diagonal corner belongs to the original (bottom) half
+  --   * opposite corner belongs to the top half
+  --   * two remaining corners lie along the shared diagonal,
+  --     and therefore require BOTH halves to belong to the area
+
+  local function cell_corner_is_in_area(sx, sy, corner, area)
+    if not Seed_valid(sx, sy) then return false end
+
+    local cell = SEEDS[sx][sy]
+
+    -- ordinary square seed
+    if not cell.diagonal then
+      return cell.area == area
+    end
+
+    -- diagonal seed
+    local other_half = cell.top
+
+    if not other_half then return false end
+
+    if corner == cell.diagonal then
+      return cell.area == area
+
+    elseif corner == 10 - cell.diagonal then
+      return other_half.area == area
+
+    end
+
+    -- corner lies along the shared diagonal
+    return cell.area == area and other_half.area == area
+  end
+
+
+  -- surrounding cell regions belong to the same area.
+  local function vertex_is_inner(cx, cy, area)
+    return
+      cell_corner_is_in_area(cx,     cy,     1, area) and
+      cell_corner_is_in_area(cx - 1, cy,     3, area) and
+      cell_corner_is_in_area(cx,     cy - 1, 7, area) and
+      cell_corner_is_in_area(cx - 1, cy - 1, 9, area)
+  end
+
+
   local function corner_coord(C)
     local x, y = S.x1, S.y1
 
@@ -1393,9 +1439,9 @@ stderrf("away = %s\n\n", string.bool(away))
   local p7 = check_inner_point(S.sx    , S.sy + 1)
   local p9 = check_inner_point(S.sx + 1, S.sy + 1)
 
-  -- because ungrouped areas have missing corner information...
+  -- ungrouped liquid ceilings have no populated inner-points
+  -- need to rebuild corners info based on neighbors
   if where == "ceil" and S.area.mode == "liquid" then
-
     if S.diagonal == 1 then
       p1, p3, p7, p9 = true, false, false, false
 
@@ -1409,128 +1455,17 @@ stderrf("away = %s\n\n", string.bool(away))
       p1, p3, p7, p9 = false, false, false, true
 
     else
-      p1, p3, p7, p9 = true, true, true, true
 
-      local A1 = S.area
-      local A2, S1
+      -- square seeds
+      local area = assert(S.area)
 
-      -- north
-      S1 = SEEDS[S.sx][S.sy + 1]
-      A2 = S1.area
-
-      if A2 ~= A1 then
-        p7, p9 = false, false
-      end
-
-      if S1.diagonal == 7 then
-        p7 = true
-      elseif S1.diagonal == 9 then
-        p9 = true
-      end
-
-
-      -- south
-      S1 = SEEDS[S.sx][S.sy - 1]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p1, p3 = false, false
-      end
-
-      if S1.diagonal == 7 then
-        p1 = true
-      elseif S1.diagonal == 9 then
-        p3 = true
-      end
-
-
-      -- west
-      S1 = SEEDS[S.sx - 1][S.sy]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p1, p7 = false, false
-      end
-
-      -- IMPORTANT: west's east corners are 3 and 9
-      if S1.diagonal == 3 then
-        p1 = true
-      elseif S1.diagonal == 9 then
-        p7 = true
-      end
-
-
-      -- east
-      S1 = SEEDS[S.sx + 1][S.sy]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p3, p9 = false, false
-      end
-
-      if S1.diagonal == 1 then
-        p3 = true
-      elseif S1.diagonal == 7 then
-        p9 = true
-      end
-
-
-      -- SW
-      S1 = SEEDS[S.sx - 1][S.sy - 1]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p1 = false
-      end
-
-      -- SW's NE corner is current p1
-      if S1.diagonal == 9 then
-        p1 = true
-      end
-
-
-      -- SE
-      S1 = SEEDS[S.sx + 1][S.sy - 1]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p3 = false
-      end
-
-      -- SE's NW corner is current p3
-      if S1.diagonal == 7 then
-        p3 = true
-      end
-
-
-      -- NW
-      S1 = SEEDS[S.sx - 1][S.sy + 1]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p7 = false
-      end
-
-      -- NW's SE corner is current p7
-      if S1.diagonal == 3 then
-        p7 = true
-      end
-
-
-      -- NE
-      S1 = SEEDS[S.sx + 1][S.sy + 1]
-      A2 = S1.area
-
-      if A2 ~= A1 and not S1.diagonal then
-        p9 = false
-      end
-
-      -- NE's SW corner is current p9
-      if S1.diagonal == 1 then
-        p9 = true
-      end
+      p1 = vertex_is_inner(S.sx,     S.sy,     area)
+      p3 = vertex_is_inner(S.sx + 1, S.sy,     area)
+      p7 = vertex_is_inner(S.sx,     S.sy + 1, area)
+      p9 = vertex_is_inner(S.sx + 1, S.sy + 1, area)
     end
   end
+
 
   if S.diagonal == 1 then
     local p_val = sel(p1,1,0) + sel(p3,2,0) + sel(p7,4,0)
