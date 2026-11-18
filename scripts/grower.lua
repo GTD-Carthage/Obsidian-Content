@@ -371,14 +371,6 @@ SHAPE RULE ELEMENTS:
       finalize_element(x, y)
     end
     end
-
-    -- multiple new areas are not yet supported with staircases
-    if def.has_new_area2 and def.has_stair then
-      error(
-        "Rule " .. def.name ..
-        ": B cannot currently be combined with staircases."
-      )
-    end
   end
 
 
@@ -678,16 +670,26 @@ SHAPE RULE ELEMENTS:
 
     repeat
       x, y = geom.nudge(x, y, dir)
-      if not is_valid(x, y) then return nil end
+
+      if not is_valid(x, y) then
+        return nil
+      end
 
       E = def.output[x][y]
+
     until E.kind ~= kind
 
-    -- FIXME : handle "diagonal",
+    if E.kind == "area" then
+      return E.area
+    end
 
-    if E.kind ~= "area" then return nil end
+    -- multi-area reference
+    if E.kind == "new_area" then
+      if E.area == 1 then return "A" end
+      if E.area == 2 then return "B" end
+    end
 
-    return E.area
+    return nil
   end
 
 
@@ -750,7 +752,21 @@ SHAPE RULE ELEMENTS:
       -- nothing needed ??
 
     else
-      r.from_area = determine_from_area(kind, x, y, r.from_dir)
+      if not r.from_area then
+        r.from_area = determine_from_area(
+          kind, x, y, r.from_dir
+        )
+      end
+
+      if kind == "stair" and not r.dest_area then
+        local dest_ref = determine_from_area(
+          kind, x, y, 10 - r.from_dir
+        )
+
+        if dest_ref == "A" or dest_ref == "B" then
+          r.dest_area = dest_ref
+        end
+      end
 
       if not r.shape then
         if kind == "closet" then
@@ -1781,6 +1797,7 @@ function Grower_grammatical_pass(SEEDS, LEVEL, R, pass, apply_num, stop_prob,
   -- 2 = B
   local new_areas = {}
   local new_intconns = {}
+  local new_area_sources = {}
 
   local new_area
   local new_intconn
@@ -2793,6 +2810,71 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
   end
 
 
+  -- convert a new-area name to its numeric identity.
+  -- A = 1, B = 2.
+  local function new_area_index(ref)
+    if ref == "A" then return 1 end
+    if ref == "B" then return 2 end
+
+    return nil
+  end
+
+
+  -- resolve either an existing area reference (1/2/3)
+  -- or a new-area reference ("A"/"B")
+  local function resolve_area_ref(ref)
+    if type(ref) == "number" then
+      return area_map[ref]
+    end
+
+    local index = new_area_index(ref)
+
+    if index then
+      return new_areas[index]
+    end
+
+    return nil
+  end
+
+
+  -- identify the new area which a staircase leads into
+  --
+  -- when only one new area exists, retain the old behavior
+  -- and use it as the staircase destination
+  local function stair_dest_area_id(r)
+    local index = new_area_index(r.dest_area)
+
+    if index then
+      assert(new_areas[index],
+        "Grower: Stair references a missing new area: " ..
+        tostring(r.dest_area))
+
+      return index
+    end
+
+    if r.dest_area ~= nil then
+      error(
+        "Grower: Invalid staircase destination in rule " ..
+        cur_rule.name .. ": " .. tostring(r.dest_area)
+      )
+    end
+
+    -- backward compatibility for existing A-only rules
+    if new_areas[1] and not new_areas[2] then
+      return 1
+    end
+
+    if new_areas[2] and not new_areas[1] then
+      return 2
+    end
+
+    error(
+      "Grower: Ambiguous staircase destination in rule " ..
+      cur_rule.name .. ". Specify dest_area = 'A' or 'B'."
+    )
+  end
+
+
   local function add_internal_conn(A1, A2, kind)
     local C =
     {
@@ -2802,9 +2884,8 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
       A2 = A2,
     }
 
-    if cur_rule.has_stair then
+    if C.kind == "stair" then
       assert(not cur_rule.joiner)
-      C.kind = "stair"
     end
 
     table.insert(R.internal_conns, C)
@@ -2889,6 +2970,10 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
     new_chunks = {}
 
     local stair_prefab
+    local stair_height_delta
+
+    -- staircases are processed after all chunks are created
+    local stair_chunks = {}
 
     local link_info
 
@@ -2928,7 +3013,7 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
       end
 
       if r.from_area then
-        chunk.from_area = assert(area_map[r.from_area])
+        chunk.from_area = assert(resolve_area_ref(r.from_area))
       end
 
       table.insert(new_chunks, chunk)
@@ -2969,54 +3054,49 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
 
 
       if r.kind == "stair" then
-        chunk.dest_area = assert(new_area,
-        "Grower: Stair has no destination area. " ..
-        "Please check LOG for last shape rule print.")
-        assert(new_intconn)
-        new_intconn.stair_chunk = chunk
+        -- identify the new area reached by this staircase.
+        local dest_id = stair_dest_area_id(r)
 
-        local from_area = chunk.from_area --assert(chunk.from_area)
+        local dest_area = assert(new_areas[dest_id])
+        local intconn = assert(new_intconns[dest_id])
+
+        chunk.dest_area = dest_area
+        intconn.stair_chunk = chunk
+
+
+        -- resolve the source area
+        local from_area = chunk.from_area
+
         if not from_area then
-          error("Missing staircase area source.\n" ..
-          "Problem shape rule: " .. cur_rule.name)
-        end
-        chunk.area.prelim_h = assert(from_area.prelim_h)
-
-        -- choose the stair prefab now
-        if not stair_prefab then
-          if chunk.peer and chunk.peer.prefab_def then
-            stair_prefab = chunk.peer.prefab_def
-          end
+          from_area = assert(new_area_sources[dest_id])
+          chunk.from_area = from_area
         end
 
-        if not stair_prefab then
-          stair_prefab = pick_stair_prefab(chunk)
-
-          local h = assert(stair_prefab.delta_h)
-
-          if R.trunk.stair_z_dir < 0 then
-            h = h * -1
-          end
-
-          if rand.odds(R.trunk.stair_z_dir_fudge_prob) then
-            h = h * -1
-          end
-
-          new_area.prelim_h = from_area.prelim_h + h
+        if from_area ~= new_area_sources[dest_id] then
+          error(
+            "Grower: Staircase source mismatch in rule " ..
+            cur_rule.name
+          )
         end
 
-        if new_area.prelim_h < from_area.prelim_h then
-          chunk.area.prelim_h = chunk.area.prelim_h - stair_prefab.delta_h
-          chunk:flip()
-        end
 
-        chunk.prefab_def = stair_prefab
+        -- queue for deferred staircase processing
+        table.insert(stair_chunks,
+        {
+          chunk = chunk,
+          dest_id = dest_id,
+          from_area = from_area,
+        })
+
 
         mark_stair_seeds(chunk)
 
       elseif r.dest_area then
-        chunk.dest_area = assert(area_map[r.dest_area])
+
+        chunk.dest_area = assert(resolve_area_ref(r.dest_area))
+
       end
+
 
       if r.kind == "joiner" then
         assert(new_room)
@@ -3078,6 +3158,89 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
       if r.kind == "stair"  then table.insert(R.stairs,  chunk) end
       if r.kind == "joiner" then table.insert(R.joiners, chunk) end
     end
+
+
+    -- process staircase destinations in dependency order,
+    -- A (1) must be resolved before B (2)
+    table.sort(stair_chunks, function(a, b)
+      return a.dest_id < b.dest_id
+    end)
+
+
+    for _,item in ipairs(stair_chunks) do
+      local chunk = item.chunk
+
+      local dest_area = chunk.dest_area
+      local from_area = item.from_area
+
+
+      -- reuse the prefab from the first staircase.
+      -- this also preserves mirrored staircase behavior
+      if not stair_prefab then
+        if chunk.peer and chunk.peer.prefab_def then
+          stair_prefab = chunk.peer.prefab_def
+        end
+      end
+
+      if not stair_prefab then
+        stair_prefab = pick_stair_prefab(chunk)
+      end
+
+
+      -- calculate the signed staircase height only once.
+      -- all stairs in a rule retain the existing shared prefab
+      -- and height-direction behavior
+      if not chunk.peer then
+        if not stair_height_delta then
+          local h = assert(stair_prefab.delta_h)
+
+          if R.trunk.stair_z_dir < 0 then
+            h = h * -1
+          end
+
+          if rand.odds(R.trunk.stair_z_dir_fudge_prob) then
+            h = h * -1
+          end
+
+          stair_height_delta = h
+        end
+
+        -- apply the height change to this particular destination.
+        dest_area.prelim_h =
+          from_area.prelim_h + stair_height_delta
+      end
+
+
+      -- staircase floor chunk starts at the source height
+      chunk.area.prelim_h = assert(from_area.prelim_h)
+
+
+      -- flip the staircase when it descends
+      if dest_area.prelim_h < from_area.prelim_h then
+        chunk.area.prelim_h =
+          chunk.area.prelim_h - stair_prefab.delta_h
+
+        chunk:flip()
+      end
+
+
+      chunk.prefab_def = stair_prefab
+    end
+
+
+    -- propagate final heights through direct connections,
+    -- important when an upstream area receives a staircase
+    -- height adjustment but a downstream area is directly
+    -- connected to it
+    for area_id = 1, 2 do
+      local A = new_areas[area_id]
+      local C = new_intconns[area_id]
+      local source = new_area_sources[area_id]
+
+      if A and C and C.kind == "direct" then
+        A.prelim_h = assert(source.prelim_h)
+      end
+    end
   end
 
 
@@ -3113,7 +3276,7 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     end
 
 
-    -- gather the metadata for all new areas
+    -- gather metadata for all new areas
     local area_info =
     {
       [1] = cur_rule.new_area,
@@ -3122,14 +3285,13 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
 
 
     -- first pass: create all required area objects
-
     for area_id = 1, 2 do
       local info = area_info[area_id]
 
       if info and not new_areas[area_id] then
         local A = AREA_CLASS.new(LEVEL, "floor")
 
-        -- Max size of new area.
+        -- max size of new area
         if R.svolume then
           A.max_size = (R.size_limit - R.svolume) * 1.25
         end
@@ -3144,19 +3306,16 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     end
 
 
-    -- second pass: establish the internal connections and
-    -- inherit the preliminary floor heights
-
+    -- second pass: resolve source areas and inherit heights
     for area_id = 1, 2 do
       local info = area_info[area_id]
 
-      if info and not new_intconns[area_id] then
-
+      if info then
         local from_area_ref = info.from_area
 
-        -- default source:
-        --   A inherits from existing area 1
-        --   B inherits from A when A exists, otherwise area 1
+        -- defaults:
+        -- A inherits from area 1
+        -- B inherits from A, when A exists
 
         if from_area_ref == nil then
           if area_id == 2 and new_areas[1] then
@@ -3166,41 +3325,100 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
           end
         end
 
-        local from_area
-
-        if from_area_ref == "A" then
-          if area_id ~= 2 then
-            error("Grower: Only B may inherit from new area A.")
-          end
-
-          from_area = assert(new_areas[1],
-            "Grower: B references A, but A does not exist.")
-
-        elseif type(from_area_ref) == "number" then
-          from_area = area_map[from_area_ref]
-
-        else
-          error(
-            "Grower: Invalid from_area reference for new area " ..
-            tostring(area_id) .. " in rule " .. cur_rule.name
-          )
-        end
-
-        assert(from_area,
-          "Grower: Could not locate source area for new area " ..
-          tostring(area_id) .. " in rule " .. cur_rule.name)
+        local from_area = assert(
+          resolve_area_ref(from_area_ref),
+          "Grower: Cannot resolve source area for " ..
+          tostring(area_id) .. " in " .. cur_rule.name
+        )
 
         local A = new_areas[area_id]
 
-        A.prelim_h = assert(from_area.prelim_h)
+        -- do not reset an already established height during
+        -- the second half of a symmetrical installation
+        if not new_intconns[area_id] then
+          A.prelim_h = assert(from_area.prelim_h)
+        end
 
-        new_intconns[area_id] = add_internal_conn(from_area, A)
+        new_area_sources[area_id] = from_area
       end
     end
 
-    -- old variables for staircase compatibility.
-    new_area   = new_areas[1]
+
+    -- identify which new-area connections are served by stairs
+    local stair_destinations = {}
+
+    for _,r in pairs(cur_rule.rects or {}) do
+
+      if r.kind == "stair" then
+
+        -- identify the new area reached by this staircase
+        local dest_id = stair_dest_area_id(r)
+
+        local dest_area = assert(new_areas[dest_id])
+        local intconn = assert(new_intconns[dest_id])
+
+        chunk.dest_area = dest_area
+        intconn.stair_chunk = chunk
+
+
+        -- resolve the source area
+        local from_area = chunk.from_area
+
+        if not from_area then
+          from_area = assert(new_area_sources[dest_id])
+          chunk.from_area = from_area
+        end
+
+        if from_area ~= new_area_sources[dest_id] then
+          error(
+            "Grower: Staircase source mismatch in rule " ..
+            cur_rule.name
+          )
+        end
+
+
+        -- defer height assignment until all staircase chunks
+        -- have been created
+        table.insert(stair_chunks,
+        {
+          chunk = chunk,
+          dest_id = dest_id,
+          from_area = from_area,
+        })
+
+
+        mark_stair_seeds(chunk)
+
+      elseif r.dest_area then
+
+        chunk.dest_area = assert(resolve_area_ref(r.dest_area))
+
+      end
+    end
+
+
+    -- third pass: create the appropriate internal connections
+    for area_id = 1, 2 do
+      local info = area_info[area_id]
+
+      if info and not new_intconns[area_id] then
+        local from_area = assert(new_area_sources[area_id])
+        local A = assert(new_areas[area_id])
+
+        local connection_kind =
+          stair_destinations[area_id] and "stair" or "direct"
+
+        new_intconns[area_id] = add_internal_conn(
+          from_area, A, connection_kind
+        )
+      end
+    end
+
+
+    -- preserve the legacy A-only staircase aliases
+    new_area    = new_areas[1]
     new_intconn = new_intconns[1]
+
 
     if cur_rule.rects then
       install_create_chunks(T)
@@ -3325,7 +3543,9 @@ end
     if what ~= "TEST" then
       new_areas = {}
       new_intconns = {}
+      new_area_sources = {}
 
+      -- legacy staircase aliases.
       new_area = nil
       new_intconn = nil
     end
