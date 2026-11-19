@@ -188,6 +188,8 @@ function PREFAB_CONTROL.fine_tune_filters()
     tech_o_trapezoid_blue = 12,
 
     gtd_ind_modwall_arched = 20]]
+
+    gtd_wall_hell_engraving_1 = 8
   }
 
   local new_themes_multipliers =

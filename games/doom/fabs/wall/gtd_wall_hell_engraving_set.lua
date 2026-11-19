@@ -40,10 +40,10 @@ PREFABS.Wall_hell_engraving_arched_1 =
 }
 
 
-PREFABS.Wall_hell_engraving_arched_1_industrial =
+PREFABS.Wall_hell_engraving_1_industrial =
 {
   template = "Wall_hell_engraving_plain_1",
-  map = "MAP02",
+  map = "MAP01",
 
   prob = 15,
   theme = "!hell",
@@ -58,6 +58,21 @@ PREFABS.Wall_hell_engraving_arched_1_industrial =
     ENGRAV3 = 1,
     ENGRAV4 = 1,
   },
+  tex_ENGRAV6 = "GO_GTHW8",
+  tex_SUPPORT3 = "SHAWN01E"
+}
+
+PREFABS.Wall_hell_engraving_arched_1_industrial =
+{
+  template = "Wall_hell_engraving_plain_1",
+  map = "MAP02",
+
+  prob = 15,
+  theme = "!hell",
+
+  height = 128,
+
+  tex_ENGRAV6 = "GO_GTHW8",
   tex_SUPPORT3 = "SHAWN01E",
 
   bound_z2 = 128
