@@ -953,6 +953,7 @@ function Room_reckon_doors(LEVEL)
   end
 end
 
+
 function Room_detect_porches(LEVEL, R)
   --
   -- A "porch" is typically an area of an outdoor room that neighbors a
@@ -961,24 +962,18 @@ function Room_detect_porches(LEVEL, R)
   --
   -- It can also be used indoors (what previous code called a "periph").
   --
-  -- Another use case is an outdoor hallway which is mostly surrounded
-  -- by outdoor areas, and is higher than those areas.
+  -- Hallway porch detection is retained for now, although the current
+  -- room-processing flow does not call this function for hallways.
   --
-
-  local best_A
-  local best_score
-
 
   local function set_as_porch(A)
     A.is_porch = true
     A.is_outdoor = nil
 
-    if A.peer then -- apply porchness to symmetry too, of course
+    if A.peer then
       A.peer.is_porch = true
       A.peer.is_outdoor = nil
     end
-
-    -- Note : keeping 'is_outdoor' on the area
 
     if not A.room.porch_fence_type then
       A.room.porch_fence_type = rand.key_by_probs(
@@ -1006,7 +1001,6 @@ function Room_detect_porches(LEVEL, R)
       local A2 = N.area
 
       if A2.mode == "scenic" then
-        -- ok
         goto skip
       end
 
@@ -1014,17 +1008,14 @@ function Room_detect_porches(LEVEL, R)
       assert(R2 ~= R)
 
       if not R2 then
-        -- no void, thanks
         return false
       end
 
       -- same zone?
       if R2.zone ~= R.zone then
-        -- ok
         goto skip
       end
 
-      -- TODO : if hallway is large, allow a few edges
       if not R2.is_outdoor then
         return false
       end
@@ -1033,6 +1024,7 @@ function Room_detect_porches(LEVEL, R)
       if HA.floor_h + 64 < (A2.floor_h or 0) then
         return false
       end
+
       ::skip::
     end
 
@@ -1044,29 +1036,90 @@ function Room_detect_porches(LEVEL, R)
   end
 
 
-  local function eval_porch(A, mode)
-    -- mode is either "indoor" or "outdoor",
+  local function get_porch_geometry(A)
+    local sx1, sy1, sx2, sy2 = A:calc_seed_bbox()
 
-    if A.room.floor_areas <= 1 then return -1 end
+    local width  = sx2 - sx1 + 1
+    local height = sy2 - sy1 + 1
 
+    local short_side = math.min(width, height)
+    local long_side  = math.max(width, height)
+
+    local aspect_ratio = long_side / short_side
+
+    return aspect_ratio
+  end
+
+
+  local function get_porch_volume(A)
+    local volume = A.svolume
+
+    -- symmetry peer in the same room is also marked as a porch
+    -- include its volume in the budget
+    if A.peer and A.peer ~= A and A.peer.room == R then
+      volume = volume + A.peer.svolume
+    end
+
+    return volume
+  end
+
+
+  local function eval_porch(A, mode, floor_volume)
     if A.mode ~= "floor" then return -1 end
 
-    -- single outdoor room? weird for it to be a porch --MSSP
-    if #A.room.areas < 2 then return -1 end
+    if A.is_porch then return -1 end
 
-    -- size check : never too much of room
-    if A.svolume > R.svolume / 2 then return -1 end
+    -- a room needs more than one floor area to have a porch
+    if R.floor_areas <= 1 then return -1 end
 
-    -- shape check : we want high twistiness, low openness
-    if A.openness > 0.4 then return -1 end
+    -- a single area should never consume more than half the room
+    local area_volume = get_porch_volume(A)
 
-    -- should not be surrounded by another area
-    -- if #A.neighbors < 2 then return -1 end
-    -- but... GAZEBOS! -MSSP
+    if area_volume > floor_volume / 2 then
+      return -1
+    end
 
-    -- FIXME.....
+    local openness = A.openness
 
-    local score = 100 + A.svolume - A.openness * 100
+    if not openness or openness > 0.4 then
+      return -1
+    end
+
+    local aspect_ratio = get_porch_geometry(A)
+    local size_ratio = area_volume / floor_volume
+
+    -- areas on the room boundary are more plausible porch locations
+    -- for outdoor rooms, adjacency to a building is especially useful
+    local boundary_neighbors = 0
+    local building_neighbors = 0
+
+    for _, N in pairs(A.neighbors) do
+      if N.room ~= R and N.room then
+        boundary_neighbors = boundary_neighbors + 1
+
+        if not N.room.is_outdoor then
+          building_neighbors = building_neighbors + 1
+        end
+      end
+    end
+
+    -- prefer:
+    --   * smaller areas
+    --   * lower openness
+    --   * elongated shapes
+    --   * locations along the room boundary
+    --
+    -- Outdoor porches receive an extra preference for bordering buildings.
+    local score =
+        100
+      + (1 - size_ratio) * 30
+      + (0.4 - openness) * 80
+      + math.min(aspect_ratio - 1, 3) * 8
+      + boundary_neighbors * 3
+
+    if mode == "outdoor" then
+      score = score + building_neighbors * 4
+    end
 
     -- tie break
     return score + gui.random()
@@ -1074,41 +1127,100 @@ function Room_detect_porches(LEVEL, R)
 
 
   local function detect_normal_porch(mode)
-    -- Andrew: only one per room, so pick best
-    -- MSSP: new behavior. Multiple porches per room, limited
-    -- by the amount of areas within the room. (no more than half
-    -- the room should be porched at least)
     local porchables = {}
+    local seen_areas = {}
 
+    -- first pass: count floor areas and calculate the actual floor volume
     R.floor_areas = 0
+
+    local floor_volume = 0
+
     for _, A in pairs(R.areas) do
       if A.mode == "floor" then
         R.floor_areas = R.floor_areas + 1
-      end
-
-      A.porch_score = eval_porch(A, "indoor")
-      if A.porch_score > 0 then
-        table.insert(porchables, A)
+        floor_volume = floor_volume + A.svolume
       end
     end
 
-    table.sort(porchables,
-      function(A, B) return A.porch_score > B.porch_score end)
+    if R.floor_areas <= 1 or floor_volume <= 0 then
+      return
+    end
 
-    R.porch_count = 0
-    for _, A in pairs(porchables) do
-      if R.porch_count > math.floor(R.floor_areas / 3) then return end
+    -- second pass: evaluate candidates
+    for _, A in pairs(R.areas) do
+      if seen_areas[A] then goto skip end
+
+      seen_areas[A] = true
+
+      -- Avoid evaluating a same-room symmetry peer twice.
+      if A.peer and A.peer.room == R then
+        seen_areas[A.peer] = true
+      end
+
+      local score = eval_porch(A, mode, floor_volume)
+
+      if score > 0 then
+        table.insert(porchables,
+          {
+            area = A,
+            score = score,
+            volume = get_porch_volume(A),
+          }
+        )
+      end
+
+      ::skip::
+    end
+
+    table.sort(porchables,
+      function(A, B)
+        return A.score > B.score
+      end
+    )
+
+    -- account for any porch areas already marked before this pass
+    local porch_volume = 0
+    local porch_count = 0
+
+    for _, A in pairs(R.areas) do
+      if A.mode == "floor" and A.is_porch then
+        porch_volume = porch_volume + A.svolume
+        porch_count = porch_count + 1
+      end
+    end
+
+    R.porch_count = porch_count
+    R.porch_volume = porch_volume
+
+    -- select candidates while respecting the cumulative coverage budget
+    local max_porch_volume = floor_volume / 2
+
+    for _, candidate in pairs(porchables) do
+      local A = candidate.area
+      local area_volume = candidate.volume
+
+      -- this candidate would exceed the room's porch coverage limit
+      if porch_volume + area_volume > max_porch_volume then
+        goto skip
+      end
 
       local porch_prob = style_sel("porches", 0, 25, 50, 75)
       porch_prob = porch_prob / (LEVEL.autodetail_group_walls_factor / 2)
 
-      if A.porch_score > 0 and rand.odds(porch_prob) then
+      if rand.odds(porch_prob) then
         set_as_porch(A)
 
+        porch_volume = porch_volume + area_volume
+        porch_count = porch_count + 1
+
         gui.debugf("Made %s into a PORCH\n", A.name)
-        R.porch_count = R.porch_count + 1
       end
+
+      ::skip::
     end
+
+    R.porch_count = porch_count
+    R.porch_volume = porch_volume
   end
 
 
@@ -4269,8 +4381,6 @@ function Room_cleanup_stairs_to_nowhere(LEVEL, R)
 
       -- must have at least a solid wall
       if same_room_neighbors == #A.neighbors then return false end
-
-      -- must not have multiple stair connections
       if stair_neighbors > 1 then return false end
     end
 
