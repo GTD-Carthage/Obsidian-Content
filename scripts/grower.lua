@@ -21,6 +21,30 @@
 
 GROWER_DEBUG_INFO = {} -- MSSP: table for containing details about growth statistics
 
+-- multi-area token identities.
+NEW_AREA_TOKEN_TO_ID =
+{
+  A = 1,
+  B = 2,
+  D = 3,
+  E = 4
+}
+NEW_AREA_ID_TO_TOKEN =
+{
+  [1] = "A",
+  [2] = "B",
+  [3] = "D",
+  [4] = "E"
+}
+NEW_AREA_INFO_FIELDS =
+{
+  [1] = "new_area",
+  [2] = "new_area2",
+  [3] = "new_area3",
+  [4] = "new_area4"
+}
+MAX_NEW_AREAS = 4
+
 function Grower_preprocess_grammar(test_grammar)
 
   local def
@@ -66,8 +90,11 @@ SHAPE RULE ELEMENTS:
 
   A    represents the first new AREA
   B    represents the second new AREA
+  D    represents the third new AREA
+  E    represents the fourth new AREA
        each letter identifies a distinct area, and repeated occurrences
        of the same letter belong to the same area
+
   R    represents a new ROOM, usually used only in SPROUT rules to show where the imprint of a new ROOM begins
 
   C    represents a CAGE seed
@@ -105,12 +132,12 @@ SHAPE RULE ELEMENTS:
     if ch == 's' then return { kind="magic", what="stairs"} end
 
     -- other stuff
-    if ch == 'A' then
-      return { kind="new_area", area=1 }
+    local area_id = NEW_AREA_TOKEN_TO_ID[ch]
+
+    if area_id then
+      return { kind="new_area", area=area_id }
     end
-    if ch == 'B' then
-      return { kind="new_area", area=2 }
-    end
+
     if ch == 'R' then return { kind="new_room" } end
 
     if ch == 'C' then return { kind="cage"   } end
@@ -192,7 +219,7 @@ SHAPE RULE ELEMENTS:
 
   local function check_compatible_elements(E1, E2)
     if E1.kind == "new_area" or E1.kind == "new_room" or E1.kind == "hallway" then
-      error("bad element in " .. def.name .. ": cannot use A/B/R/H' in match")
+      error("bad element in " .. def.name .. ": cannot use A/B/D/E/R/H in match")
     end
 
     -- changing an area is OK
@@ -267,16 +294,16 @@ SHAPE RULE ELEMENTS:
 
     if E.kind == "new_area" then
       local area_id = E.area or 1
+      local info_field = NEW_AREA_INFO_FIELDS[area_id]
 
-      if area_id == 1 then
-        def.new_area = def.new_area or {}
-
-      elseif area_id == 2 then
-        def.new_area2 = def.new_area2 or {}
-        def.has_new_area2 = true
-
-      else
+      if not info_field then
         error("Unknown new-area ID in rule: " .. def.name)
+      end
+
+      def[info_field] = def[info_field] or {}
+
+      if area_id > 1 then
+        def["has_new_area" .. area_id] = true
       end
 
       def.has_new_areas = true
@@ -337,9 +364,10 @@ SHAPE RULE ELEMENTS:
     local W = #def.structure[1]
     local H = #def.structure
 
-    if (H % 2) ~= 0 then
-      error("Malformed structure in grammar: " .. def.name .. "\n" ..
-      "Pattern lines are not even pairs.")
+    if (not H or (H and (H % 2) ~= 0) )
+    or (not W) then
+      error("Grower: Malformed structure in grammar: " .. def.name .. "\n" ..
+      "Missing pattern lines.")
     end
 
     H = H / 2
@@ -685,8 +713,7 @@ SHAPE RULE ELEMENTS:
 
     -- multi-area reference
     if E.kind == "new_area" then
-      if E.area == 1 then return "A" end
-      if E.area == 2 then return "B" end
+      return NEW_AREA_ID_TO_TOKEN[E.area]
     end
 
     return nil
@@ -763,7 +790,7 @@ SHAPE RULE ELEMENTS:
           kind, x, y, 10 - r.from_dir
         )
 
-        if dest_ref == "A" or dest_ref == "B" then
+        if NEW_AREA_TOKEN_TO_ID[dest_ref] then
           r.dest_area = dest_ref
         end
       end
@@ -1099,7 +1126,8 @@ function Grower_calc_rule_probs(LEVEL)
       --if rand.odds(75) then
       new_factor = rand.range( 100,1000000 ) * rand.range( 0.75,1.25 )
       rule.use_prob = math.round(rule.prob * new_factor)
-      if rule.has_new_areas or rule.new_area or rule.new_area2 then
+      if rule.has_new_areas or rule.new_area or rule.new_area2 or
+         rule.new_area3 or rule.new_area4 then
         LEVEL.has_absurd_new_area_rules = true
       end
       --[[else
@@ -1998,7 +2026,8 @@ function Grower_grammatical_pass(SEEDS, LEVEL, R, pass, apply_num, stop_prob,
       if rule.pass ~= want_pass then goto skip end
 
       if no_new_areas and
-         (rule.has_new_areas or rule.new_area or rule.new_area2)
+         (rule.has_new_areas or rule.new_area or rule.new_area2 or
+          rule.new_area3 or rule.new_area4)
       then
         goto skip
       end
@@ -2604,7 +2633,8 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
 
     -- don't create a brand new area when existing area is tiny
     if not R.is_hallway and
-      (cur_rule.has_new_areas or cur_rule.new_area or cur_rule.new_area2) and
+      (cur_rule.has_new_areas or cur_rule.new_area or cur_rule.new_area2 or
+       cur_rule.new_area3 or cur_rule.new_area4) and
       pass ~= "sprout"
     then
       A:calc_volume()
@@ -2810,13 +2840,10 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
   end
 
 
-  -- convert a new-area name to its numeric identity.
-  -- A = 1, B = 2.
+  -- resolve either an existing area reference (1/2/3)
+  -- or a new-area reference ("A"/"B"/"D"/"E")
   local function new_area_index(ref)
-    if ref == "A" then return 1 end
-    if ref == "B" then return 2 end
-
-    return nil
+    return NEW_AREA_TOKEN_TO_ID[ref]
   end
 
 
@@ -2859,18 +2886,29 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
       )
     end
 
-    -- backward compatibility for existing A-only rules
-    if new_areas[1] and not new_areas[2] then
-      return 1
+    -- backward compatibility: when only one new area exists,
+    -- use it as the staircase destination.
+    local only_area_id
+
+    for area_id = 1, MAX_NEW_AREAS do
+      if new_areas[area_id] then
+        if only_area_id then
+          only_area_id = nil
+          break
+        end
+
+        only_area_id = area_id
+      end
     end
 
-    if new_areas[2] and not new_areas[1] then
-      return 2
+    if only_area_id then
+      return only_area_id
     end
 
     error(
       "Grower: Ambiguous staircase destination in rule " ..
-      cur_rule.name .. ". Specify dest_area = 'A' or 'B'."
+      cur_rule.name ..
+      ". Specify dest_area = 'A', 'B', 'D', or 'E'."
     )
   end
 
