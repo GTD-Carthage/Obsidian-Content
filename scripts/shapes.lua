@@ -21929,6 +21929,134 @@ GROW_MULTI_AREA_CASTLE_RAMPARTS =
   }
 },
 
+GROW_MULTI_AREA_PIER_BIB =
+{
+  prob = 12,
+  skip_prob = 80,
+
+  structure =
+  {
+    "1............","1111AA11AA111",
+    "1............","1111AA11AA111",
+    "x............","xvv~%/11%/~vv",
+    "x............","xBB~~~~~~~~BB",
+    "x............","xBB%~~~~~~/BB",
+    "x............","xBBBBBBBBBBBB",
+    "x............","x%BBBBBBBBBB/",
+    "x............","x~~~~~~~~~~~~"
+  },
+
+  diagonals =
+  {
+    "~A","A~","~A","A~",
+         "B~","~B",
+         "~B","B~"
+  }
+},
+
+GROW_MULTI_AREA_PIER_BIB_ALT =
+{
+  prob = 15,
+  skip_prob = 80,
+
+  structure =
+  {
+    "1............","1111AA11AA111",
+    "1............","1111AA11AA111",
+    "x............","xvv~%/11%/~vv",
+    "x............","xBB~~~~~~~~BB",
+    "x............","xBB%~~~~~~/BB",
+    "x............","xBBBBBBBBBBBB",
+    "x............","xBB/~~~~~~%BB",
+    "x............","xBB~/%~~/%~BB",
+    "1............","1111AA11AA111",
+    "1............","1111AA11AA111"
+  },
+
+  diagonals =
+  {
+    "~A","A~","~A","A~",
+         "B~","~B",
+         "B~","~B",
+    "~A","A~","~A","A~"
+  }
+},
+
+GROW_MULTI_AREA_UP_A_GAZEBO =
+{
+  prob = 10,
+  skip_prob = 55,
+
+  structure =
+  {
+    "11xxxx","11xxxx",
+    "......","111111",
+    "......","111111",
+    "......","vv11vv",
+    "......","AA11AA",
+    "......","AA11AA",
+    "......","A/BB%A",
+    "......","%BBBB/"
+  },
+
+  diagonals =
+  {
+    "AB","BA",
+    ".A","A."
+  }
+},
+
+GROW_MULTI_AREA_UP_A_GAZEBO_LIQUID =
+{
+  prob = 10,
+  skip_prob = 55,
+
+  structure =
+  {
+    "11xxxxxx","11xxxxxx",
+    "........","11111111",
+    "........","11111111",
+    "........","vv~11~vv",
+    "........","AA~11~AA",
+    "........","AA~~~~AA",
+    "........","AA/BB%AA",
+    "........","%ABBBBA/"
+  },
+
+  diagonals =
+  {
+    "AB","BA",
+    ".A","A."
+  }
+},
+
+GROW_MULTI_AREA_UP_A_GAZEBO_LIQUID_ALT =
+{
+  prob = 10,
+  skip_prob = 55,
+
+  structure =
+  {
+    "11xxxxxx","11xxxxxx",
+    "........","11111111",
+    "........","11111111",
+    "........","vv~11~vv",
+    "........","AA~11~AA",
+    "........","AA~~~~AA",
+    "........","AA/BB%AA",
+    "........","AA>BB<AA",
+    "........","AA>BB<AA",
+    "........","%ABBBBA/",
+    "xxx..xxx","xxxBBxxx"
+  },
+
+  diagonals =
+  {
+    "AB","BA",
+    ".A","A."
+  }
+},
+
 GROW_MULTI_AREA_CASTLE_ENTRANCE_WITH_MOAT =
 {
   prob = 12,
@@ -21980,6 +22108,22 @@ GROW_MULTI_AREA_BLOCK_FORTRESS_HALF =
   }
 },
 
+GROW_MULTI_AREA_S_CURVE =
+{
+  prob = 10,
+  skip_pro = 75,
+
+  structure =
+  {
+    ".....x","BBBBBx",
+    ".....x","BBBB^x",
+    ".....x","AAAAAx",
+    ".....x","^AAAAx",
+    ".....1","111111",
+    ".....1","111111"
+  }
+},
+
 GROW_MULTI_AREA_S_CURVE_LIQUID =
 {
   prob = 10,
@@ -22018,9 +22162,10 @@ GROW_MULTI_AREA_TIERED_POOLS_LIQUID =
     ".........","/BBBBBBB%",
     ".........","BBBBBBBBB",
     ".........","^^~~~~~^^",
+    ".........","^^~~#~~^^",
     ".........","AAAAAAAAA",
     ".........","AAAAAAAAA",
-    ".........","^^~~~~~^^",
+    ".........","^^~~#~~^^",
     ".........","^^~~~~~^^",
     ".........","111111111",
     ".........","%1111111/",
@@ -22117,17 +22262,19 @@ GROW_MULTI_AREA_MANSION_TIERS_DOUBLE =
   prob = 15,
   skip_prob = 65,
 
+  z_dir = "down",
+
   structure =
   {
     "1..........","11111111111",
-    "1..........","11111111111",
+    "1..........","1111#11#111",
     "x..........","xvvAAAAAAvv",
-    "x..........","xAAAAAAAAAA",
+    "x..........","xAAA#AA#AAA",
     "x..........","xBBBBBBBBBB",
     "x..........","xBBBBBBBBBB",
-    "x..........","xAAAAAAAAAA",
+    "x..........","xAAA#AA#AAA",
     "x..........","x^^AAAAAA^^",
-    "x..........","x1111111111",
+    "x..........","x111#11#111",
     "x..........","x1111111111",
   },
 },
@@ -22137,19 +22284,21 @@ GROW_MULTI_AREA_MANSION_TIERS_TRIPLE =
   prob = 20,
   skip_prob = 75,
 
+  z_dir = "down",
+
   structure =
   {
     "1..........","11111111111",
-    "1..........","11111111111",
+    "1..........","1111#11#111",
     "x..........","xvvAAAAAAvv",
-    "x..........","xAAAAAAAAAA",
+    "x..........","xAAA#AA#AAA",
     "x..........","xvvBBBBBBvv",
     "x..........","xBBBBBBBBBB",
     "x..........","xBBBBBBBBBB",
     "x..........","x^^BBBBBB^^",
-    "x..........","xAAAAAAAAAA",
+    "x..........","xAAA#AA#AAA",
     "x..........","x^^AAAAAA^^",
-    "x..........","x1111111111",
+    "x..........","x111#11#111",
     "x..........","x1111111111"
   },
 },
