@@ -22278,6 +22278,27 @@ GROW_MULTI_AREA_MINAS_TIRITH =
   }
 },
 
+GROW_MULTI_AREA_SPIRAL_THIN =
+{
+  prob = 7,
+
+  structure =
+  {
+    "11xxx","11xxx",
+    ".....","111DD",
+    ".....","111%D",
+    ".....","v111^",
+    ".....","A%1/B",
+    ".....","AA>BB"
+  },
+
+  diagonals =
+  {
+         "1D",
+    "A1","1B"
+  }
+},
+
 GROW_MULTI_AREA_SPIRAL =
 {
   prob = 25,
