@@ -4325,95 +4325,96 @@ function Room_set_sky_heights(LEVEL)
 end
 
 function Room_cleanup_stairs_to_nowhere(LEVEL, R)
-  local function area_leads_to_nowhere(A)
+
+  local function find_dead_end_stair(A)
     -- style control
     if rand.odds(style_sel("dead_ends", 0, 33, 66, 100)) then
-      return false
+      return nil, nil
     end
 
-    -- gotta be a floor obviously
+    -- must be a normal floor area with a known height
     if A.mode ~= "floor"
         or not A.room
         or not A.floor_h then
-      return false
+      return nil, nil
     end
 
-    -- must have an area lesser than 6 seeds
-    if A.svolume > 8 then return false end
+    -- keep the existing area-volume threshold
+    if A.svolume > 8 then return nil, nil end
 
-    local same_room_neighbors = 0
+    local same_room_floor_neighbors = 0
     local stair_neighbors = 0
+    local stair_area
+    local opposite_area
+
     for _, N in pairs(A.neighbors) do
       if N.room == A.room then
         if N.mode == "floor" then
-          same_room_neighbors = same_room_neighbors + 1
+          same_room_floor_neighbors = same_room_floor_neighbors + 1
 
-          -- must not be connected to other areas with the same rough floor height
+          -- must not connect to another floor area at roughly
+          -- the same height
           if math.abs(A.floor_h - N.floor_h) <= 8 then
-            return false
+            return nil, nil
           end
         end
 
-        if N.mode == "cage" then
-          if A == N.cage_neighbor then
-            return false
-          end
+        -- do not clean up areas connected to cages
+        if N.mode == "cage" and A == N.cage_neighbor then
+          return nil, nil
         end
 
         if N.chunk then
-          if N.chunk.kind == "stair" then
-            -- if this area has stairs that go elsewhere, exclude
-            stair_neighbors = stair_neighbors + 1
+          local kind = N.chunk.kind
+
+          -- closets and joiners both indicate a potentially
+          -- meaningful connection, so protect either endpoint
+          if kind == "closet" or kind == "joiner" then
+            if N.chunk.from_area == A
+                or N.chunk.dest_area == A then
+              return nil, nil
+            end
           end
 
-          -- must not have a closet or joiner neighbor (because this means
-          -- this room can have something important)
-          if N.chunk.kind == "joiner" then
-            if N.chunk.from_area == A then
-              return false
+          -- find the staircase and its opposite endpoint
+          if kind == "stair" then
+            local other_area
+
+            if A == N.chunk.from_area then
+              other_area = N.chunk.dest_area
+            elseif A == N.chunk.dest_area then
+              other_area = N.chunk.from_area
             end
-            if N.chunk.dest_area == A then
-              return false
+
+            if other_area then
+              stair_neighbors = stair_neighbors + 1
+              stair_area = N
+              opposite_area = other_area
             end
           end
         end
       end
-
-      -- must have at least a solid wall
-      if same_room_neighbors == #A.neighbors then return false end
-      if stair_neighbors > 1 then return false end
     end
 
-    -- direct connections check
+    -- require at least one neighbor that is not another
+    -- same-room floor area
+    if same_room_floor_neighbors == #A.neighbors then
+      return nil, nil
+    end
+
+    -- multiple stair connections mean this is not a dead end
+    if stair_neighbors ~= 1 then
+      return nil, nil
+    end
+
+    -- direct room connections also protect the area
     for _, C in pairs(R.conns) do
-      if C.A1 == A or
-          C.A2 == A then
-        return false
+      if C.A1 == A or C.A2 == A then
+        return nil, nil
       end
     end
 
-    return true
-  end
-
-
-  local function get_area_entry_stair(A)
-    local source_stair
-    local stair_source
-
-    for _, N in pairs(A.neighbors) do
-      if N.chunk then
-        if N.chunk.kind == "stair" then
-          if A == N.chunk.dest_area then
-            source_stair = N
-            stair_source = N.chunk.from_area
-          elseif A == N.chunk.from_area then
-            source_stair = N
-            stair_source = N.chunk.dest_area
-          end
-          return source_stair, stair_source
-        end
-      end
-    end
+    return stair_area, opposite_area
   end
 
 
@@ -4440,40 +4441,6 @@ function Room_cleanup_stairs_to_nowhere(LEVEL, R)
         N.floor_h = best_LN.floor_h - 16
 
         N:set_ceil(best_LN.ceil_h or best_LN.floor_h + 96)
-      end
-    end
-  end
-
-
-  local function fixup_cages(LEVEL)
-    for _, A in pairs(LEVEL.areas) do
-      if A.mode == "cage" and A.floor_h then
-        local tallest_ceiling = -EXTREME_H
-        local lowest_floor = EXTREME_H
-
-        for _, N in pairs(A.neighbors) do
-          if A.room == N.room and (N.mode == "floor" or N.mode == "liquid") then
-            if N.ceil_h > tallest_ceiling then
-              tallest_ceiling = N.ceil_h
-            end
-            if N.floor_h < lowest_floor then
-              lowest_floor = N.floor_h
-            end
-          end
-        end
-
-        if A.floor_h < lowest_floor and lowest_floor < EXTREME_H then
-          local diff = lowest_floor - A.floor_h
-          A.floor_h = lowest_floor + 32
-          A.ceil_h = A.ceil_h + diff
-        end
-        if A.ceil_h > tallest_ceiling and tallest_ceiling > -EXTREME_H then
-          local diff = lowest_floor + A.ceil_h
-          A.ceil_h = tallest_ceiling
-          if diff < 96 then
-            A.ceil_h = lowest_floor + 96
-          end
-        end
       end
     end
   end
@@ -4522,86 +4489,80 @@ function Room_cleanup_stairs_to_nowhere(LEVEL, R)
   end
 
 
-  local SA  -- source stair chunk
-  local SAS -- stair chunk's source area
-
   for _, A in pairs(R.areas) do
-    if area_leads_to_nowhere(A) then
-      SA, SAS = get_area_entry_stair(A)
+    local SA, SAS = find_dead_end_stair(A)
 
+    if SA and SAS then
       gui.printf("AREA_" .. A.id .. " leads to nowhere. " ..
         A:get_fseed_coord() .. "\n")
+      -- convert nowhere areas to just normal areas (borrow info from main area)
+      A.floor_h = SAS.floor_h
 
-      if SAS then
-        -- convert nowhere areas to just normal areas (borrow info from main area)
-        A.floor_h = SAS.floor_h
+      A:set_floor_mat(R.floor_mats[SAS.floor_h]) --or SAS.floor_mat
 
-        A:set_floor_mat(R.floor_mats[SAS.floor_h]) --or SAS.floor_mat
-
-        if A.room:get_env() == "building" then
-          A.is_porch = nil
-        end
-
-        SA.mode = "floor"
-
-        -- MSSP-FIXME: Find a better way - remove the chunk
-        -- instead of giving it a stand-in prefab.
-        SA.chunk.prefab_def = PREFABS["Completely_nothing"]
-        SA.chunk.mode = "floor"
-        SA.chunk.occupy = nil
-        SA.chunk.ignore_stairs = true
-
-        if SA.room:get_env() == "outdoor" then
-          if SA.is_porch_neighbor then
-            SA.is_porch = true
-            SA.is_porch_neighbor = nil
-            SA.is_outdoor = nil
-          end
-
-          --[[if SAS.is_porch then
-            SA:set_ceil_group(SAS.ceil_group)
-            A:set_ceil_group(SAS.ceil_group)
-          elseif not SAS.is_porch then
-            SA:set_ceil_group(A.ceil_group)
-          end]]
-        elseif SA.room:get_env() == "building" then
-          SA.is_porch_neighbor = nil
-
-          SA:set_ceil_group(SAS.ceil_group)
-          A:set_ceil_group(SA.ceil_group)
-          SA:set_ceil(A.ceil_group.h)
-          A:set_ceil(A.ceil_group.h)
-        end
-
-        A:set_floor(SAS.floor_h)
-        SA:set_floor(SAS.floor_h)
-
-        A:set_floor_mat(SAS.floor_mat)
-        SA:set_floor_mat(SAS.floor_mat)
-
-        -- use the floor group of the source area
-        A:set_floor_group(SAS.floor_group)
-        SA:set_floor_group(SAS.floor_group)
-
-        A.dead_end = true
-        SA.dead_end = true
-
-
-        -- affix textures
-        if A.room:get_env() == "building" then
-          local ceil_tex = SAS.ceil_mat
-          if A.room.ceil_mats then
-            if A.room.ceil_mats[A.ceil_h] then
-              ceil_tex = A.room.ceil_mats[A.ceil_h]
-            end
-          end
-          assert(ceil_tex, "no ceiling texture for room " .. A.room.name)
-          A:set_ceil_mat(ceil_tex)
-          SA:set_ceil_mat(ceil_tex)
-        end
-
-        fixup_neighbors(A)
+      if A.room:get_env() == "building" then
+        A.is_porch = nil
       end
+
+      SA.mode = "floor"
+
+      -- MSSP-FIXME: Find a better way - remove the chunk
+      -- instead of giving it a stand-in prefab.
+      SA.chunk.prefab_def = PREFABS["Completely_nothing"]
+      SA.chunk.mode = "floor"
+      SA.chunk.occupy = nil
+      SA.chunk.ignore_stairs = true
+
+      if SA.room:get_env() == "outdoor" then
+        if SA.is_porch_neighbor then
+          SA.is_porch = true
+          SA.is_porch_neighbor = nil
+          SA.is_outdoor = nil
+        end
+
+        --[[if SAS.is_porch then
+          SA:set_ceil_group(SAS.ceil_group)
+          A:set_ceil_group(SAS.ceil_group)
+        elseif not SAS.is_porch then
+          SA:set_ceil_group(A.ceil_group)
+        end]]
+      elseif SA.room:get_env() == "building" then
+        SA.is_porch_neighbor = nil
+
+        SA:set_ceil_group(SAS.ceil_group)
+        A:set_ceil_group(SA.ceil_group)
+        SA:set_ceil(A.ceil_group.h)
+        A:set_ceil(A.ceil_group.h)
+      end
+
+      A:set_floor(SAS.floor_h)
+      SA:set_floor(SAS.floor_h)
+
+      A:set_floor_mat(SAS.floor_mat)
+      SA:set_floor_mat(SAS.floor_mat)
+
+      -- use the floor group of the source area
+      A:set_floor_group(SAS.floor_group)
+      SA:set_floor_group(SAS.floor_group)
+
+      A.dead_end = true
+      SA.dead_end = true
+
+
+      -- affix textures
+      if A.room:get_env() == "building" then
+        local ceil_tex = SAS.ceil_mat
+        if A.room.ceil_mats then
+          if A.room.ceil_mats[A.ceil_h] then
+            ceil_tex = A.room.ceil_mats[A.ceil_h]
+          end
+        end
+        assert(ceil_tex, "no ceiling texture for room " .. A.room.name)
+        A:set_ceil_mat(ceil_tex)
+        SA:set_ceil_mat(ceil_tex)
+      end
+
+      fixup_neighbors(A)
     end
   end
 
