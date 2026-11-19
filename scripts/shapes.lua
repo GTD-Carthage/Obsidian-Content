@@ -21834,53 +21834,6 @@ GROW_SPIRAL_STAIR_SMALL =
   {
     "A.",
     "1A",
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_SPIRAL_STAIR_SMALL_STEP_2"
-  }
-},
-
-GROW_SPIRAL_STAIR_SMALL_STEP_2 =
-{
-  prob = 10,
-
-  structure =
-  {
-    "1x","1x",
-    "x1","x1",
-    "2.","2v",
-    "2.","2v",
-    "..","/A",
-    "..","A/"
-  },
-
-  diagonals =
-  {
-    "2A",
-    "A."
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_SPIRAL_STAIR_SMALL_STEP_3",
-  }
-},
-
-GROW_SPIRAL_STAIR_SMALL_STEP_3 =
-{
-  prob = 10,
-
-  structure =
-  {
-    "..22x1","A%22x1",
-    "....1x","AA<<1x"
-  },
-
-  diagonals =
-  {
-    "A2",
   }
 },
 
@@ -21900,11 +21853,6 @@ GROW_SPIRAL_STAIR =
   diagonals =
   {
     "A."
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_SPIRAL_STAIR_STEP_2",
   }
 },
 
@@ -21926,52 +21874,7 @@ GROW_SPIRAL_STAIR_DOUBLE =
   diagonals =
   {
     "A."
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_SPIRAL_STAIR_STEP_2",
-
-    count = {1,2}
   }
-},
-
-GROW_SPIRAL_STAIR_STEP_2 =
-{
-  prob = 40,
-
-  structure =
-  {
-    "1xx2x","1xx2x",
-    "1xx22","1xx22",
-    "x1122","x11AA",
-    "x1122","x11AA",
-    "xxx..","xxxAA",
-    "xxx..","xxxA/"
-  },
-
-  diagonals =
-  {
-    "A."
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_SPIRAL_STAIR_STEP_3",
-  }
-},
-
-GROW_SPIRAL_STAIR_STEP_3 =
-{
-  prob = 40,
-
-  structure =
-  {
-    "xx22xx","xx22xx",
-    "xx22xx","xx22xx",
-    "..1111","AA<<11",
-    "..111x","AA<<1x"
-  },
 },
 
 -- MULTI-AREA shapes
@@ -22023,6 +21926,31 @@ GROW_MULTI_AREA_CASTLE_RAMPARTS =
     "1B",
     "1B",
     "1B"
+  }
+},
+
+GROW_MULTI_AREA_CASTLE_ENTRANCE_WITH_MOAT =
+{
+  prob = 12,
+  skip_prob = 75,
+
+  structure =
+  {
+    "xxxx.....xxxx","xxxx/AAA%xxxx",
+    ".............","AAAAAAAAAAAAA",
+    ".............","AAvvAAAAAvvAA",
+    ".............","~~BB~^^^~BB~~",
+    ".............","~~%/~^^^~%/~~",
+    ".............","11%/11111%/11",
+    ".............","1111111111111",
+    "11xxxxxxxxxxx","11xxxxxxxxxxx"
+  },
+
+  diagonals =
+  {
+         ".A","A.",
+    "~B","B~","~B","B~",
+    "1~","~1","1~","~1"
   }
 },
 
