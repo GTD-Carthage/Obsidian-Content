@@ -21993,6 +21993,39 @@ GROW_MULTI_AREA_HERCULEAN_TIERS =
   }
 },
 
+GROW_MULTI_AREA_CASTLE_RAMPARTS =
+{
+  prob = 27,
+  skip_prob = 80,
+
+  structure =
+  {
+    "........","/11>AAA%",
+    "........","111>AAAA",
+    "........","11/BB<AA",
+    "........","11%BB<AA",
+    "........","1111AAAA",
+    "........","11/BB<AA",
+    "........","11%BB<AA",
+    "........","1111AAAA",
+    "........","11/BB<AA",
+    "........","11%BB<AA",
+    "........","1111AAAA",
+    "11xxxxxx","11xxxxxx"
+  },
+
+  diagonals =
+  {
+    ".1","A.",
+    "1B",
+    "1B",
+    "1B",
+    "1B",
+    "1B",
+    "1B"
+  }
+},
+
 GROW_MULTI_AREA_BLOCK_FORTRESS_HALF =
 {
   prob = 25,
@@ -22245,34 +22278,74 @@ GROW_MULTI_AREA_NESTED_TEST =
 
 GROW_MULTI_AREA_SHRINE_TEST =
 {
-  prob = 50,
+  prob = 25,
   skip_prob = 50,
 
   structure =
   {
-    "............","/1111111111%",
-    "............","111111111111",
+    "............","/111DDDD111%",
+    "............","1111%DD/1111",
     "............","11/AAAAAA%11",
     "............","11>AAAAAA<11",
-    "............","11AA/BB%AA11",
-    "............","11AA>BB<AA11",
-    "............","11AABBBBAA11",
-    "............","11AA>BB<AA11",
-    "............","11AA%BB/AA11",
+    "............","D%AA/BB%AA/D",
+    "............","DDAA>BB<AADD",
+    "............","DDAABBBBAADD",
+    "............","DDAA>BB<AADD",
+    "............","D/AA%BB/AA%D",
     "............","11>AAAAAA<11",
     "............","11%AAAAAA/11",
-    "............","111111111111",
-    "............","%1111111111/",
+    "............","1111/DD%1111",
+    "............","%111DDDD111/",
     "x11xxxxxxxxx","x11xxxxxxxxx",
   },
 
   diagonals =
   {
+        ".1","1.",
+        "1D","D1",
+        "1A","A1",
+    "D1","AB","BA","1D",
+    "D1","AB","BA","1D",
+        "1A","A1",
+        "1D","D1",
+        ".1","1."
+  },
+
+  new_area3 = {from_area = 1}
+},
+
+GROW_MULTI_AREA_MINAS_TIRITH =
+{
+  prob = 30,
+  skip_prob = 75,
+  z_dir = "up",
+
+  structure =
+  {
+    "x........xxxx","x/111111%xxxx",
+    ".........xxxx","/11111111xxxx",
+    ".........xxxx","111/AAAAvxxxx",
+    "..........xxx","111AAvAAA%xxx",
+    ".............","1/BBBB/DDD>EE",
+    ".............","1%BBBB%DDD>EE",
+    "..........xxx","111AA^AAA/xxx",
+    ".........xxxx","111%AAAA^xxxx",
+    ".........xxxx","%11111111xxxx",
+    "x........xxxx","x%111111/xxxx",
+    "xx11xxxxxxxxx","xx11xxxxxxxxx"
+  },
+
+  diagonals =
+  {
     ".1","1.",
-    "1A","A1",
-    "AB","BA",
-    "AB","BA",
-    "1A","A1",
+    ".1",
+      "1A",
+             "A.",
+        "1B","BD",
+        "1B","BD",
+             "A.",
+      "1A",
+    ".1",
     ".1","1."
   }
 },
