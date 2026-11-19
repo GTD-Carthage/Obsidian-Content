@@ -22278,6 +22278,42 @@ GROW_MULTI_AREA_MINAS_TIRITH =
   }
 },
 
+GROW_MULTI_AREA_MINAS_TIRITH_ULTRA =
+{
+  prob = 25,
+  skip_prob = 90,
+  z_dir = "up",
+
+  structure =
+  {
+    ".........xxx","/11111111xxx",
+    ".........xxx","111/AAAAvxxx",
+    "..........xx","11/AAvAAA%xx",
+    "............","11AABBBB>DEE",
+    "............","11E<DDDDDDEE",
+    "............","1/EEEEEEEEEE",
+    "............","1%EEEEEEEEEE",
+    "............","11E<DDDDDDEE",
+    "............","11AABBBB>DEE",
+    "..........xx","11%AA^AAA/xx",
+    ".........xxx","111%AAAA^xxx",
+    ".........xxx","%11111111xxx",
+    "xx11xxxxxxxx","xx11xxxxxxxx"
+  },
+
+  diagonals =
+  {
+    ".1",
+         "1A",
+    "1A","A.",
+    "1E",
+    "1E",
+    "1A","A.",
+         "1A",
+    '.1'
+  }
+},
+
 GROW_MULTI_AREA_SPIRAL_THIN =
 {
   prob = 7,
