@@ -2865,7 +2865,7 @@ function Layout_handle_corners(LEVEL)
 
           local tallest_h = get_tallest_fence_top(corner)
 
-          corner.post_mat = corner.areas[1].zone.fence_mat
+          corner.post_mat = corner.areas[1].zone.fence_mat or corner.areas[1].room.main_tex
           corner.post_type = assert(corner.areas[1].zone.post_type)
           corner.post_top_h = math.max(corner.post_top_h, tallest_h + 32)
 
@@ -2977,9 +2977,14 @@ function Layout_handle_corners(LEVEL)
     -- always walled-up 
     local wall_nearby = false
     local other_edge_nearby = false
-    for _, J in ipairs(corner.junctions) do
-      if J.E1 then
-        if Edge_is_wallish(J.E1) then
+    local nearby_edge_kinds = {}
+    if Corner_touches_wall(corner) then
+      for _, E in ipairs(corner.edges) do
+        if E.kind then
+          table.add_unique(nearby_edge_kinds, E.kind)
+        end
+
+        if Edge_is_wallish(E) then
           wall_nearby = true
         else
           other_edge_nearby = true
@@ -2988,6 +2993,7 @@ function Layout_handle_corners(LEVEL)
     end
 
     local unique_rooms = {}
+    local unique_heights = {}
     for _, A in ipairs(corner.areas) do
       if A.room then
         table.add_unique(unique_rooms, A.room.id)
@@ -2996,9 +3002,27 @@ function Layout_handle_corners(LEVEL)
         -- on a void corner, it's a solid thick space
         return
       end
+
+      if A.ceil_h then
+        table.add_unique(unique_heights, A.ceil_h)
+      end
     end
+    -- no pillars between rooms
     if not (other_edge_nearby == true and wall_nearby == true) then
       if #unique_rooms > 1 then return end
+    end
+    -- no pillars if the all adjacent area's ceiling heights are the same
+    if #unique_heights == 1 and table.has_elem(nearby_edge_kinds, "nothing")
+    and #nearby_edge_kinds == 1 then
+      return 
+    end
+
+    -- along beams, always
+    if table.has_elem(nearby_edge_kinds, "beams") and
+    table.has_elem(nearby_edge_kinds, "nothing") and
+    #nearby_edge_kinds == 2
+    then
+      pillar_it = true
     end
 
     -- no pillars on the map edge
