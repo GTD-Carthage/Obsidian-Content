@@ -2947,52 +2947,52 @@ brightmap texture SDTBNKWE
 
 brightmap texture GO_CACW1
 {
-  map GO_CACR1
+  map SDHCCBR1
 }
 
 brightmap texture GO_CACW2
 {
-  map GO_CACR2
+  map SDHCCBR2
 }
 
 brightmap texture GO_CACW3
 {
-  map GO_CACR3
+  map SDHCCBR3
 }
 
 brightmap texture GO_CACW4
 {
-  map GO_CACR4
+  map SDHCCBR4
 }
 
 brightmap texture GO_CACW5
 {
-  map GO_CACR5
+  map SDHCCBR5
 }
 
 brightmap texture GO_CACW7
 {
-  map GO_CACR7
+  map SDHCCBR7
 }
 
 brightmap texture GO_CACW8
 {
-  map GO_CACR8
+  map SDHCCBR8
 }
 
 brightmap texture GO_CACW9
 {
-  map GO_CACR9
+  map SDHCCBR9
 }
 
 brightmap texture GO_CACWA
 {
-  map GO_CACRA
+  map SDHCCBRA
 }
 
 brightmap texture GO_CACWC
 {
-  map GO_CACRC
+  map SDHCCBRC
 }
 
 brightmap texture GO_HCCW3
