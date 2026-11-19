@@ -1727,8 +1727,8 @@ function Render_chunk(LEVEL, chunk, SEEDS)
   local floor_mat = chunk.floor_mat or A.floor_mat
   local  ceil_mat = chunk.ceil_mat  or A.ceil_mat
 
-  assert(z1)
---!!! assert(z2)
+  assert(z1, "Render: No calculated z1 found for chunk.\n")
+  assert(z2, "Render: No calculated z2 found for chunk.\n")
 
 
   gui.debugf("\n\n Render_chunk %d in %s (%s / %s)\n", chunk.id, A.room.name, chunk.kind, chunk.content or "-")
@@ -2491,7 +2491,7 @@ chunk.goal.action = "S1_OpenDoor"  -- FIXME IT SHOULD BE SET WHEN JOINER IS REND
       z2 = A.zone.sky_h
     end
 
-    if chunk.from_area then
+    if not chunk.ceil_h and chunk.from_area then
       if chunk.from_area:is_closed_to_sky() then
         z2 = chunk.from_area.ceil_h
       end
