@@ -2914,31 +2914,6 @@ function Layout_handle_corners(LEVEL)
     end
 
 
-    local function has_height_difference(corner)
-      local unique_heights = {}
-      local unique_sinks = {}
-      local areas_with_ceil_groups = 0
-
-      for _, A in ipairs(corner.areas) do
-        if A.ceil_h then
-          table.add_unique(unique_heights, A.ceil_h)
-        end
-        if A.ceil_group and A.ceil_group.sink then
-          areas_with_ceil_groups = areas_with_ceil_groups + 1
-          table.add_unique(unique_sinks, A.ceil_group.sink)
-        end
-
-        if #unique_heights > 1 then return true end
-
-        if areas_with_ceil_groups ~= 4 then return true end
-
-        if #unique_sinks > 1 then return true end
-      end
-
-      return false
-    end
-
-
     local function near_porch(corner)
       local near_porch = false
       local has_sky = false
@@ -3014,7 +2989,7 @@ function Layout_handle_corners(LEVEL)
     -- no pillars if the all adjacent area's ceiling heights are the same
     if #unique_heights == 1 and table.has_elem(nearby_edge_kinds, "nothing")
     and #nearby_edge_kinds == 1 then
-      return 
+      return
     end
 
     -- along beams, always
@@ -3047,8 +3022,7 @@ function Layout_handle_corners(LEVEL)
 
     -- create support pillars on the corners
     -- where sky and ceilings of any other texture meet 
-    if near_porch(corner) and
-    (has_height_difference(corner)) then
+    if near_porch(corner) then
       pillar_it = true
     end
 
