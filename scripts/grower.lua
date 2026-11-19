@@ -2863,6 +2863,69 @@ stderrf("prelim_conn %s --> %s : S=%s dir=%d\n", c_out.R1.name, c_out.R2.name, S
     return nil
   end
 
+  -- Find the shape-rule identity of a new area object.
+  local function new_area_id_for_object(A)
+    for area_id = 1, MAX_NEW_AREAS do
+      if new_areas[area_id] == A then
+        return area_id
+      end
+    end
+
+    return nil
+  end
+
+
+  -- return new areas in source-before-destination order
+  -- this allows explicit source references to override the
+  -- normal A -> B -> D -> E inheritance sequence
+  local function get_new_area_order()
+    local order = {}
+    local state = {}
+
+    local function visit(area_id)
+      if state[area_id] == 2 then
+        return
+      end
+
+      if state[area_id] == 1 then
+        error(
+          "Grower: Cyclic, Escheresque new-area source chain in rule " ..
+          cur_rule.name .. " involving " ..
+          tostring(NEW_AREA_ID_TO_TOKEN[area_id] or area_id)
+        )
+      end
+
+      state[area_id] = 1
+
+      local source_area = new_area_sources[area_id]
+
+      if not source_area then
+        error(
+          "Grower: Missing source area for " ..
+          tostring(NEW_AREA_ID_TO_TOKEN[area_id] or area_id) ..
+          " in " .. cur_rule.name
+        )
+      end
+
+      local source_id = new_area_id_for_object(source_area)
+
+      if source_id then
+        visit(source_id)
+      end
+
+      state[area_id] = 2
+      table.insert(order, area_id)
+    end
+
+    for area_id = 1, MAX_NEW_AREAS do
+      if new_areas[area_id] then
+        visit(area_id)
+      end
+    end
+
+    return order
+  end
+
 
   -- identify the new area which a staircase leads into
   --
@@ -3198,84 +3261,98 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     end
 
 
-    -- process staircase destinations in dependency order,
-    -- A (1) must be resolved before B (2)
-    table.sort(stair_chunks, function(a, b)
-      return a.dest_id < b.dest_id
-    end)
+    -- Group staircase chunks by their destination area.
+    local stair_chunks_by_dest = {}
 
+    for _, item in ipairs(stair_chunks) do
+      local list = stair_chunks_by_dest[item.dest_id] or {}
 
-    for _,item in ipairs(stair_chunks) do
-      local chunk = item.chunk
-
-      local dest_area = chunk.dest_area
-      local from_area = item.from_area
-
-
-      -- reuse the prefab from the first staircase.
-      -- this also preserves mirrored staircase behavior
-      if not stair_prefab then
-        if chunk.peer and chunk.peer.prefab_def then
-          stair_prefab = chunk.peer.prefab_def
-        end
-      end
-
-      if not stair_prefab then
-        stair_prefab = pick_stair_prefab(chunk)
-      end
-
-
-      -- calculate the signed staircase height only once.
-      -- all stairs in a rule retain the existing shared prefab
-      -- and height-direction behavior
-      if not chunk.peer then
-        if not stair_height_delta then
-          local h = assert(stair_prefab.delta_h)
-
-          if R.trunk.stair_z_dir < 0 then
-            h = h * -1
-          end
-
-          if rand.odds(R.trunk.stair_z_dir_fudge_prob) then
-            h = h * -1
-          end
-
-          stair_height_delta = h
-        end
-
-        -- apply the height change to this particular destination.
-        dest_area.prelim_h =
-          from_area.prelim_h + stair_height_delta
-      end
-
-
-      -- staircase floor chunk starts at the source height
-      chunk.area.prelim_h = assert(from_area.prelim_h)
-
-
-      -- flip the staircase when it descends
-      if dest_area.prelim_h < from_area.prelim_h then
-        chunk.area.prelim_h =
-          chunk.area.prelim_h - stair_prefab.delta_h
-
-        chunk:flip()
-      end
-
-
-      chunk.prefab_def = stair_prefab
+      stair_chunks_by_dest[item.dest_id] = list
+      table.insert(list, item)
     end
 
 
-    -- propagate final heights through direct connections,
-    -- important when an upstream area receives a staircase
-    -- height adjustment but a downstream area is directly
-    -- connected to it
-    for area_id = 1, 2 do
-      local A = new_areas[area_id]
-      local C = new_intconns[area_id]
-      local source = new_area_sources[area_id]
+    -- resolve area heights in source-before-destination order
+    -- direct connections inherit the current source height
+    -- staircase connections apply their height adjustment
+    for _, area_id in ipairs(get_new_area_order()) do
+      local intconn = assert(new_intconns[area_id])
+      local items = stair_chunks_by_dest[area_id]
 
-      if A and C and C.kind == "direct" then
+      if intconn.kind == "stair" then
+        if not items then
+          error(
+            "Grower: Missing staircase chunks for " ..
+            tostring(NEW_AREA_ID_TO_TOKEN[area_id] or area_id) ..
+            " in " .. cur_rule.name
+          )
+        end
+
+        for _, item in ipairs(items) do
+          local chunk = item.chunk
+
+          local dest_area = chunk.dest_area
+          local from_area = item.from_area
+
+
+          -- reuse the prefab from the first staircase
+          -- this also preserves mirrored staircase behavior
+          if not stair_prefab then
+            if chunk.peer and chunk.peer.prefab_def then
+              stair_prefab = chunk.peer.prefab_def
+            end
+          end
+
+          if not stair_prefab then
+            stair_prefab = pick_stair_prefab(chunk)
+          end
+
+
+          -- calculate the signed staircase height only once.
+          -- all stairs in a rule retain the existing shared
+          -- prefab and height-direction behavior
+          if not chunk.peer then
+            if not stair_height_delta then
+              local h = assert(stair_prefab.delta_h)
+
+              if R.trunk.stair_z_dir < 0 then
+                h = h * -1
+              end
+
+              if rand.odds(R.trunk.stair_z_dir_fudge_prob) then
+                h = h * -1
+              end
+
+              stair_height_delta = h
+            end
+
+            -- apply the height change to this destination
+            dest_area.prelim_h =
+              from_area.prelim_h + stair_height_delta
+          end
+
+
+          -- staircase floor chunk starts at the source height
+          chunk.area.prelim_h = assert(from_area.prelim_h)
+
+
+          -- flip the staircase when it descends
+          if dest_area.prelim_h < from_area.prelim_h then
+            chunk.area.prelim_h =
+              chunk.area.prelim_h - stair_prefab.delta_h
+
+            chunk:flip()
+          end
+
+
+          chunk.prefab_def = stair_prefab
+        end
+
+      else
+        -- direct connection: inherit the now-resolved source height
+        local A = assert(new_areas[area_id])
+        local source = assert(new_area_sources[area_id])
+
         A.prelim_h = assert(source.prelim_h)
       end
     end
@@ -3321,9 +3398,17 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
       [2] = cur_rule.new_area2,
     }
 
+    -- gather metadata for all new areas
+    local area_info = {}
+
+    for area_id = 1, MAX_NEW_AREAS do
+      local info_field = NEW_AREA_INFO_FIELDS[area_id]
+      area_info[area_id] = cur_rule[info_field]
+    end
+
 
     -- first pass: create all required area objects
-    for area_id = 1, 2 do
+    for area_id = 1, MAX_NEW_AREAS do
       local info = area_info[area_id]
 
       if info and not new_areas[area_id] then
@@ -3344,37 +3429,89 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     end
 
 
-    -- second pass: resolve source areas and inherit heights
-    for area_id = 1, 2 do
+    -- identify staircase destinations and their explicit sources
+    local stair_destinations = {}
+    local stair_sources = {}
+
+    for _, r in pairs(cur_rule.rects or {}) do
+      if r.kind == "stair" then
+        local dest_id = stair_dest_area_id(r)
+
+        stair_destinations[dest_id] = true
+
+        -- an explicit staircase source overrides the area's
+        -- own from_area metadata
+        if r.from_area ~= nil then
+          local source_area = resolve_area_ref(r.from_area)
+
+          if not source_area then
+            error(
+              "Grower: Cannot resolve staircase source area '" ..
+              tostring(r.from_area) .. "' in " .. cur_rule.name
+            )
+          end
+
+          -- multiple stairs into the same destination must
+          -- agree on their source area
+          local previous_source = stair_sources[dest_id]
+
+          if previous_source and previous_source ~= source_area then
+            error(
+              "Grower: Conflicting staircase source areas for " ..
+              tostring(NEW_AREA_ID_TO_TOKEN[dest_id] or dest_id) ..
+              " in " .. cur_rule.name
+            )
+          end
+
+          stair_sources[dest_id] = source_area
+        end
+      end
+    end
+
+
+    -- second pass: resolve source areas
+    for area_id = 1, MAX_NEW_AREAS do
       local info = area_info[area_id]
 
       if info then
-        local from_area_ref = info.from_area
+        -- priority:
+        -- 1. explicit staircase source
+        -- 2. manual area metadata
+        -- 3. default inheritance (1 -> A -> B -> D -> E)
 
-        -- defaults:
-        -- A inherits from area 1
-        -- B inherits from A, when A exists
+        local from_area = stair_sources[area_id]
 
-        if from_area_ref == nil then
-          if area_id == 2 and new_areas[1] then
-            from_area_ref = "A"
-          else
-            from_area_ref = 1
+        if not from_area then
+          local from_area_ref = info.from_area
+
+          if from_area_ref == nil then
+            -- Find the nearest preceding new area.
+            local previous_id
+
+            for prev_id = area_id - 1, 1, -1 do
+              if new_areas[prev_id] then
+                previous_id = prev_id
+                break
+              end
+            end
+
+            if previous_id then
+              from_area_ref = NEW_AREA_ID_TO_TOKEN[previous_id]
+            else
+              from_area_ref = 1
+            end
           end
+
+          from_area = resolve_area_ref(from_area_ref)
         end
 
-        local from_area = assert(
-          resolve_area_ref(from_area_ref),
-          "Grower: Cannot resolve source area for " ..
-          tostring(area_id) .. " in " .. cur_rule.name
-        )
-
-        local A = new_areas[area_id]
-
-        -- do not reset an already established height during
-        -- the second half of a symmetrical installation
-        if not new_intconns[area_id] then
-          A.prelim_h = assert(from_area.prelim_h)
+        if not from_area then
+          error(
+            "Grower: Cannot resolve source area '" ..
+            tostring(info.from_area) .. "' for " ..
+            tostring(NEW_AREA_ID_TO_TOKEN[area_id] or area_id) ..
+            " in " .. cur_rule.name
+          )
         end
 
         new_area_sources[area_id] = from_area
@@ -3382,20 +3519,25 @@ stderrf("Link pieces: %s dir:%d <--> %s dir:%d\n",
     end
 
 
-    -- identify which new-area connections are served by stairs
-    local stair_destinations = {}
+    -- establish initial heights in source-first order
+    -- staircase height adjustments are applied later, once
+    -- the staircase prefabs have been selected
+    for _, area_id in ipairs(get_new_area_order()) do
+      if not new_intconns[area_id] then
+        local A = assert(new_areas[area_id])
+        local from_area = assert(new_area_sources[area_id])
 
-    for _, r in pairs(cur_rule.rects or {}) do
-      if r.kind == "stair" then
-        local dest_id = stair_dest_area_id(r)
-
-        stair_destinations[dest_id] = true
+        A.prelim_h = assert(
+          from_area.prelim_h,
+          "Grower: Source area has no preliminary height in " ..
+          cur_rule.name
+        )
       end
     end
 
 
     -- third pass: create the appropriate internal connections
-    for area_id = 1, 2 do
+    for area_id = 1, MAX_NEW_AREAS do
       local info = area_info[area_id]
 
       if info and not new_intconns[area_id] then
