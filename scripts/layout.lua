@@ -2890,29 +2890,7 @@ function Layout_handle_corners(LEVEL)
 
     -- check for when there are exactly one wall-ish junctions
     -- meaning it's at the end of a wall
-    local function at_wall_cap(corner)
-      local wall_count = 0
-      local unique_areas = {}
-
-      for _, A in ipairs(corner.areas) do
-        table.add_unique(unique_areas, A.id)
-      end
-
-      for _, junc in ipairs(corner.junctions) do
-        local E = junc.E1
-
-        if E and Edge_is_wallish(E) then
-          wall_count = wall_count + 1
-        end
-      end
-
-      if wall_count == 1 and #unique_areas >=3 then
-        return true
-      end
-
-      return false
-    end
-
+    gui.printf("meow: " .. #corner.areas .. "\n")
 
     local function near_porch(corner)
       local near_porch = false
@@ -3013,11 +2991,6 @@ function Layout_handle_corners(LEVEL)
           end
         end
       end
-    end
-
-    -- wall end caps always have a pillar
-    if at_wall_cap(corner) then
-      pillar_it = true
     end
 
     -- create support pillars on the corners
