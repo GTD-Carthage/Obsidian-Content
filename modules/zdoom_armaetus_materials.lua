@@ -1746,15 +1746,17 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GOM_HAW2 = { t="GOM_HAW2", f="GOM_HAF2"},
   GOM_HAW3 = { t="GOM_HAW3", f="GOM_HAF3"},
   GOM_HAW4 = { t="GOM_HAW4", f="GOM_HAF4"},
-  GOM_HAW5 = { t="GOM_HAW5", f="GOM_HAF1"},
-  GOM_HAW6 = { t="GOM_HAW6", f="GOM_HAF2"},
+  GOM_HAW5 = { t="GOM_HAW5", f="GOM_HAF5"},
+  GOM_HAW6 = { t="GOM_HAW6", f="GOM_HAF6"},
   GOM_HAW7 = { t="GOM_HAW7", f="GOM_HAF3"},
-  GOM_HAW8 = { t="GOM_HAW8", f="GOM_HAF4"},
+  GOM_HAW8 = { t="GOM_HAW8", f="GOM_HAF6"},
   -- flats
-  GOM_HAF1 = { t="GOM_HAW5", f="GOM_HAF1"},
-  GOM_HAF2 = { t="GOM_HAW6", f="GOM_HAF2"},
-  GOM_HAF3 = { t="GOM_HAW7", f="GOM_HAF3"},
-  GOM_HAF4 = { t="GOM_HAW8", f="GOM_HAF4"},
+  GOM_HAF1 = { t="GOM_HAW1", f="GOM_HAF1"},
+  GOM_HAF2 = { t="GOM_HAW2", f="GOM_HAF2"},
+  GOM_HAF3 = { t="GOM_HAW4", f="GOM_HAF3"},
+  GOM_HAF4 = { t="GOM_HAW5", f="GOM_HAF4"},
+  GOM_HAF5 = { t="GOM_HAW6", f="GOM_HAF5"},
+  GOM_HAF6 = { t="GOM_HAW8", f="GOM_HAF6"},
   G7_GOGF1 = { t="G7_GOGN2", f="G7_GOGF1"}, -- TO BE REPLACED DO NOT USE
 
  -- MSSP-GOTH-TECH --

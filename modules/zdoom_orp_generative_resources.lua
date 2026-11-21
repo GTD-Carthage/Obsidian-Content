@@ -1399,6 +1399,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF2 = 10,
       GOM_HAF3 = 10,
       GOM_HAF4 = 10,
+      GOM_HAF5 = 10,
+      GOM_HAF6 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -1459,6 +1461,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF2 = 10,
       GOM_HAF3 = 10,
       GOM_HAF4 = 10,
+      GOM_HAF5 = 10,
+      GOM_HAF6 = 10,
 
       BRIK01 = 5,
 
@@ -1602,28 +1606,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       FLOOR3_3 = 2,
       FLOOR4_6 = 2
     }
-  },
-
-  hell_Outdoors_generic =
-  {
-    env  = "outdoor",
-    prob = 50,
-
-    floors =
-    {
-      GOM_HAF1 = 20,
-      GOM_HAF2 = 20,
-      GOM_HAF3 = 20,
-      GOM_HAF4 = 20,
-
-      GO_MHZF1 = 15,
-      GO_MHZF2 = 15,
-      GO_MHZF3 = 15,
-      GO_MHZF4 = 15,
-      GO_MHZF5 = 15,
-      GO_MHZF6 = 15,
-      GO_MHZF7 = 15
-    },
   },
 
 -- START OF URBAN THEMES
@@ -2162,7 +2144,9 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF1 = 50,
       GOM_HAF2 = 50,
       GOM_HAF3 = 50,
-      GOM_HAF4 = 50
+      GOM_HAF4 = 50,
+      GOM_HAF5 = 50,
+      GOM_HAF6 = 50
     },
 
     ceilings =
@@ -2201,7 +2185,9 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF1 = 50,
       GOM_HAF2 = 50,
       GOM_HAF3 = 50,
-      GOM_HAF4 = 50
+      GOM_HAF4 = 50,
+      GOM_HAF5 = 50,
+      GOM_HAF6 = 50
     },
 
     walls =
@@ -2285,6 +2271,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF2 = 10,
       GOM_HAF3 = 10,
       GOM_HAF4 = 10,
+      GOM_HAF5 = 10,
+      GOM_HAF6 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -2345,6 +2333,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF2 = 10,
       GOM_HAF3 = 10,
       GOM_HAF4 = 10,
+      GOM_HAF5 = 50,
+      GOM_HAF6 = 50,
 
       BRIK01 = 5,
 

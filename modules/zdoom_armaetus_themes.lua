@@ -3850,7 +3850,9 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       GOM_HAF1 = 45,
       GOM_HAF2 = 45,
       GOM_HAF3 = 45,
-      GOM_HAF4 = 45
+      GOM_HAF4 = 45,
+      GOM_HAF5 = 45,
+      GOM_HAF6 = 45
     },
 
     ceilings =
@@ -3887,7 +3889,9 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       GOM_HAF1 = 45,
       GOM_HAF2 = 45,
       GOM_HAF3 = 45,
-      GOM_HAF4 = 45
+      GOM_HAF4 = 45,
+      GOM_HAF5 = 45,
+      GOM_HAF6 = 45
     }
   },
 
@@ -4020,7 +4024,22 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       URB1 = 10,
 
       WOODTI2 = 10,
-      WOODTIL = 10
+      WOODTIL = 10,
+      
+      GOM_HAF1 = 20,
+      GOM_HAF2 = 20,
+      GOM_HAF3 = 20,
+      GOM_HAF4 = 20,
+      GOM_HAF5 = 20,
+      GOM_HAF6 = 20,
+
+      GO_MHZF1 = 15,
+      GO_MHZF2 = 15,
+      GO_MHZF3 = 15,
+      GO_MHZF4 = 15,
+      GO_MHZF5 = 15,
+      GO_MHZF6 = 15,
+      GO_MHZF7 = 15
     },
 
     naturals =
@@ -4273,7 +4292,12 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       TILES5 = 10,
       TILES6 = 10,
 
-      GOM_HAF1
+      GOM_HAF1 = 20,
+      GOM_HAF2 = 20,
+      GOM_HAF3 = 20,
+      GOM_HAF4 = 20,
+      GOM_HAF5 = 20,
+      GOM_HAF6 = 20
     },
 
     naturals =
