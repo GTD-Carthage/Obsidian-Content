@@ -62,28 +62,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SDM_CTR5 = { t="SDM_CTR5", f="SDMCTRF1"},
   SDMCTRF1 = { t="SDM_CTR1", f="SDMCTRF1"},
 
-  -- MSSP-GOTH-TECH --
-  GO_GTHW1 = { t="GO_GTHW1", f="GO_GTHF1"},
-  GO_GTHW2 = { t="GO_GTHW2", f="GO_GTHF2"},
-  GO_GTHW3 = { t="GO_GTHW3", f="GO_GTHF3"},
-  GO_GTHW4 = { t="GO_GTHW4", f="GO_GTHF4"},
-  GO_GTHW5 = { t="GO_GTHW5", f="GO_GTHF5"},
-  GO_GTHW6 = { t="GO_GTHW6", f="GO_GTHF6"},
-  GO_GTHW7 = { t="GO_GTHW7", f="G_OM_FT1"},
-  GO_GTHW8 = { t="GO_GTHW8", f="G_OM_FT3"},
-  GO_GTHW9 = { t="GO_GTHW9", f="GO_GTHF4"},
-  GO_GTHWA = { t="GO_GTHWA", f="GO_GTHF5"},
-  GO_GTHWB = { t="GO_GTHWB", f="G_OM_FT9"},
-  GO_GTHWC = { t="GO_GTHWC", f="G_OM_FTA"},
-  -- flats
-  GO_GTHF1 = { t="GO_GTHW1", f="GO_GTHF1"},
-  GO_GTHF2 = { t="GO_GTHW2", f="GO_GTHF2"},
-  GO_GTHF3 = { t="GO_GTHW4", f="GO_GTHF3"},
-  GO_GTHF4 = { t="GO_GTHW5", f="GO_GTHF4"},
-  GO_GTHF5 = { t="GO_GTHW7", f="GO_GTHF5"},
-  GO_GTHF6 = { t="GO_GTHW8", f="GO_GTHF6"},
-  GO_GTHF7 = { t="GO_GTHWB", f="GO_GTHF7"},
-  GO_GTHF8 = { t="GO_GTHWC", f="GO_GTHF8"},
   -- switches
   SDGTHSW1 = { t="SDGTHSW1", f="GO_GTHF1"},
   -- light pillars, 64px
@@ -139,18 +117,18 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   G7_GOGN2 = { t="G7_GOGN2", f="G7_GOGF1"},
   G7_GOGN3 = { t="G7_GOGN3", f="G7_GOGF1"},
   -- grey brick, occasional gold trims
-  SDM_HAW1 = { t="SDM_HAW1", f="SDM_HGF1"},
-  SDM_HAW2 = { t="SDM_HAW2", f="SDM_HGF2"},
-  SDM_HAW3 = { t="SDM_HAW3", f="SDM_HGF3"},
-  SDM_HAW4 = { t="SDM_HAW4", f="SDM_HGF1"},
-  SDM_HAW5 = { t="SDM_HAW5", f="SDM_HGF2"},
-  SDM_HAW6 = { t="SDM_HAW6", f="SDM_HGF3"},
-  SDM_HAW7 = { t="SDM_HAW7", f="SDM_HGF1"},
-  SDM_HAW8 = { t="SDM_HAW8", f="SDM_HGF2"},
+  GOM_HAW1 = { t="GOM_HAW1", f="SDM_HGF1"},
+  GOM_HAW2 = { t="GOM_HAW2", f="SDM_HGF2"},
+  GOM_HAW3 = { t="GOM_HAW3", f="SDM_HGF3"},
+  GOM_HAW4 = { t="GOM_HAW4", f="SDM_HGF1"},
+  GOM_HAW5 = { t="GOM_HAW5", f="SDM_HGF2"},
+  GOM_HAW6 = { t="GOM_HAW6", f="SDM_HGF3"},
+  GOM_HAW7 = { t="GOM_HAW7", f="SDM_HGF1"},
+  GOM_HAW8 = { t="GOM_HAW8", f="SDM_HGF2"},
   -- flats
-  SDM_HGF1 = { t="SDM_HAW5", f="SDM_HGF1"},
-  SDM_HGF2 = { t="SDM_HAW6", f="SDM_HGF2"},
-  SDM_HGF3 = { t="SDM_HAW7", f="SDM_HGF3"},
+  SDM_HGF1 = { t="GOM_HAW5", f="SDM_HGF1"},
+  SDM_HGF2 = { t="GOM_HAW6", f="SDM_HGF2"},
+  SDM_HGF3 = { t="GOM_HAW7", f="SDM_HGF3"},
   G7_GOGF1 = { t="G7_GOGN2", f="G7_GOGF1"}, -- TO BE REPLACED DO NOT USE
 
   -- copper steampunk hell (?!)
@@ -882,14 +860,14 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     walls =
     {
-      SDM_HAW1 = 10,
-      SDM_HAW2 = 10,
-      SDM_HAW3 = 10,
-      SDM_HAW4 = 10,
-      SDM_HAW5 = 10,
-      SDM_HAW6 = 10,
-      SDM_HAW7 = 10,
-      SDM_HAW8 = 10
+      GOM_HAW1 = 10,
+      GOM_HAW2 = 10,
+      GOM_HAW3 = 10,
+      GOM_HAW4 = 10,
+      GOM_HAW5 = 10,
+      GOM_HAW6 = 10,
+      GOM_HAW7 = 10,
+      GOM_HAW8 = 10
     },
 
     floors =
@@ -2739,14 +2717,14 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
   hell =
   {
     facades = {
-      SDM_HAW1 = 20,
-      SDM_HAW2 = 20,
-      SDM_HAW3 = 20,
-      SDM_HAW4 = 20,
-      SDM_HAW5 = 20,
-      SDM_HAW6 = 20,
-      SDM_HAW7 = 20,
-      SDM_HAW8 = 20,
+      GOM_HAW1 = 20,
+      GOM_HAW2 = 20,
+      GOM_HAW3 = 20,
+      GOM_HAW4 = 20,
+      GOM_HAW5 = 20,
+      GOM_HAW6 = 20,
+      GOM_HAW7 = 20,
+      GOM_HAW8 = 20,
 
       GO_GTHW1 = 4,
       GO_GTHW6 = 4,

@@ -1736,6 +1736,29 @@ OBS_RESOURCE_PACK_MATERIALS = {
   G_IPHFT7 = {t="G_IPHWL9", f="G_IPHFT7"},
   G_IPHFT8 = {t="G_IPHWLB", f="G_IPHFT8"},
 
+ -- MSSP-GOTH-TECH --
+  GO_GTHW1 = { t="GO_GTHW1", f="GO_GTHF1"},
+  GO_GTHW2 = { t="GO_GTHW2", f="GO_GTHF2"},
+  GO_GTHW3 = { t="GO_GTHW3", f="GO_GTHF3"},
+  GO_GTHW4 = { t="GO_GTHW4", f="GO_GTHF4"},
+  GO_GTHW5 = { t="GO_GTHW5", f="GO_GTHF5"},
+  GO_GTHW6 = { t="GO_GTHW6", f="GO_GTHF6"},
+  GO_GTHW7 = { t="GO_GTHW7", f="G_OM_FT1"},
+  GO_GTHW8 = { t="GO_GTHW8", f="G_OM_FT3"},
+  GO_GTHW9 = { t="GO_GTHW9", f="GO_GTHF4"},
+  GO_GTHWA = { t="GO_GTHWA", f="GO_GTHF5"},
+  GO_GTHWB = { t="GO_GTHWB", f="G_OM_FT9"},
+  GO_GTHWC = { t="GO_GTHWC", f="G_OM_FTA"},
+  -- flats
+  GO_GTHF1 = { t="GO_GTHW1", f="GO_GTHF1"},
+  GO_GTHF2 = { t="GO_GTHW2", f="GO_GTHF2"},
+  GO_GTHF3 = { t="GO_GTHW4", f="GO_GTHF3"},
+  GO_GTHF4 = { t="GO_GTHW5", f="GO_GTHF4"},
+  GO_GTHF5 = { t="GO_GTHW7", f="GO_GTHF5"},
+  GO_GTHF6 = { t="GO_GTHW8", f="GO_GTHF6"},
+  GO_GTHF7 = { t="GO_GTHWB", f="GO_GTHF7"},
+  GO_GTHF8 = { t="GO_GTHWC", f="GO_GTHF8"},
+
   -- aztec demonic
   GO_MHZW1 = { t="GO_MHZW1", f="GO_MHZF1"},
   GO_MHZW2 = { t="GO_MHZW2", f="GO_MHZF2"},
