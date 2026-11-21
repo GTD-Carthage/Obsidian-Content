@@ -1736,6 +1736,27 @@ OBS_RESOURCE_PACK_MATERIALS = {
   G_IPHFT7 = {t="G_IPHWL9", f="G_IPHFT7"},
   G_IPHFT8 = {t="G_IPHWLB", f="G_IPHFT8"},
 
+  -- GOTHIC --
+  -- green-ish gothic metal walls with skulls (128px)
+  G7_GOGN1 = { t="G7_GOGN1", f="G7_GOGF1"},
+  G7_GOGN2 = { t="G7_GOGN2", f="G7_GOGF1"},
+  G7_GOGN3 = { t="G7_GOGN3", f="G7_GOGF1"},
+  -- grey brick, occasional gold trims
+  GOM_HAW1 = { t="GOM_HAW1", f="GOM_HAF1"},
+  GOM_HAW2 = { t="GOM_HAW2", f="GOM_HAF2"},
+  GOM_HAW3 = { t="GOM_HAW3", f="GOM_HAF3"},
+  GOM_HAW4 = { t="GOM_HAW4", f="GOM_HAF4"},
+  GOM_HAW5 = { t="GOM_HAW5", f="GOM_HAF1"},
+  GOM_HAW6 = { t="GOM_HAW6", f="GOM_HAF2"},
+  GOM_HAW7 = { t="GOM_HAW7", f="GOM_HAF3"},
+  GOM_HAW8 = { t="GOM_HAW8", f="GOM_HAF4"},
+  -- flats
+  GOM_HAF1 = { t="GOM_HAW5", f="GOM_HAF1"},
+  GOM_HAF2 = { t="GOM_HAW6", f="GOM_HAF2"},
+  GOM_HAF3 = { t="GOM_HAW7", f="GOM_HAF3"},
+  GOM_HAF4 = { t="GOM_HAW8", f="GOM_HAF4"},
+  G7_GOGF1 = { t="G7_GOGN2", f="G7_GOGF1"}, -- TO BE REPLACED DO NOT USE
+
  -- MSSP-GOTH-TECH --
   GO_GTHW1 = { t="GO_GTHW1", f="GO_GTHF1"},
   GO_GTHW2 = { t="GO_GTHW2", f="GO_GTHF2"},

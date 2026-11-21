@@ -3799,6 +3799,98 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  hell_gilded_bricks = --60
+  {
+    env = "building",
+    prob = 60,
+
+    walls =
+    {
+      GOM_HAW1 = 10,
+      GOM_HAW2 = 10,
+      GOM_HAW3 = 10,
+      GOM_HAW4 = 10,
+      GOM_HAW5 = 10,
+      GOM_HAW6 = 10,
+      GOM_HAW7 = 10,
+      GOM_HAW8 = 10
+    },
+
+    floors =
+    {
+      FLAT5_7 = 10,
+      FLAT5_8 = 10,
+      FLOOR6_2 = 10,
+      MFLR8_4 = 10,
+      MFLR8_1 = 10,
+      RROCK13 = 10,
+
+      BLACK0 = 10,
+      BMARB1 = 10,
+      BMARB2 = 10,
+      BMARB3 = 10,
+
+      G05 = 10,
+      G06 = 10,
+      G07 = 10,
+      G08 = 10,
+
+      G11 = 10,
+      G12 = 10,
+      G19 = 10,
+
+      GMET01 = 10,
+      GMET02 = 10,
+      GMET03 = 10,
+      GMET04 = 10,
+      GMET05 = 10,
+      GMET06 = 10,
+      GMET07 = 10,
+
+      GOM_HAF1 = 45,
+      GOM_HAF2 = 45,
+      GOM_HAF3 = 45,
+      GOM_HAF4 = 45
+    },
+
+    ceilings =
+    {
+      FLAT5_7 = 10,
+      FLAT5_8 = 10,
+      FLOOR6_2 = 10,
+      MFLR8_4 = 10,
+      MFLR8_1 = 10,
+      RROCK13 = 10,
+
+      BLACK0 = 10,
+      BMARB1 = 10,
+      BMARB2 = 10,
+      BMARB3 = 10,
+
+      G05 = 10,
+      G06 = 10,
+      G07 = 10,
+      G08 = 10,
+
+      G11 = 10,
+      G12 = 10,
+      G19 = 10,
+
+      GMET01 = 10,
+      GMET02 = 10,
+      GMET03 = 10,
+      GMET04 = 10,
+      GMET05 = 10,
+      GMET06 = 10,
+      GMET07 = 10,
+
+      GOM_HAF1 = 45,
+      GOM_HAF2 = 45,
+      GOM_HAF3 = 45,
+      GOM_HAF4 = 45
+    }
+  },
+
   -- Hell has frozen over!
   hell_icecave = --50
   {
@@ -4179,7 +4271,9 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
       TILES3 = 10,
       TILES4 = 10,
       TILES5 = 10,
-      TILES6 = 10
+      TILES6 = 10,
+
+      GOM_HAF1
     },
 
     naturals =
@@ -8278,7 +8372,16 @@ OBS_RESOURCE_PACK_THEMES =
       GO_CACWA = 18,
       GO_CACWB = 18,
       GO_CACWC = 18,
-      GO_CACWD = 18
+      GO_CACWD = 18,
+
+      GOM_HAW1 = 20,
+      GOM_HAW2 = 20,
+      GOM_HAW3 = 20,
+      GOM_HAW4 = 20,
+      GOM_HAW5 = 20,
+      GOM_HAW6 = 20,
+      GOM_HAW7 = 20,
+      GOM_HAW8 = 20
     },
 
     fences =

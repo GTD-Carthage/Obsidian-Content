@@ -112,24 +112,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SD_UADF8 = { t="SD_UADWE", f="SD_UADF8"},
 
   -- MSSP-GOTH --
-  -- green-ish gothic metal walls with skulls (128px)
-  G7_GOGN1 = { t="G7_GOGN1", f="G7_GOGF1"},
-  G7_GOGN2 = { t="G7_GOGN2", f="G7_GOGF1"},
-  G7_GOGN3 = { t="G7_GOGN3", f="G7_GOGF1"},
-  -- grey brick, occasional gold trims
-  GOM_HAW1 = { t="GOM_HAW1", f="SDM_HGF1"},
-  GOM_HAW2 = { t="GOM_HAW2", f="SDM_HGF2"},
-  GOM_HAW3 = { t="GOM_HAW3", f="SDM_HGF3"},
-  GOM_HAW4 = { t="GOM_HAW4", f="SDM_HGF1"},
-  GOM_HAW5 = { t="GOM_HAW5", f="SDM_HGF2"},
-  GOM_HAW6 = { t="GOM_HAW6", f="SDM_HGF3"},
-  GOM_HAW7 = { t="GOM_HAW7", f="SDM_HGF1"},
-  GOM_HAW8 = { t="GOM_HAW8", f="SDM_HGF2"},
-  -- flats
-  SDM_HGF1 = { t="GOM_HAW5", f="SDM_HGF1"},
-  SDM_HGF2 = { t="GOM_HAW6", f="SDM_HGF2"},
-  SDM_HGF3 = { t="GOM_HAW7", f="SDM_HGF3"},
-  G7_GOGF1 = { t="G7_GOGN2", f="G7_GOGF1"}, -- TO BE REPLACED DO NOT USE
 
   -- copper steampunk hell (?!)
   SD_HCSW1 = { t="SD_HCSW1" , f="SD_HCSF1"},
@@ -851,98 +833,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
 
 -- START OF HELL THEMES
-  hell_gilded_bricks = --60
-  {
-    env = "building",
-    prob = 60,
-
-    is_generative = true,
-
-    walls =
-    {
-      GOM_HAW1 = 10,
-      GOM_HAW2 = 10,
-      GOM_HAW3 = 10,
-      GOM_HAW4 = 10,
-      GOM_HAW5 = 10,
-      GOM_HAW6 = 10,
-      GOM_HAW7 = 10,
-      GOM_HAW8 = 10
-    },
-
-    floors =
-    {
-      FLAT5_7 = 10,
-      FLAT5_8 = 10,
-      FLOOR6_2 = 10,
-      MFLR8_4 = 10,
-      MFLR8_1 = 10,
-      RROCK13 = 10,
-
-      BLACK0 = 10,
-      BMARB1 = 10,
-      BMARB2 = 10,
-      BMARB3 = 10,
-
-      G05 = 10,
-      G06 = 10,
-      G07 = 10,
-      G08 = 10,
-
-      G11 = 10,
-      G12 = 10,
-      G19 = 10,
-
-      GMET01 = 10,
-      GMET02 = 10,
-      GMET03 = 10,
-      GMET04 = 10,
-      GMET05 = 10,
-      GMET06 = 10,
-      GMET07 = 10,
-
-      SDM_HGF1 = 45,
-      SDM_HGF2 = 45,
-      SDM_HGF3 = 45
-    },
-
-    ceilings =
-    {
-      FLAT5_7 = 10,
-      FLAT5_8 = 10,
-      FLOOR6_2 = 10,
-      MFLR8_4 = 10,
-      MFLR8_1 = 10,
-      RROCK13 = 10,
-
-      BLACK0 = 10,
-      BMARB1 = 10,
-      BMARB2 = 10,
-      BMARB3 = 10,
-
-      G05 = 10,
-      G06 = 10,
-      G07 = 10,
-      G08 = 10,
-
-      G11 = 10,
-      G12 = 10,
-      G19 = 10,
-
-      GMET01 = 10,
-      GMET02 = 10,
-      GMET03 = 10,
-      GMET04 = 10,
-      GMET05 = 10,
-      GMET06 = 10,
-      GMET07 = 10,
-
-      SDM_HGF1 = 45,
-      SDM_HGF2 = 45,
-      SDM_HGF3 = 45
-    }
-  },
-
   hell_copper_steampunk = --55
   {
     env = "building",
@@ -1505,9 +1395,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HRFF7 = 25,
       SD_HRFF8 = 25,
 
-      SDM_HGF1 = 10,
-      SDM_HGF2 = 10,
-      SDM_HGF3 = 10,
+      GOM_HAF1 = 10,
+      GOM_HAF2 = 10,
+      GOM_HAF3 = 10,
+      GOM_HAF4 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -1564,9 +1455,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HRFF7 = 25,
       SD_HRFF8 = 25,
 
-      SDM_HGF1 = 10,
-      SDM_HGF2 = 10,
-      SDM_HGF3 = 10,
+      GOM_HAF1 = 10,
+      GOM_HAF2 = 10,
+      GOM_HAF3 = 10,
+      GOM_HAF4 = 10,
 
       BRIK01 = 5,
 
@@ -1719,9 +1611,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
 
     floors =
     {
-      SDM_HGF1 = 20,
-      SDM_HGF2 = 20,
-      SDM_HGF3 = 20,
+      GOM_HAF1 = 20,
+      GOM_HAF2 = 20,
+      GOM_HAF3 = 20,
+      GOM_HAF4 = 20,
 
       GO_MHZF1 = 15,
       GO_MHZF2 = 15,
@@ -2266,9 +2159,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF2 = 50,
       OBTSVBF3 = 50,
 
-      SDM_HGF1 = 50,
-      SDM_HGF2 = 50,
-      SDM_HGF3 = 50
+      GOM_HAF1 = 50,
+      GOM_HAF2 = 50,
+      GOM_HAF3 = 50,
+      GOM_HAF4 = 50
     },
 
     ceilings =
@@ -2304,9 +2198,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       OBTSVBF2 = 50,
       OBTSVBF3 = 50,
 
-      SDM_HGF1 = 50,
-      SDM_HGF2 = 50,
-      SDM_HGF3 = 50
+      GOM_HAF1 = 50,
+      GOM_HAF2 = 50,
+      GOM_HAF3 = 50,
+      GOM_HAF4 = 50
     },
 
     walls =
@@ -2386,9 +2281,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HRFF7 = 25,
       SD_HRFF8 = 25,
 
-      SDM_HGF1 = 10,
-      SDM_HGF2 = 10,
-      SDM_HGF3 = 10,
+      GOM_HAF1 = 10,
+      GOM_HAF2 = 10,
+      GOM_HAF3 = 10,
+      GOM_HAF4 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -2445,9 +2341,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SD_HRFF7 = 25,
       SD_HRFF8 = 25,
 
-      SDM_HGF1 = 10,
-      SDM_HGF2 = 10,
-      SDM_HGF3 = 10,
+      GOM_HAF1 = 10,
+      GOM_HAF2 = 10,
+      GOM_HAF3 = 10,
+      GOM_HAF4 = 10,
 
       BRIK01 = 5,
 
