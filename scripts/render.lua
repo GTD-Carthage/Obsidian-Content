@@ -1723,6 +1723,9 @@ function Render_chunk(LEVEL, chunk, SEEDS)
 
   local z1 = chunk.floor_h or A.floor_h
   local z2 = chunk.ceil_h or A.ceil_h or A.zone.sky_h
+  if R.kind == "outdoor" and chunk.from_area:is_open_to_sky() then
+    z2 = z2 + 16
+  end
 
   local floor_mat = chunk.floor_mat or A.floor_mat
   local  ceil_mat = chunk.ceil_mat  or A.ceil_mat
