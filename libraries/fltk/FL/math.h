@@ -43,8 +43,11 @@
 #  if (defined(_WIN32) || defined(CRAY)) && !defined(__MINGW32__)
 
 inline double rint(double v) {return floor(v+.5);}
-inline double copysign(double a, double b) {return b<0 ? -a : a;}
 
-#  endif // (_WIN32 || CRAY) && !__MINGW32__
+#    if !defined(_MSC_VER) || _MSC_VER < 1952
+inline double copysign(double a, double b) {return b<0 ? -a : a;}
+#    endif
+
+#  endif
 
 #endif // !fl_math_h
