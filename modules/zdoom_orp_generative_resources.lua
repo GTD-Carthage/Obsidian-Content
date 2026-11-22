@@ -1401,6 +1401,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF4 = 10,
       GOM_HAF5 = 10,
       GOM_HAF6 = 10,
+      GOM_HAF7 = 10,
+      GOM_HAF8 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -1463,6 +1465,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF4 = 10,
       GOM_HAF5 = 10,
       GOM_HAF6 = 10,
+      GOM_HAF7 = 10,
+      GOM_HAF8 = 10,
 
       BRIK01 = 5,
 
@@ -2146,7 +2150,9 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF3 = 50,
       GOM_HAF4 = 50,
       GOM_HAF5 = 50,
-      GOM_HAF6 = 50
+      GOM_HAF6 = 50,
+      GOM_HAF7 = 50,
+      GOM_HAF8 = 50
     },
 
     ceilings =
@@ -2187,7 +2193,9 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF3 = 50,
       GOM_HAF4 = 50,
       GOM_HAF5 = 50,
-      GOM_HAF6 = 50
+      GOM_HAF6 = 50,
+      GOM_HAF7 = 50,
+      GOM_HAF8 = 50
     },
 
     walls =
@@ -2273,6 +2281,8 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF4 = 10,
       GOM_HAF5 = 10,
       GOM_HAF6 = 10,
+      GOM_HAF7 = 10,
+      GOM_HAF8 = 10,
 
       BRIK01 = 5,
       CARPET1 = 5,
@@ -2333,8 +2343,10 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GOM_HAF2 = 10,
       GOM_HAF3 = 10,
       GOM_HAF4 = 10,
-      GOM_HAF5 = 50,
-      GOM_HAF6 = 50,
+      GOM_HAF5 = 10,
+      GOM_HAF6 = 10,
+      GOM_HAF7 = 10,
+      GOM_HAF8 = 10,
 
       BRIK01 = 5,
 
