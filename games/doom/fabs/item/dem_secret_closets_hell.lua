@@ -22,15 +22,7 @@ PREFABS.Item_secret_NIN_closet =
   over = -16,
 
   x_fit = "frame",
-  y_fit = "top",
-
-  thing_2018 =
-  {
-    green_armor = 50,
-    blue_armor = 50,
-  },
-
-  can_flip = true,
+  y_fit = "top"
 }
 
 --The hell item shrine with a really crummy item, teach this cheeky gargoyle a lesson to reveal your prize.
