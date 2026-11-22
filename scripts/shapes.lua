@@ -12504,25 +12504,27 @@ GROW_FEATURES_RAISED_RAISED_PLATFORM_MOAT =
 
 GROW_ELEVATED_PILLAR_ROUND =
 {
-  prob = 35,
-  skip_prob = 40,
+  prob = 15,
+  skip_prob = 70,
 
   structure =
   {
-    ".........","111111111",
+    ".........","/1111111%",
     ".........","11/AAA%11",
     ".........","11AAAAA11",
     ".........","11>A.AA11",
     ".........","11AAAAA11",
     ".........","11%AAA/11",
-    ".........","111111111",
-    "11xxxxxxx","11xxxxxxx",
+    ".........","%1111111/",
+    "x11xxxxxx","x11xxxxxx",
   },
 
   diagonals =
   {
+    ".1","1.",
     "1A","A1",
     "1A","A1",
+    ".1","1."
   },
 },
 
