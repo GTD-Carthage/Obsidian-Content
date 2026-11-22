@@ -2890,32 +2890,39 @@ function Layout_handle_corners(LEVEL)
 
     -- check for when there are exactly one wall-ish junctions
     -- meaning it's at the end of a wall
-    gui.printf("meow: " .. #corner.areas .. "\n")
-
     local function near_porch(corner)
-      local near_porch = false
-      local has_sky = false
-      local has_ceiling = false
 
-      for _,A in pairs(corner.areas) do
-        if A.is_porch or A.is_porch_neighbor then
-          near_porch = true
-        end
+      local sectors = Corner_get_area_sectors(corner)
 
-        if A:is_open_to_sky() then
-          has_sky = true
-        end
+      if not sectors then return false end
 
-        if A:is_closed_to_sky() then
-          has_ceiling = true
+      for i = 1, 8 do
+        local next_i = (i % 8) + 1
+
+        local A1 = sectors[i]
+        local A2 = sectors[next_i]
+
+        -- only consider boundaries between actual neighboring areas
+        if A1 and A2 and A1 ~= A2 then
+
+          local porch1 = A1.is_porch or A1.is_porch_neighbor
+          local porch2 = A2.is_porch or A2.is_porch_neighbor
+
+          -- porch-related areas meeting ordinary areas
+          if not not porch1 ~= not not porch2 then
+            return true
+          end
+
+          -- open sky meeting an actual ceiling
+          if (A1:is_open_to_sky() and A2:is_closed_to_sky())
+          or (A2:is_open_to_sky() and A1:is_closed_to_sky()) then
+            return true
+          end
+
         end
       end
 
-      if near_porch or (has_sky == true and has_ceiling == true) then
-        return true
-      else
-        return false
-      end
+      return false
     end
 
 
@@ -2928,21 +2935,43 @@ function Layout_handle_corners(LEVEL)
     -- never pillars along void areas
     -- and between actual rooms as they are
     -- always walled-up 
+
     local wall_nearby = false
     local other_edge_nearby = false
     local nearby_edge_kinds = {}
-    if Corner_touches_wall(corner) then
-      for _, E in ipairs(corner.edges) do
-        if E.kind then
-          table.add_unique(nearby_edge_kinds, E.kind)
-        end
+    local has_visible_edge = false
 
-        if Edge_is_wallish(E) then
-          wall_nearby = true
-        else
-          other_edge_nearby = true
-        end
+    local function collect_nearby_edge(E)
+      if not E then return end
+
+      if E.kind then
+        table.add_unique(nearby_edge_kinds, E.kind)
       end
+
+      if Edge_is_wallish(E) then
+        wall_nearby = true
+      else
+        other_edge_nearby = true
+      end
+
+      -- NOTHING and IGNORE do not provide visible support.
+      -- A wallish edge still counts, even if its own kind is NOTHING.
+      if E.kind and E.kind ~= "nothing" and E.kind ~= "ignore" then
+        has_visible_edge = true
+      elseif Edge_is_wallish(E) then
+        has_visible_edge = true
+      end
+    end
+
+    -- direct edges attached to this corner
+    for _,E in ipairs(corner.edges) do
+      collect_nearby_edge(E)
+    end
+
+    -- junction edges actually touching this corner
+    for _,junc in ipairs(corner.junctions) do
+      collect_nearby_edge(junc.E1)
+      collect_nearby_edge(junc.E2)
     end
 
     local unique_rooms = {}
@@ -2964,9 +2993,9 @@ function Layout_handle_corners(LEVEL)
     if not (other_edge_nearby == true and wall_nearby == true) then
       if #unique_rooms > 1 then return end
     end
-    -- no pillars if the all adjacent area's ceiling heights are the same
-    if #unique_heights == 1 and table.has_elem(nearby_edge_kinds, "nothing")
-    and #nearby_edge_kinds == 1 then
+    -- no pillars if all adjacent areas have the same ceiling height
+    -- and there is no visible edge that needs supporting
+    if #unique_heights == 1 and not has_visible_edge then
       return
     end
 

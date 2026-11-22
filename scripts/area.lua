@@ -1124,6 +1124,86 @@ function Corner_lookup(LEVEL, cx, cy)
 end
 
 
+function Corner_get_area_sectors(corner)
+
+  local sectors = {}
+
+  -- divide the space around the corner into eight 45-degree sectors
+  -- direction 0 is east, increasing counter-clockwise
+  local function direction_index(point)
+    local dx = point.x - corner.x
+    local dy = point.y - corner.y
+
+    if dx > 0 then
+      if dy > 0 then return 1 end
+      if dy < 0 then return 7 end
+      return 0
+    elseif dx < 0 then
+      if dy > 0 then return 3 end
+      if dy < 0 then return 5 end
+      return 4
+    elseif dy > 0 then
+      return 2
+    elseif dy < 0 then
+      return 6
+    end
+  end
+
+  for _,S in ipairs(corner.seeds) do
+
+    if not S.area then return nil end
+
+    -- get the actual polygon, including diagonal geometry
+    local vertices = S:make_brush()
+    local corner_index
+
+    -- find this corner in the seed polygon
+    for i,vertex in ipairs(vertices) do
+      if vertex.x == corner.x and vertex.y == corner.y then
+        corner_index = i
+        break
+      end
+    end
+
+    if not corner_index then return nil end
+
+    -- find the vertices immediately before and after this corner
+    local next_index = corner_index + 1
+    if next_index > #vertices then next_index = 1 end
+
+    local prev_index = corner_index - 1
+    if prev_index == 0 then prev_index = #vertices end
+
+    local first_dir = direction_index(vertices[next_index])
+    local last_dir  = direction_index(vertices[prev_index])
+
+    if first_dir == nil or last_dir == nil then
+      return nil
+    end
+
+    -- the polygon's interior angle determines how many sectors
+    -- this seed occupies.
+    local width = (last_dir - first_dir) % 8
+
+    -- squares contribute 90 degrees.
+    -- triangles contribute either 45 or 90 degrees.
+    if width < 1 or width > 2 then
+      return nil
+    end
+
+    for step = 0, width - 1 do
+      local sector = (first_dir + step) % 8 + 1
+
+      -- overlapping geometry means this is not a valid arrangement
+      if sectors[sector] then return nil end
+
+      sectors[sector] = S.area
+    end
+  end
+
+  return sectors
+end
+
 
 function Corner_init(LEVEL)
   LEVEL.corners = table.array_2D(SEED_W + 1, SEED_H + 1)
@@ -1165,29 +1245,46 @@ function Corner_init(LEVEL)
   end
   end
 
-  -- collect the junctions
 
+  -- collect only the junctions that actually touch each corner.
   for cx = 1, LEVEL.corners.w do
   for cy = 1, LEVEL.corners.h do
     local corner = LEVEL.corners[cx][cy]
 
+    local sectors = Corner_get_area_sectors(corner)
+
+    if sectors then
+      for i = 1, 8 do
+        local next_i = (i % 8) + 1
+
+        local A1 = sectors[i]
+        local A2 = sectors[next_i]
+
+        -- junction is local only when two different areas
+        -- actually occupy neighboring sectors
+        if A1 and A2 and A1 ~= A2 then
+          local junc = Junction_lookup(LEVEL, A1, A2)
+
+          if junc then
+            table.add_unique(corner.junctions, junc)
+          end
+        end
+      end
+    end
+
+    -- old corner-neirghbor stuff
     for i = 1, #corner.areas do
     for k = i + 1, #corner.areas do
       local A1 = corner.areas[i]
       local A2 = corner.areas[k]
 
-      local junc = Junction_lookup(LEVEL, A1, A2)
-
-      if junc then
-        table.add_unique(corner.junctions, junc)
-      end
-
       table.add_unique(A1.corner_neighbors, A2)
       table.add_unique(A2.corner_neighbors, A1)
     end
     end
-  end -- cx, cy
+
   end
+  end -- cx, cy
 end
 
 
@@ -1388,94 +1485,19 @@ end
 
 
 
-
 function Corner_is_at_area_corner(corner)
 
-  -- divide the space around the corner into eight 45-degree sectors
-  -- direction 0 is east, increasing counter-clockwise
-  local sectors = {}
+  local sectors = Corner_get_area_sectors(corner)
 
-  local function direction_index(point)
-    local dx = point.x - corner.x
-    local dy = point.y - corner.y
-
-    if dx > 0 then
-      if dy > 0 then return 1 end
-      if dy < 0 then return 7 end
-      return 0
-    elseif dx < 0 then
-      if dy > 0 then return 3 end
-      if dy < 0 then return 5 end
-      return 4
-    elseif dy > 0 then
-      return 2
-    elseif dy < 0 then
-      return 6
-    end
-  end
-
-
-  -- collect the area occupying each 45-degree sector
-  for _,S in ipairs(corner.seeds) do
-
-    if not S.area then return false end
-
-    -- get the actual polygon, including diagonal geometry
-    local vertices = S:make_brush()
-    local corner_index
-
-    -- find this corner in the seed polygon
-    for i,vertex in ipairs(vertices) do
-      if vertex.x == corner.x and vertex.y == corner.y then
-        corner_index = i
-        break
-      end
-    end
-
-    if not corner_index then return false end
-
-    -- find the vertices immediately before and after this corner
-    local next_index = corner_index + 1
-    if next_index > #vertices then next_index = 1 end
-
-    local prev_index = corner_index - 1
-    if prev_index == 0 then prev_index = #vertices end
-
-    local first_dir = direction_index(vertices[next_index])
-    local last_dir  = direction_index(vertices[prev_index])
-
-    if first_dir == nil or last_dir == nil then
-      return false
-    end
-
-    -- the polygon's interior angle determines how many sectors this seed occupies
-    -- squares contribute 90 degrees
-    -- triangles contribute either 45 or 90 degrees
-    local width = (last_dir - first_dir) % 8
-
-    if width < 1 or width > 2 then
-      return false
-    end
-
-    -- assign the sectors to this seed's area.
-    for step = 0, width - 1 do
-      local sector = (first_dir + step) % 8 + 1
-
-      -- overlapping geometry means this is not a valid arrangement
-      if sectors[sector] then return false end
-
-      sectors[sector] = S.area
-    end
-  end
-
+  if not sectors then return false end
 
   -- all eight sectors must be represented.
   -- this preserves the old behavior of rejecting incomplete
-  -- corners at the edge of the seed grid
+  -- corners at the edge of the seed grid.
+
   for i = 1, 8 do
     if not sectors[i] then return false end
   end
-
 
   -- find where ownership changes between adjacent sectors
   local first_transition
@@ -1496,7 +1518,6 @@ function Corner_is_at_area_corner(corner)
     end
   end
 
-
   -- all sectors belong to the same area
   if transition_count == 0 then
     return false
@@ -1510,7 +1531,6 @@ function Corner_is_at_area_corner(corner)
   -- multiple boundaries indicate an actual corner
   return true
 end
-
 
 
 ------------------------------------------------------------------------
