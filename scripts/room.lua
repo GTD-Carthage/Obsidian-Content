@@ -2803,9 +2803,11 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
       if A2.floor_group then goto skip end
 
       -- Street Mode:
-      -- keep the road area from the sidewalks
-      if R.is_street then
-        if A.is_road and not A2.is_road then goto skip end
+      -- keep road and non-road areas in separate floor groups
+      if R.is_street and
+        ((A.is_road == true) ~= (A2.is_road == true))
+      then
+        goto skip
       end
 
       -- stair connections *must* use another group.
@@ -2833,6 +2835,16 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
     until start_area.mode == "floor"
 
     visit_floor_area(R, start_area, "new")
+
+    -- street rooms can have disconnected floor-group components
+    -- because road and sidewalk connections are kept separate
+    if R.is_street then
+      for _, A in pairs(R.areas) do
+        if A.mode == "floor" and not A.floor_group then
+          visit_floor_area(R, A, "new")
+        end
+      end
+    end
   end
 
 
@@ -2871,25 +2883,13 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
     local group1 = A1.floor_group
     local group2 = A2.floor_group
 
-    if R.is_street then return end
-
     if not (group1 and group2) then return end
-
     if group1 == group2 then return end
 
     if group1.h ~= group2.h then return end
 
     if do_floor_groups_touch(R, group1, group2) then
-      if not R.is_street then
-        merge_floor_groups(R, group1, group2)
-      elseif R.is_street then
-        if (A1.is_road and not A2.is_road)
-        or (A2.is_road and not A1.is_road) then
-          -- don't do muffins I guess
-        else
-          merge_floor_groups(R, group1, group2)
-        end
-      end
+      merge_floor_groups(R, group1, group2)
     end
   end
 
@@ -2898,10 +2898,13 @@ function Room_floor_ceil_heights(LEVEL, SEEDS)
     -- after setting floor heights in the room, this checks if two
     -- groups which touch each other have the same height
 
-    for pass = 1, 3 do
-      for _, A1 in pairs(R.areas) do
-        for _, A2 in pairs(R.areas) do
-          try_regroup_floors(R, A1, A2)
+    -- street rooms keep their initial floor groups separate
+    if not R.is_street then
+      for pass = 1, 3 do
+        for _, A1 in pairs(R.areas) do
+          for _, A2 in pairs(R.areas) do
+            try_regroup_floors(R, A1, A2)
+          end
         end
       end
     end
