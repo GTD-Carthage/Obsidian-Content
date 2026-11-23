@@ -4310,12 +4310,12 @@ function Room_set_sky_heights(LEVEL)
     end
   end
 
-  -- transfer final results into areas
-  -- [ SCENIC areas are done later.... ]
-
+  -- keep closed ceilings below the actual sky plane
   for _, A in pairs(LEVEL.areas) do
-    if A.floor_h and A.zone and A:is_open_to_sky() then
-      A:set_ceil(A.zone.sky_h)
+    if A.floor_h and A.ceil_h and A.zone
+    and A.room and A.room.is_outdoor
+    and A:is_closed_to_sky() then
+      A:set_ceil(math.min(A.ceil_h, A.zone.sky_h - 16))
     end
   end
 
