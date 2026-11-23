@@ -2338,7 +2338,7 @@ function Area_pick_facing_rooms(LEVEL, SEEDS)
 
   for _,A in pairs(scenics) do
     if A.zone then
-      A:set_ceil( A.zone.sky_h + 16 )
+      A:set_ceil( A.zone.sky_h )
       A:set_ceil_mat("_SKY")
     end
 
