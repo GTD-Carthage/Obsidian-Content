@@ -4797,42 +4797,6 @@ GROW_COLONNADE_STRAIGHT_VAULT_LARGE_LIQUID =
   }
 },
 
-GROW_COLONNADE_STRAIGHT_VAULT_LARGE_FROM_SIDE =
-{
-  prob = 40,
-  skip_prob = 35,
-
-  structure =
-  {
-    "........","11111111",
-    "........","11111111",
-    "........","AAAAAAAA",
-    "........","AAAAAAAA",
-    "........","11111111",
-    "........","11111111",
-    "xxxxxx11","xxxxxx11",
-  }
-},
-
-GROW_COLONNADE_STRAIGHT_VAULT_LARGE_FROM_SIDE_LIQUID =
-{
-  prob = 40,
-  skip_prob = 35,
-
-  structure =
-  {
-    "........","11111111",
-    "........","11111111",
-    "........","AAAAAAAA",
-    "........","A~~~~~~A",
-    "........","A~~~~~~A",
-    "........","AAAAAAAA",
-    "........","11111111",
-    "........","11111111",
-    "xxxxxx11","xxxxxx11",
-  }
-},
-
 GROW_COLONNADE_STRAIGHT_VAULT_BELT =
 {
   prob = 50,
@@ -10223,138 +10187,6 @@ GROW_LIQUID_CANAL_OUT_ALT =
   },
 },
 
--- [SINGLE_CANAL : SCANAL]
-
-GROW_LIQUID_SCANAL_ENTRY =
-{
-  prob = 20,
-
-  structure =
-  {
-    "1..","111",
-    "1..","111",
-    "x..","x~~",
-    "x..","x~~",
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_LIQUID_SCANAL_aux",
-
-    count = {2,3}
-  }
-},
-
-GROW_LIQUID_SCANAL_aux =
-{
-  prob = 1,
-
-  structure =
-  {
-    "1..","111",
-    "1..","111",
-    "~..","~~~"
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_LIQUID_SCANAL_OUTER_BEND"
-  },
-
-  auxiliary2 =
-  {
-    pass = "GROW_LIQUID_SCANAL_INNER_BEND"
-  }
-},
-
-GROW_LIQUID_SCANAL_OUTER_BEND =
-{
-  prob = 1,
-
-  structure =
-  {
-    "1...","111%",
-    "1...","1111",
-    "~...","~~11",
-    "~...","~~11",
-  },
-
-  diagonals =
-  {
-    "1.",
-  },
-},
-
-GROW_LIQUID_SCANAL_INNER_BEND =
-{
-  prob = 1,
-
-  structure =
-  {
-    "1...","11~~",
-    "1...","11~~",
-    "~...","~~~~",
-    "~...","~~~/",
-  },
-
-  diagonals =
-  {
-    "~.",
-  },
-},
-
-GROW_LIQUID_SCANAL_T_JUNCTION =
-{
-  prob = 20,
-
-  structure =
-  {
-    "1.....","111111",
-    "1.....","111111",
-    "~.....","~%11/~",
-    "~.....","~~11~~",
-  },
-
-  diagonals =
-  {
-    "~1","1~",
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_LIQUID_SCANAL_aux",
-
-    count = {2,3}
-  }
-},
-
-GROW_CANAL_SINGLE_CORNER_UNG_PILLARED =
-{
-  prob = 25,
-
-  structure =
-  {
-    "1........","111111111",
-    "1........","111/..%11",
-    "x........","x~~%../~~",
-    "xx......x","xx%~~~~/x",
-  },
-
-  diagonals =
-  {
-    "1.",".1",
-    "~.",".~",
-    ".~","~.",
-  },
-
-  auxiliary =
-  {
-    pass = "GROW_LIQUID_SCANAL_aux",
-
-    count = {2,3}
-  }
-},
-
 -- [NARROW CANALS : NCANALS]
 
 GROW_NARROW_CANAL_ENTRY =
@@ -10939,62 +10771,6 @@ GROW_MAZE_STRAIGHT_CAGE_ALT =
 },
 
 -- [LARGE MAZE]
-
-GROW_LARGE_MAZE_LONG =
-{
-  prob = 10,
-  skip_prob = 50,
-
-  structure =
-  {
-    "x..x","x11x",
-    "x..x","x11x",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "x11x","x11x",
-    "x11x","x11x",
-  }
-},
-
-GROW_LARGE_MAZE_LONGER =
-{
-  prob = 7,
-  skip_prob = 65,
-
-  structure =
-  {
-    "x..x","x11x",
-    "x..x","x11x",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "....","!11!",
-    "x11x","x11x",
-    "x11x","x11x",
-  }
-},
-
-GROW_LARGE_MAZE_LONG_BANDS =
-{
-  prob = 10,
-  skip_prob = 50,
-
-  structure =
-  {
-    "x..x","x11x",
-    "x..x","x11x",
-    "....","!AA!",
-    "....","!11!",
-    "....","!11!",
-    "....","!AA!",
-    "x11x","x11x",
-    "x11x","x11x",
-  }
-},
 
 GROW_LARGE_MAZE_CROSS =
 {
@@ -13986,22 +13762,6 @@ GROW_36_QUAD_FORWARD_AREA_STAIRS =
   },
 },
 
-GROW_36_SINGLE_FORWARD_AREA =
-{
-  prob = 35,
-  skip_prob = 75,
-
-  structure =
-  {
-    "x....x","xAAAAx",
-    "......","1AAAA1",
-    "......","111111",
-    "......","111111",
-    "......","111111",
-    "x11xxx","x11xxx",
-  },
-},
-
 GROW_36_ROUND_NEW_AREA =
 {
   prob = 25,
@@ -14398,22 +14158,22 @@ GROW_36_INVERSE_ATARI_LOGO_NEW_AREA =
 
 GROW_36_RIBBED_WALLS_NEW_AREA_DOUBLE =
 {
-  prob = 25,
+  prob = 18,
   skip_prob = 70,
 
   structure =
   {
-    "xx....","xxAAAA",
-    "xx....","xxAAAA",
-    "......","11AAAA",
-    "......","11AAAA",
-    "xx....","xxAAAA",
-    "xx....","xxAAAA",
-    "......","11AAAA",
-    "......","11AAAA",
-    "xx....","xxAAAA",
-    "xx....","xxAAAA",
-    "xxx11x","xxx11x",
+    "xx..","xxAA",
+    "xx..","xxAA",
+    "....","11AA",
+    "....","11AA",
+    "xx..","xxAA",
+    "xx..","xxAA",
+    "....","11AA",
+    "....","11AA",
+    "xx..","xxAA",
+    "xx..","xxAA",
+    "xx11","xx11",
   },
 },
 
@@ -18403,33 +18163,6 @@ GROW_SK =
   }
 },
 
-GROW_SH =
-{
-  prob = 30,
-  skip_prob = 87,
-
-  structure =
-  {
-    "xx11xxxxxxx","xx11xxxxxxx",
-    "x.....xxxxx","x/AAA%xxxxx",
-    "x.....xxxxx","x1A111xxxxx",
-    "x.....xxxxx","x1A111xxxxx",
-    ".......xxxx","/AAAAA%xxxx",
-    "........xxx","1A/%%/1%xxx",
-    "..xx.....xx","1Axx%1/A%xx",
-    "..xxx......","1Axxx%1111%",
-  },
-
-  diagonals =
-  {
-    ".A","A.",
-    ".A","A.",
-    "A.",".1","1A","A1","1.",
-         ".1","1A","1.",
-              ".1","1."
-  }
-},
-
 GROW_SP =
 {
   prob = 15,
@@ -20160,7 +19893,7 @@ DECORATE_CAGE_CANALSWIDE_STRAIGHT_3X =
   cage_mode = "fancy",
 },
 
-GROW_WIDE_SPACE_2X12 =
+--[[GROW_WIDE_SPACE_2X12 =
 {
   prob = 2,
   prob_skew = 2,
@@ -20171,7 +19904,7 @@ GROW_WIDE_SPACE_2X12 =
     "1............","1111111AAAAAA",
     "1............","1111111AAAAAA",
   },
-},
+},]]
 
 GROW_WIDE_SPACE_2X12_SIDEWAYS =
 {
@@ -20193,7 +19926,7 @@ GROW_WIDE_SPACE_2X12_SIDEWAYS =
   }
 },
 
-GROW_WIDE_SPACE_2X8 =
+--[[GROW_WIDE_SPACE_2X8 =
 {
   prob = 2,
   prob_skew = 2,
@@ -20204,7 +19937,7 @@ GROW_WIDE_SPACE_2X8 =
     "1........","11111AAAA",
     "1........","11111AAAA"
   }
-},
+},]]
 
 GROW_WIDE_SPACE_2X8_SIDEWAYS =
 {
