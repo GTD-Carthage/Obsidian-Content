@@ -518,7 +518,7 @@ PREFABS.Joiner_bookstore_vanilla =
   tex_COMPTIL5 = "COMPSPAN",
 }
 
---an elevator shaft
+--[[an elevator shaft
 PREFABS.Joiner_elevatorshaft =
 {
   template = "Joiner_living_room",
@@ -590,7 +590,7 @@ PREFABS.Joiner_elevatorshaftcorr =
     SHAWGRY4=50, SHAWN01C=50, SHAWN01F=50,
     SHAWVEN2=50, SHAWVENT=50
   }
-}
+}]]
 
 --a store entrance
 PREFABS.Joiner_commmercial_joiner =
