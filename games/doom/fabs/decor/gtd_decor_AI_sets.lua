@@ -61,27 +61,3 @@ PREFABS.Decor_AI_boiler_machine_B =
   height = 128,
   size = 76
 }
-
---
-
-PREFABS.Decor_AI_corpse_inset_pillar =
-{
-  template = "Decor_AI_goth_comp_yellow_computer_2x",
-  map    = "MAP30",
-
-  group = "gtd_AI_corpse_inset",
-
-  height = 128,
-  size = 96,
-
-  z_fit = "top",
-  bound_z2 = 128,
-
-  tex_SDPBBWLA =
-  {
-    SDPBBWL8 = 1,
-    SDPBBWL9 = 1,
-    SDPBBWLA = 4,
-    SDPBBWLB = 4
-  }
-}

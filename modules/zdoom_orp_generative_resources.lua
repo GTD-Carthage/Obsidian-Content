@@ -2547,9 +2547,7 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
       gtd_wall_tech_gothic_inset_red_lite = 20,
       --
       gtd_AI_boiler_room = 35,
-      gtd_AI_boiler_control_unit = 35,
-      --
-      gtd_AI_corpse_inset = 10
+      gtd_AI_boiler_control_unit = 35
     }
   },
 
@@ -2607,9 +2605,7 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
       gtd_wall_tech_gothic_inset_red_lite = 9,
       --
       gtd_AI_boiler_room = 35,
-      gtd_AI_boiler_control_unit = 35,
-      --
-      gtd_AI_corpse_inset = 20,
+      gtd_AI_boiler_control_unit = 35
     }
   },
 
@@ -2648,9 +2644,7 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
     {
       gtd_wall_tech_gothic_inset_gargoyle = 20,
       gtd_wall_tech_gothic_inset_engine = 20,
-      gtd_wall_tech_gothic_inset_red_lite = 20,
-      --
-      gtd_AI_corpse_inset = 40
+      gtd_wall_tech_gothic_inset_red_lite = 20
     }
   }
 }

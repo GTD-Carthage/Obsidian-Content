@@ -219,9 +219,9 @@ function PREFAB_CONTROL.fine_tune_filters()
 
     tech_goth_tech = 8,]]
 
-    hell_gilded_bricks = 32,
+    hell_gilded_bricks = 48,
 
-    hell_babylonian = 32
+    hell_babylonian = 64
   }
 
   local themes =
