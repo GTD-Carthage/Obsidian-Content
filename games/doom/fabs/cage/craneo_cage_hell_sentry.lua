@@ -3,7 +3,7 @@ PREFABS.Cage_craneo_hell_sentry =
   file = "cage/craneo_cage_hell_sentry.wad",
   map = "MAP01",
 
-  prob = 175,
+  prob = 100,
   deep = 16,
 
   theme = "hell",
@@ -25,7 +25,7 @@ PREFABS.Cage_craneo_hell_sentry_2x =
   template = "Cage_craneo_hell_sentry",
   map = "MAP02",
 
-  prob  = 175
+  prob  = 100
 }
 
 PREFABS.Cage_craneo_hell_sentry_3x =
@@ -35,5 +35,5 @@ PREFABS.Cage_craneo_hell_sentry_3x =
 
   seed_w = 3,
 
-  prob  = 175
+  prob  = 125
 }
