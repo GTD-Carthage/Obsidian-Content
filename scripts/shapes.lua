@@ -11413,11 +11413,11 @@ GROW_LAKE_CROSS_NEW_AREA_COMPLEX_EVEN_MORE =
     "........","AAAAAAAA",
     "........","vBBBBBBv",
     "........","BBBBBBBB",
-    "........","CCCvvCCC",
-    "........","CCCCCCCC",
-    "........","~~%CC/~~",
-    "........","%~~CC~~/",
-    "x......x","x%~CC~/x",
+    "........","DDDvvDDD",
+    "........","DDDDDDDD",
+    "........","~~%DD/~~",
+    "........","%~~DD~~/",
+    "x......x","x%~DD~/x",
   },
 
   diagonals =
@@ -11425,7 +11425,7 @@ GROW_LAKE_CROSS_NEW_AREA_COMPLEX_EVEN_MORE =
     ".~","~.",
     ".~","~.",
     "~A","A~",
-    "~C","C~",
+    "~D","D~",
     ".~","~.",
     ".~","~."
   },
