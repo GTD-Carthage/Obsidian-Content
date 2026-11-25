@@ -139,8 +139,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SDPBBWL8 = { t="SDPBBWL8", f="GO_MHZF5"},
   SDPBBWL9 = { t="SDPBBWL9", f="GO_MHZF4"},
   SDPBBWLA = { t="SDPBBWLA", f="GO_MHZF3"},
-  SDPBBWLB = { t="SDPBBWLB", f="GO_MHZF2"},
-  SDPBBWLC = { t="SDPBBWLC", f="GO_MHZF1"},
   -- flats
   SDPBBFT1 = { t="SDPBBWL1", f="SDPBBFT1"},
   SDPBBFT2 = { t="SDPBBWL2", f="SDPBBFT2"},
@@ -968,8 +966,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       SDPBBWL8 = 5,
       SDPBBWL9 = 5,
       SDPBBWLA = 5,
-      SDPBBWLB = 5,
-      SDPBBWLC = 5
     },
 
     floors =
@@ -2611,33 +2607,21 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
 
   hell =
   {
-    facades = {
-      GOM_HAW1 = 20,
-      GOM_HAW2 = 20,
-      GOM_HAW3 = 20,
-      GOM_HAW4 = 20,
-      GOM_HAW5 = 20,
-      GOM_HAW6 = 20,
-      GOM_HAW7 = 20,
-      GOM_HAW8 = 20,
-
-      GO_GTHW1 = 4,
-      GO_GTHW6 = 4,
-      GO_GTHW7 = 4,
-      GO_GTHW8 = 4,
-
+    facades = {  
       SD_HCSW1 = 6,
       SD_HCSW3 = 6,
       SD_HCSW4 = 6,
 
-      GO_MHZW1 = 20,
-      GO_MHZW2 = 20,
-      GO_MHZW3 = 20,
-      GO_MHZW4 = 20,
-      GO_MHZW5 = 20,
-      GO_MHZW6 = 20,
-      GO_MHZW7 = 20,
-      GO_MHZW8 = 20
+      SDPBBWL1 = 22,
+      SDPBBWL2 = 22,
+      SDPBBWL3 = 22,
+      SDPBBWL4 = 22,
+      SDPBBWL5 = 22,
+      SDPBBWL6 = 22,
+      SDPBBWL7 = 22,
+      SDPBBWL8 = 22,
+      SDPBBWL9 = 22,
+      SDPBBWLA = 22
     },
 
     wall_groups =

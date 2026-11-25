@@ -8422,7 +8422,12 @@ OBS_RESOURCE_PACK_THEMES =
       GOM_HAW5 = 20,
       GOM_HAW6 = 20,
       GOM_HAW7 = 20,
-      GOM_HAW8 = 20
+      GOM_HAW8 = 20,
+
+      GO_GTHW1 = 4,
+      GO_GTHW6 = 4,
+      GO_GTHW7 = 4,
+      GO_GTHW8 = 4
     },
 
     fences =
