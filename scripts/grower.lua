@@ -3969,19 +3969,37 @@ end
         R.shapes_applied = 1
       end
 
-      if not R.shapes or table.empty(R.shapes) then
-        R.shapes = {}
-      else
-        R.shapes[cur_rule.name] = R.shapes[cur_rule.name] + 1
-      end
+      -- Debug shape rule recording
+      if LEVEL.is_absurd then
 
-      -- record succesful shape rules for HN debug
-      if cur_rule.is_absurd then
-        if R.absurd_shapes[cur_rule.name] then
-          R.absurd_shapes[cur_rule.name].state="applied"
+        -- Layout Absurdity enabled: record absurd rules
+        if cur_rule.is_absurd then
+          R.absurd_shapes = R.absurd_shapes or {}
+          table.add_unique(R.absurd_shapes, cur_rule.name)
         end
+
+      else
+
+        -- Layout Absurdity disabled: record the largest
+        -- shape rule successfully imprinted into this room
+        local rule_w = cur_rule.input.w
+        local rule_h = cur_rule.input.h
+        local rule_area = rule_w * rule_h
+
+        if not R.largest_shape_rule
+        or rule_area > R.largest_shape_rule.area then
+
+          R.largest_shape_rule = {
+            name = cur_rule.name,
+            width = rule_w,
+            height = rule_h,
+            area = rule_area,
+          }
+        end
+
       end
     end
+
 
     if pass == "sprout" then
       R.sprout_succesful = true

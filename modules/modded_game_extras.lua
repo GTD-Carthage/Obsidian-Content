@@ -1938,8 +1938,18 @@ function MODDED_GAME_EXTRAS.create_hn_info(self, LEVEL)
         shapes_string = shapes_string .. "[RRBN] "
       end
     else
-      shapes_string = shapes_string .. "(NRML SHPS) "
+      if R.largest_shape_rule then
+        local largest = R.largest_shape_rule
+
+        shapes_string = shapes_string ..
+          "(NRML SHPS: " .. largest.name ..
+          " " .. largest.width .. "x" .. largest.height ..
+          " [" .. largest.area .. "]) "
+      else
+        shapes_string = shapes_string .. "(NRML SHPS: NONE) "
+      end
     end
+
 
     --[[if R.has_auxiliary then
       shapes_string = shapes_string .. "(AUX) "
