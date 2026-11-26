@@ -2851,7 +2851,7 @@ function Layout_handle_corners(LEVEL)
       local E = junc.E1
 
       -- decide what kind of fencepost (fancy or rail)
-      if E then
+      if E and (E.kind == "fence" or E.kind == "railing") then
 
         -- cannot place posts next to a wall, as the wall already
         -- supports the fence
@@ -3038,8 +3038,8 @@ function Layout_handle_corners(LEVEL)
   local function check_corner(cx, cy)
     local corner = Corner_lookup(LEVEL, cx, cy)
 
-    check_need_fencepost(corner)
     check_need_pillar(corner)
+    check_need_fencepost(corner)
   end
 
 
