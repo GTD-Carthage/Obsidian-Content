@@ -128,25 +128,6 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
   SD_HCSF5 = { t="SD_HCSW3", f="SD_HCSF5"},
   SD_HCSF6 = { t="SD_HCSW4", f="SD_HCSF6"},
 
-  -- babylonian demonic
-  SDPBBWL1 = { t="SDPBBWL1", f="GO_MHZF1"},
-  SDPBBWL2 = { t="SDPBBWL2", f="GO_MHZF2"},
-  SDPBBWL3 = { t="SDPBBWL3", f="GO_MHZF3"},
-  SDPBBWL4 = { t="SDPBBWL4", f="GO_MHZF4"},
-  SDPBBWL5 = { t="SDPBBWL5", f="GO_MHZF5"},
-  SDPBBWL6 = { t="SDPBBWL6", f="GO_MHZF6"},
-  SDPBBWL7 = { t="SDPBBWL7", f="GO_MHZF6"},
-  SDPBBWL8 = { t="SDPBBWL8", f="GO_MHZF5"},
-  SDPBBWL9 = { t="SDPBBWL9", f="GO_MHZF4"},
-  SDPBBWLA = { t="SDPBBWLA", f="GO_MHZF3"},
-  -- flats
-  SDPBBFT1 = { t="SDPBBWL1", f="SDPBBFT1"},
-  SDPBBFT2 = { t="SDPBBWL2", f="SDPBBFT2"},
-  SDPBBFT3 = { t="SDPBBWL3", f="SDPBBFT3"},
-  SDPBBFT4 = { t="SDPBBWL5", f="SDPBBFT4"},
-  SDPBBFT5 = { t="SDPBBWL6", f="SDPBBFT5"},
-  SDPBBFT6 = { t="SDPBBWL7", f="SDPBBFT6"},
-
   -- urban hell mansion
   SD_UHMW1 = { t="SD_UHMW1", f="SD_UHMF1"},
   SD_UHMW2 = { t="SD_UHMW2", f="SD_UHMF2"},
@@ -944,114 +925,6 @@ OBS_RESOURCE_PACK_GENAI_ROOM_THEMES =
       GRATE6 = 8,
       GRATE7 = 8,
       GRATE8 = 8
-    }
-  },
-
-  hell_babylonian = --55
-  {
-    env = "building",
-    prob = 55,
-
-    is_generative = true,
-
-    walls =
-    {
-      SDPBBWL1 = 5,
-      SDPBBWL2 = 5,
-      SDPBBWL3 = 5,
-      SDPBBWL4 = 5,
-      SDPBBWL5 = 5,
-      SDPBBWL6 = 5,
-      SDPBBWL7 = 5,
-      SDPBBWL8 = 5,
-      SDPBBWL9 = 5,
-      SDPBBWLA = 5,
-    },
-
-    floors =
-    {
-      FLAT1_1 = 2,
-      FLAT1_2 = 2,
-      FLAT8 = 2,
-      FLOOR0_1 = 2,
-      FLOOR0_2 = 2,
-      FLOOR3_3 = 2,
-      FLOOR4_6 = 2,
-      FLOOR5_4 = 2,
-      FLOOR7_1 = 2,
-
-      BRIK01 = 5,
-      EG01 = 5,
-      EG02 = 5,
-      EG03 = 5,
-      EG04 = 5,
-      EG05 = 5,
-      EG06 = 5,
-      GSTN03 = 5,
-      GSTN04 = 5,
-      GSTN05 = 5,
-      RROCK09 = 5,
-      RROCK10 = 5,
-      RROCK11 = 5,
-      RROCK12 = 5,
-      RROCK16 = 5,
-      RROCK17 = 5,
-      RROCK18 = 5,
-      SKINFLT1 = 5,
-
-      SDPBBFT1 = 45,
-      SDPBBFT2 = 45,
-      SDPBBFT3 = 45,
-      SDPBBFT4 = 45,
-      SDPBBFT5 = 45,
-      SDPBBFT6 = 45
-    },
-
-    ceilings =
-    {
-      FLAT1_1 = 2,
-      FLAT1_2 = 2,
-      FLAT8 = 2,
-      FLOOR0_1 = 2,
-      FLOOR0_2 = 2,
-      FLOOR3_3 = 2,
-      FLOOR4_6 = 2,
-      FLOOR5_4 = 2,
-      FLOOR7_1 = 2,
-
-      BRIK01 = 5,
-      EG01 = 5,
-      EG02 = 5,
-      EG03 = 5,
-      EG04 = 5,
-      EG05 = 5,
-      EG06 = 5,
-      GSTN03 = 5,
-      GSTN04 = 5,
-      GSTN05 = 5,
-      RROCK09 = 5,
-      RROCK10 = 5,
-      RROCK11 = 5,
-      RROCK12 = 5,
-      RROCK16 = 5,
-      RROCK17 = 5,
-      RROCK18 = 5,
-      SKINFLT1 = 5,
-
-      GO_MHZF1 = 25,
-      GO_MHZF2 = 25,
-      GO_MHZF3 = 25,
-      GO_MHZF4 = 25,
-      GO_MHZF5 = 25,
-      GO_MHZF6 = 25,
-      GO_MHZF7 = 25,
-
-      SDPBBFT1 = 45,
-      SDPBBFT2 = 45,
-      SDPBBFT3 = 45,
-      SDPBBFT4 = 45,
-      SDPBBFT5 = 45,
-      SDPBBFT6 = 45
     }
   },
 
@@ -2610,18 +2483,7 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
     facades = {  
       SD_HCSW1 = 6,
       SD_HCSW3 = 6,
-      SD_HCSW4 = 6,
-
-      SDPBBWL1 = 22,
-      SDPBBWL2 = 22,
-      SDPBBWL3 = 22,
-      SDPBBWL4 = 22,
-      SDPBBWL5 = 22,
-      SDPBBWL6 = 22,
-      SDPBBWL7 = 22,
-      SDPBBWL8 = 22,
-      SDPBBWL9 = 22,
-      SDPBBWLA = 22
+      SD_HCSW4 = 6
     },
 
     wall_groups =

@@ -3899,6 +3899,126 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  hell_babylonian = --55
+  {
+    env = "building",
+    prob = 55,
+
+    walls =
+    {
+      GO_HBBW1 = 50,
+      GO_HBBW2 = 50,
+      GO_HBBW3 = 50,
+      GO_HBBW4 = 50,
+      GO_HBBW5 = 50,
+      GO_HBBW6 = 50,
+      GO_HBBW7 = 50,
+      GO_HBBW8 = 50,
+      GO_HBBW9 = 50,
+      GO_HBBWA = 50,
+
+      BRIKS37 = 15,
+      BRIKS38 = 25,
+
+      BIGSTON2 = 5,
+      BIGSTON3 = 5,
+      BIGSTONE = 5,
+      BRIKS10 = 5,
+      BRIKS11 = 5,
+      BRIKS43 = 5
+    },
+
+    floors =
+    {
+      FLAT1_1 = 2,
+      FLAT1_2 = 2,
+      FLAT8 = 2,
+      FLOOR0_1 = 2,
+      FLOOR0_2 = 2,
+      FLOOR3_3 = 2,
+      FLOOR4_6 = 2,
+      FLOOR5_4 = 2,
+      FLOOR7_1 = 2,
+
+      BRIK01 = 5,
+      EG01 = 5,
+      EG02 = 5,
+      EG03 = 5,
+      EG04 = 5,
+      EG05 = 5,
+      EG06 = 5,
+      GSTN03 = 5,
+      GSTN04 = 5,
+      GSTN05 = 5,
+      RROCK09 = 5,
+      RROCK10 = 5,
+      RROCK11 = 5,
+      RROCK12 = 5,
+      RROCK16 = 5,
+      RROCK17 = 5,
+      RROCK18 = 5,
+      SKINFLT1 = 5,
+
+      GO_HBBF1 = 45,
+      GO_HBBF2 = 45,
+      GO_HBBF3 = 45,
+      GO_HBBF4 = 45,
+      GO_HBBF5 = 45,
+      GO_HBBF6 = 45,
+      GO_HBBF7 = 45,
+      GO_HBBF8 = 45
+    },
+
+    ceilings =
+    {
+      FLAT1_1 = 2,
+      FLAT1_2 = 2,
+      FLAT8 = 2,
+      FLOOR0_1 = 2,
+      FLOOR0_2 = 2,
+      FLOOR3_3 = 2,
+      FLOOR4_6 = 2,
+      FLOOR5_4 = 2,
+      FLOOR7_1 = 2,
+
+      BRIK01 = 5,
+      EG01 = 5,
+      EG02 = 5,
+      EG03 = 5,
+      EG04 = 5,
+      EG05 = 5,
+      EG06 = 5,
+      GSTN03 = 5,
+      GSTN04 = 5,
+      GSTN05 = 5,
+      RROCK09 = 5,
+      RROCK10 = 5,
+      RROCK11 = 5,
+      RROCK12 = 5,
+      RROCK16 = 5,
+      RROCK17 = 5,
+      RROCK18 = 5,
+      SKINFLT1 = 5,
+
+      GO_MHZF1 = 25,
+      GO_MHZF2 = 25,
+      GO_MHZF3 = 25,
+      GO_MHZF4 = 25,
+      GO_MHZF5 = 25,
+      GO_MHZF6 = 25,
+      GO_MHZF7 = 25,
+
+      GO_HBBF1 = 45,
+      GO_HBBF2 = 45,
+      GO_HBBF3 = 45,
+      GO_HBBF4 = 45,
+      GO_HBBF5 = 45,
+      GO_HBBF6 = 45,
+      GO_HBBF7 = 45,
+      GO_HBBF8 = 45
+    }
+  },
+
   -- Hell has frozen over!
   hell_icecave = --50
   {
@@ -8427,7 +8547,18 @@ OBS_RESOURCE_PACK_THEMES =
       GO_GTHW1 = 4,
       GO_GTHW6 = 4,
       GO_GTHW7 = 4,
-      GO_GTHW8 = 4
+      GO_GTHW8 = 4,
+
+      GO_HBBW1 = 22,
+      GO_HBBW2 = 22,
+      GO_HBBW3 = 22,
+      GO_HBBW4 = 22,
+      GO_HBBW5 = 22,
+      GO_HBBW6 = 22,
+      GO_HBBW7 = 22,
+      GO_HBBW8 = 22,
+      GO_HBBW9 = 22,
+      GO_HBBWA = 22
     },
 
     fences =

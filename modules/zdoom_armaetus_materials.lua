@@ -1803,6 +1803,27 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GO_MHZF7 = { t="GO_MHZW7", f="GO_MHZF7"},
   GO_MHZF8 = { t="GO_MHZW8", f="GO_MHZF8"},
 
+  -- babylonian demonic
+  GO_HBBW1 = { t="GO_HBBW1", f="GO_HBBF1"},
+  GO_HBBW2 = { t="GO_HBBW2", f="GO_HBBF2"},
+  GO_HBBW3 = { t="GO_HBBW3", f="GO_HBBF3"},
+  GO_HBBW4 = { t="GO_HBBW4", f="GO_HBBF4"},
+  GO_HBBW5 = { t="GO_HBBW5", f="GO_HBBF5"},
+  GO_HBBW6 = { t="GO_HBBW6", f="GO_HBBF6"},
+  GO_HBBW7 = { t="GO_HBBW7", f="GO_HBBF7"},
+  GO_HBBW8 = { t="GO_HBBW8", f="GO_HBBF8"},
+  GO_HBBW9 = { t="GO_HBBW9", f="GO_HBBF2"},
+  GO_HBBWA = { t="GO_HBBWA", f="GO_HBBF3"},
+  -- flats
+  GO_HBBF1 = { t="GO_HBBW1", f="GO_HBBF1"},
+  GO_HBBF2 = { t="GO_HBBW2", f="GO_HBBF2"},
+  GO_HBBF3 = { t="GO_HBBW3", f="GO_HBBF3"},
+  GO_HBBF4 = { t="GO_HBBW5", f="GO_HBBF4"},
+  GO_HBBF5 = { t="GO_HBBW6", f="GO_HBBF5"},
+  GO_HBBF6 = { t="GO_HBBW7", f="GO_HBBF6"},
+  GO_HBBF7 = { t="GO_HBBW8", f="GO_HBBF7"},
+  GO_HBBF8 = { t="GO_HBBW9", f="GO_HBBF8"},
+
   -- computer catacombs (lolwhat?)
   -- walls
   GO_HCCW1 = { t="GO_HCCW1", f="GO_HCCF1"},
