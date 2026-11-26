@@ -25,7 +25,7 @@ PREFABS.Item_gtd_secret_version_of_armaetus_waterfountain =
 
 PREFABS.Item_gtd_secret_version_of_armaetus_impaled_guys =
 {
-  template = "Item_gtd_secret_version_of_armaetus_waterfountain",
+  file = "item/gtd_secret_armaetus_waterfountain.wad",
   map = "MAP02",
 
   theme = "hell",
@@ -40,27 +40,23 @@ PREFABS.Item_gtd_secret_version_of_armaetus_impaled_guys =
 
   deep = 16,
 
+  bound_z1 = 0,
+  bound_z2 = 136,
+
   x_fit = "frame",
   y_fit = "top"
 }
 
 PREFABS.Item_gtd_secret_version_of_hell_lavafalls =
 {
-  template = "Item_gtd_secret_version_of_armaetus_waterfountain",
+  template = "Item_gtd_secret_version_of_armaetus_impaled_guys",
   map = "MAP03",
 
-  theme = "hell",
   prob = 15,
 
-  key = "secret",
-
   seed_w = 2,
-  seed_h = 1,
 
   height = 128,
 
-  deep = 16,
-
-  x_fit = "frame",
-  y_fit = "top"
+  bound_z2 = 128
 }

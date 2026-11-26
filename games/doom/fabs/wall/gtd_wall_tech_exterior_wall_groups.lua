@@ -836,3 +836,40 @@ PREFABS.Wall_tech_outdoor_trapezoid_blue =
 
   z_fit = "top"
 }
+
+--
+
+PREFABS.Wall_tech_o_goth_arch_fan =
+{
+  template = "Wall_tech_outdoor_dfan_compat",
+  map = "MAP33",
+
+  texture_pack = "armaetus",
+
+  rank = 1,
+  group = "tech_o_goth_arch_fan",
+
+  tex_DFAN1 =
+  {
+    DFAN = 7,
+    COMPWERD = 1,
+  },
+
+  z_fit = "bottom"
+}
+
+--
+
+PREFABS.Wall_tech_o_goth_arch_fan_compat =
+{
+  template = "Wall_tech_outdoor_dfan",
+  map = "MAP33",
+
+  group = "tech_o_goth_arch_fan",
+
+  z_fit = "bottom",
+
+  tex_GRAYMET4 = "BRONZE2",
+  tex_GRAYMET3 = "SUPPORT3",
+  tex_DFAN1 = "COMPWERD"
+}

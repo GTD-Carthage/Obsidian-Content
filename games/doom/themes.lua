@@ -1714,7 +1714,9 @@ DOOM.THEMES =
       tech_o_dfan_alt_2 = 1,
       tech_o_dfan_full = 1,
 
-      tech_o_trapezoid_blue = 1
+      tech_o_trapezoid_blue = 1,
+
+      tech_o_goth_arch_fan = 1
     },
 
     window_groups =

@@ -189,7 +189,9 @@ function PREFAB_CONTROL.fine_tune_filters()
 
     gtd_ind_modwall_arched = 20]]
 
-    gtd_wall_hell_engraving_1 = 8
+    gtd_wall_hell_engraving_1 = 8,
+
+    tech_o_goth_arch_fan = 40
   }
 
   local new_themes_multipliers =
