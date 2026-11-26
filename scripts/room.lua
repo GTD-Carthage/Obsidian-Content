@@ -1682,6 +1682,26 @@ function Room_make_windows(LEVEL, A1, A2, SEEDS)
   install_windows(group, z, height, prob)
 end
 
+
+-- Check whether a junction connects a stair chunk
+-- to its actual source or destination area.
+local function is_stair_access_junction(A1, A2)
+
+  local function connects_to_stair(A, other)
+    if type(A) ~= "table" then return false end
+
+    local chunk = A.chunk
+
+    return chunk and chunk.kind == "stair" and
+      (chunk.from_area == other or
+       chunk.dest_area == other)
+  end
+
+  return connects_to_stair(A1, A2) or
+         connects_to_stair(A2, A1)
+end
+
+
 function Room_border_up(LEVEL, SEEDS)
   --
   -- Decide the default bordering between any two adjacent areas.
@@ -1757,16 +1777,6 @@ function Room_border_up(LEVEL, SEEDS)
 
 
   local function can_fence(A1, A2)
-    if A1.chunk and A1.chunk.kind == "stair"
-        and (A1.chunk.dest_area == A2 or A1.chunk.from_area == A2) then
-      return false
-    end
-
-    if A2.chunk and A2.chunk.kind == "stair"
-        and (A2.chunk.dest_area == A1 or A2.chunk.from_area == A1) then
-      return false
-    end
-
     if A1.mode == "liquid" or A2.mode == "liquid"
         or A1.mode == "cage" or A2.mode == "cage" then
       return false
@@ -1845,6 +1855,14 @@ function Room_border_up(LEVEL, SEEDS)
     -- already decided?
     if junc.E1 then return end
 
+    -- stair entry and exit junctions must remain open
+    if is_stair_access_junction(A1, A2) then
+      Junction_make_empty(junc)
+      return
+    end
+
+    -- already decided?
+    if junc.E1 then return end
 
     -- handle edge of map
     -- [ normal rooms should not touch the edge ]
@@ -4205,6 +4223,11 @@ function Room_add_cage_rails(LEVEL)
       local junc = Junction_lookup(LEVEL, A, N)
 
       assert(junc)
+
+      -- never obstruct staircase access
+      if is_stair_access_junction(A, N) then
+        goto skip
+      end
 
       if junc.E1 and junc.E1.kind ~= "nothing" then goto skip end
       if junc.E2 and junc.E2.kind ~= "nothing" then goto skip end
