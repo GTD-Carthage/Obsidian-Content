@@ -4845,6 +4845,26 @@ GROW_COLONNADE_CLOISTER =
   }
 },
 
+GROW_COLONNADE_CLOISTER_STEEPNESS =
+{
+  prob = 15,
+  skip_prob = 75,
+
+  structure =
+  {
+    "11xxxxxxx","11xxxxxxx",
+    ".........","1111#1111",
+    ".........","1111#1111",
+    ".........","11#v#v#11",
+    ".........","11>AAA<11",
+    ".........","#B#AAA#B#",
+    ".........","BB<AAA>BB",
+    ".........","BB#B#B#BB",
+    ".........","BBBB#BBBB",
+    ".........","BBBB#BBBB"
+  }
+},
+
 GROW_COLONNADE_CLOISTER_LIQUID =
 {
   prob = 20,
@@ -12269,31 +12289,6 @@ GROW_FEATURES_RECT_MOATED_PLATFORM_STAIRS =
   },
 },
 
-GROW_FEATURES_ROUND_PLATFORM_MOAT =
-{
-  prob = 10,
-  skip_prob = 80,
-
-  structure =
-  {
-    "11xxxxxx","11xxxxxx",
-    "........","11111111",
-    "........","11111111",
-    "........","11/~~%11",
-    "........","11~AA~11",
-    "........","11~AA~11",
-    "........","11%~A/11",
-    "........","11111111",
-    "........","11111111"
-  },
-
-  diagonals =
-  {
-    "1~","~1",
-    "1~","~1"
-  }
-},
-
 GROW_FEATURES_RAISED_RAISED_PLATFORM_MOAT =
 {
   prob = 10,
@@ -12327,13 +12322,15 @@ GROW_ELEVATED_PILLAR_ROUND =
   structure =
   {
     ".........","/1111111%",
+    ".........","111111111",
     ".........","11/AAA%11",
     ".........","11AAAAA11",
     ".........","11>A.AA11",
     ".........","11AAAAA11",
     ".........","11%AAA/11",
+    ".........","111111111",
     ".........","%1111111/",
-    "x11xxxxxx","x11xxxxxx",
+    "x11xxxxxx","x11xxxxxx"
   },
 
   diagonals =
@@ -12354,9 +12351,9 @@ GROW_ELEVATED_PILLAR_U =
   {
     "1....","1>AAA",
     "1....","1>AAA",
-    "xx...","xx.AA",
+    "xx...","xx#AA",
     "xx...","xxAAA",
-    "xx...","xxAAA",
+    "xx...","xxAAA"
   },
 },
 
@@ -12369,9 +12366,9 @@ GROW_ELEVATED_PILLAR_U_FULL =
   {
     "1.....","1>>AAA",
     "1.....","1>>AAA",
-    "x.....","xAA.AA",
+    "x.....","xAA#AA",
     "x.....","xAAAAA",
-    "x.....","xAAAAA",
+    "x.....","xAAAAA"
   },
 },
 
@@ -12384,9 +12381,9 @@ GROW_ELEVATED_PILLAR_U_FULL_LIQUID =
   {
     "1.....","1>>AAA",
     "1.....","1>>AAA",
-    "x.....","x~~.AA",
+    "x.....","x~~#AA",
     "x.....","xAAAAA",
-    "x.....","xAAAAA",
+    "x.....","xAAAAA"
   },
 },
 
@@ -12432,9 +12429,9 @@ GROW_WIDE_SPACE_CATWALK_PLAIN_LIQUID =
 
   structure =
   {
-    "........","11~AA~11",
-    "........","11~AA~11",
-    "........","11~^^~11",
+    "........","AA~BB~AA",
+    "........","AA~BB~AA",
+    "........","AA~^^~AA",
     "........","11111111",
     "xxx11xxx","xxx11xxx",
   },
@@ -12447,43 +12444,13 @@ GROW_WIDE_SPACE_CATWALK_TALL_PLAIN =
 
   structure =
   {
-    "......","11AA11",
-    "......","11AA11",
-    "......","11^^11",
-    "......","11^^11",
+    "......","AABBAA",
+    "......","AABBAA",
+    "......","AA^^AA",
+    "......","AA^^AA",
     "......","111111",
     "xx11xx","xx11xx",
   },
-},
-
-GROW_WIDE_SPACE_CATWALK_TALL_PLAIN_LIQUID =
-{
-  prob = 25,
-  skip_prob = 35,
-
-  structure =
-  {
-    "........","11~AA~11",
-    "........","11~AA~11",
-    "........","11~^^~11",
-    "........","11~^^~11",
-    "........","11111111",
-    "xxx11xxx","xxx11xxx",
-  },
-},
-
-GROW_WIDE_SPACE_PLATFORM_TINY =
-{
-  prob = 30,
-  skip_prob = 35,
-
-  structure =
-  {
-    "......x","11AA11x",
-    "......x","11AA11x",
-    "......1","11>A111",
-    "......1","1111111"
-  }
 },
 
 GROW_WIDE_SPACE_PLATFORM_TINY_LIQUID =
@@ -12514,7 +12481,7 @@ GROW_WIDE_LOW_CEILING_SIDE =
     "....","1AAA",
     "....","1#AA",
     "....","1111",
-    "11xx","11xx",
+    "11xx","11xx"
   },
 },
 
@@ -12532,7 +12499,7 @@ GROW_WIDE_LOW_CEILING_SIDE_LIQUID =
     "....","1A~~",
     "....","1#AA",
     "....","1111",
-    "11xx","11xx",
+    "11xx","11xx"
   },
 },
 
@@ -12551,7 +12518,7 @@ GROW_WIDE_LOW_CEILING_CENTER =
     "......","1AAAA1",
     "......","1.AA.1",
     "......","111111",
-    "11xxxx","11xxxx",
+    "11xxxx","11xxxx"
   },
 },
 
@@ -12569,7 +12536,7 @@ GROW_WIDE_LOW_CEILING_CENTER_LIQUID =
     "......","1~~~~1",
     "......","1.~~.1",
     "......","111111",
-    "11xxxx","11xxxx",
+    "11xxxx","11xxxx"
   },
 },
 
@@ -12580,12 +12547,12 @@ GROW_WIDE_LOW_CEILING_CORNER =
 
   structure =
   {
-    "......","AAAAA1",
-    "......","AAAA#1",
+    "xx....","xxAAA1",
+    "xx....","xxAA#1",
     "......","AAAAA1",
     "......","AAAA/1",
     "....11","A#A/11",
-    "....11","111111",
+    "....11","111111"
   },
 
   diagonals =
@@ -12602,12 +12569,12 @@ GROW_WIDE_LOW_CEILING_CORNER_STAIRS =
 
   structure =
   {
-    "......","AAAA<1",
-    "......","AAAA#1",
-    "......","AAAAA1",
+    "xx....","xxAA<1",
+    "xx....","xxAA#1",
+    "xx....","xxAAA1",
     "......","AAAA/1",
     "....11","^#A/11",
-    "....11","111111",
+    "....11","111111"
   },
 
   diagonals =
