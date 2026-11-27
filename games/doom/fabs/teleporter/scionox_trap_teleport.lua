@@ -59,3 +59,33 @@ PREFABS.Teleporter_scionox_trap_teleport_5 =
 
   theme  = "hell",
 }
+
+PREFABS.Joiner_gtd_scionox_trap_teleport_industrial =
+{
+  template = "Teleporter_scionox_trap_teleport",
+  map    = "MAP06",
+
+  kind = "joiner",
+  over = 16,
+
+  shape = "I",
+
+  y_fit = {120,136},
+
+  theme  = "!hell"
+}
+
+PREFABS.Joiner_gtd_scionox_trap_teleport_hell =
+{
+  template = "Teleporter_scionox_trap_teleport",
+  map    = "MAP07",
+
+  kind = "joiner",
+  over = 16,
+
+  shape = "I",
+
+  y_fit = {120,136},
+
+  theme  = "hell"
+}
