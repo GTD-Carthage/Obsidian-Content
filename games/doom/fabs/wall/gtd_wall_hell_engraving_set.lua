@@ -4,6 +4,7 @@ PREFABS.Wall_hell_engraving_plain_1 =
   map = "MAP01",
 
   prob = 50,
+  theme = "hell",
 
   group = "gtd_wall_hell_engraving_1",
 
