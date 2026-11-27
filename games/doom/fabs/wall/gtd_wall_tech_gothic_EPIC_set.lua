@@ -33,7 +33,6 @@ PREFABS.Wall_tech_gothic_inset_engine =
 
   group = "gtd_wall_tech_gothic_inset_engine",
 
-  tex_SD_GTLW1 = "SD_GTLW2",
   tex_GO_GTHW2 = "GO_GTHW3",
   tex_GO_GTHW8 = "GO_GTHW7"
 }
@@ -47,7 +46,6 @@ PREFABS.Wall_tech_gothic_inset_engine_diag =
 
   group = "gtd_wall_tech_gothic_inset_engine",
 
-  tex_SD_GTLW1 = "SD_GTLW2",
   tex_GO_GTHW2 = "GO_GTHW3",
   tex_GO_GTHW8 = "GO_GTHW7"
 }

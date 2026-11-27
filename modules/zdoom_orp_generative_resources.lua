@@ -64,12 +64,7 @@ OBS_RESOURCE_PACK_GENAI_MATERIALS =
 
   -- switches
   SDGTHSW1 = { t="SDGTHSW1", f="GO_GTHF1"},
-  -- light pillars, 64px
-  SD_GTLW1 = { t="SD_GTLW1", f="GO_GTHF1"},
-  SD_GTLW2 = { t="SD_GTLW2", f="GO_GTHF2"},
-  SD_GTLW3 = { t="SD_GTLW3", f="GO_GTHF3"},
-  SD_GTLW4 = { t="SD_GTLW4", f="GO_GTHF4"},
-
+  
   -- lab wood
   SD_TWLW1 = { t="SD_TWLW1", f="G_OTWDF1"},
   SD_TWLW2 = { t="SD_TWLW2", f="G_OTWDF2"},

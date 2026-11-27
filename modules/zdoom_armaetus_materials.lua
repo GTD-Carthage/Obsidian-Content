@@ -1783,6 +1783,8 @@ OBS_RESOURCE_PACK_MATERIALS = {
   GO_GTHF6 = { t="GO_GTHW8", f="GO_GTHF6"},
   GO_GTHF7 = { t="GO_GTHWB", f="GO_GTHF7"},
   GO_GTHF8 = { t="GO_GTHWC", f="GO_GTHF8"},
+  -- light pillars
+  GO_GTLW1 = { t="GO_GTLW1", f="GO_GTHF1"},
 
   -- aztec demonic
   GO_MHZW1 = { t="GO_MHZW1", f="GO_MHZF1"},
@@ -2939,24 +2941,9 @@ brightmap texture GO_GTHW4
   map SDGHW4BR
 }
 
-brightmap texture SD_GTLW1
+brightmap texture GO_GTLW1
 { 
   map SDGTL1BR
-}
-
-brightmap texture SD_GTLW2
-{ 
-  map SDGTL2BR
-}
-
-brightmap texture SD_GTLW3
-{ 
-  map SDGTL3BR
-}
-
-brightmap texture SD_GTLW4
-{ 
-  map SDGTL4BR
 }
 
 brightmap texture SD_TWLW3
