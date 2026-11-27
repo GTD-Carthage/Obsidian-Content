@@ -2424,24 +2424,6 @@ OBS_RESOURCE_PACK_GENAI_THEMES =
   {
     facades =
     {
-      G_OM_WL4 = 25,
-
-      G_OM_WL1 = 18,
-      G_OM_WL3 = 18,
-      G_OM_WLB = 18,
-      G_OM_WLC = 18,
-      G_OM_WLD = 18,
-      G_OM_WLE = 18,
-
-      G_OM_WG1 = 10,
-      G_OM_WG2 = 10,
-      G_OM_WG3 = 10,
-      G_OM_WG4 = 10,
-      G_OM_WG5 = 10,
-      G_OM_WG6 = 10,
-      G_OM_WG7 = 10,
-      G_OM_WG8 = 10,
-
       SDTBNKW1 = 6,
       SDTBNKW2 = 6,
       SDTBNKW3 = 6,
