@@ -225,8 +225,8 @@ function PREFAB_CONTROL.fine_tune_filters()
 
     hell_babylonian = 24,
 
-    urban_bunker = 48,
-    tech_bunker = 48
+    urban_bunker = 72,
+    tech_bunker = 72
   }
 
   local themes =
