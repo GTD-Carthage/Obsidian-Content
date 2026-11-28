@@ -1920,34 +1920,22 @@ function MODDED_GAME_EXTRAS.create_hn_info(self, LEVEL)
       LEVEL.size_consistency .. ") "]]
 
     if LEVEL.is_absurd then
-      shapes_string = shapes_string .. "(ARUL:"
-      if R.absurd_shapes and not table.empty(R.absurd_shapes) then
-        for _,shape in pairs(R.absurd_shapes) do
-          if shape.state == "tried" then
-            shapes_string = shapes_string .. " [N]" .. shape.name
-          elseif shape.state == "applied" then
-            shapes_string = shapes_string .. " [Y]" .. shape.name
-          end
-        end
-      else
-        shapes_string = shapes_string .. "NONE"
-      end
-      shapes_string = shapes_string .. ") "
-
+      shapes_string = shapes_string .. "[ABS] "
       if LEVEL.absurdity_round_robin then
         shapes_string = shapes_string .. "[RRBN] "
       end
     else
-      if R.largest_shape_rule then
-        local largest = R.largest_shape_rule
+      shapes_string = shapes_string .. "[NRML] "
+    end
+    if R.largest_shape_rule then
+      local largest = R.largest_shape_rule
 
-        shapes_string = shapes_string ..
-          "(NRML SHPS: " .. largest.name ..
-          " " .. largest.width .. "x" .. largest.height ..
-          " [" .. largest.area .. "]) "
-      else
-        shapes_string = shapes_string .. "(NRML SHPS: NONE) "
-      end
+      shapes_string = shapes_string ..
+        "(" .. largest.name ..
+        " " .. largest.width .. "x" .. largest.height ..
+        " [" .. largest.area .. "]) "
+    else
+      shapes_string = shapes_string .. "NONE "
     end
 
 

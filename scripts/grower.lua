@@ -3970,33 +3970,20 @@ end
       end
 
       -- Debug shape rule recording
-      if LEVEL.is_absurd then
+      -- shape rule successfully imprinted into this room
+      local rule_w = cur_rule.input.w
+      local rule_h = cur_rule.input.h
+      local rule_area = rule_w * rule_h
 
-        -- Layout Absurdity enabled: record absurd rules
-        if cur_rule.is_absurd then
-          R.absurd_shapes = R.absurd_shapes or {}
-          table.add_unique(R.absurd_shapes, cur_rule.name)
-        end
+      if not R.largest_shape_rule
+      or rule_area > R.largest_shape_rule.area then
 
-      else
-
-        -- Layout Absurdity disabled: record the largest
-        -- shape rule successfully imprinted into this room
-        local rule_w = cur_rule.input.w
-        local rule_h = cur_rule.input.h
-        local rule_area = rule_w * rule_h
-
-        if not R.largest_shape_rule
-        or rule_area > R.largest_shape_rule.area then
-
-          R.largest_shape_rule = {
-            name = cur_rule.name,
-            width = rule_w,
-            height = rule_h,
-            area = rule_area,
-          }
-        end
-
+        R.largest_shape_rule = {
+          name = cur_rule.name,
+          width = rule_w,
+          height = rule_h,
+          area = rule_area,
+        }
       end
     end
 
