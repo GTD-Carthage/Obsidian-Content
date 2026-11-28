@@ -4478,7 +4478,7 @@ GROW_COLONNADE_VAULT_NEW_AREA_CROSS =
   structure =
   {
     "xxx......xxx","xxxA1111Axxx",
-    "xxx......xxx","xxxA#11#Axxx",
+    "xxx......xxx","xxxA1111Axxx",
     "............","AAAA1111AAAA",
     "............","AA#/1111%#AA",
     "............","AAA111111AAA",
@@ -4761,7 +4761,7 @@ GROW_COLONNADE_STRAIGHT_VAULT_FROM_SIDE =
     "......","AAAAAA",
     "......","AAAAAA",
     "......","111111",
-    "xxxx11","xxxx11",
+    "xxxx11","xxxx11"
   }
 },
 
@@ -4772,13 +4772,19 @@ GROW_COLONNADE_STRAIGHT_VAULT_LARGE =
 
   structure =
   {
-    "........","AA1111AA",
-    "........","AA1111AA",
-    "........","AA1111AA",
-    "........","AA1111AA",
-    "........","AA1111AA",
-    "........","AA1111AA",
-    "xxxx11xx","xxxx11xx",
+    "x........x","xAA1111AAx",
+    "..........","/AA1111AA%",
+    "..........","AA#1111#AA",
+    "..........","%AA1111AA/",
+    "x........x","xAA1111AAx",
+    "x........x","xAA1111AAx",
+    "xxxxx11xxx","xxxxx11xxx"
+  },
+
+  diagonals =
+  {
+    ".A","A.",
+    ".A","A."
   }
 },
 
@@ -4789,13 +4795,19 @@ GROW_COLONNADE_STRAIGHT_VAULT_LARGE_LIQUID =
 
   structure =
   {
-    "........","AA1111AA",
-    "........","AA1~~1AA",
-    "........","AA1~~1AA",
-    "........","AA1~~1AA",
-    "........","AA1~~1AA",
-    "........","AA1111AA",
-    "xxxx11xx","xxxx11xx",
+    "x........x","xAA1111AAx",
+    "..........","/AA1~~1AA%",
+    "..........","AA#1~~1#AA",
+    "..........","%AA1~~1AA/",
+    "x........x","xAA1~~1AAx",
+    "x........x","xAA1111AAx",
+    "xxxxx11xxx","xxxxx11xxx"
+  },
+
+  diagonals =
+  {
+    ".A","A.",
+    ".A","A."
   }
 },
 
@@ -4813,7 +4825,7 @@ GROW_COLONNADE_STRAIGHT_VAULT_BELT =
     "..........","AA%/11%/AA",
     "..........","%AA1111AA/",
     "x........x","xAA1111AAx",
-    "xxx11xxxxx","xxx11xxxxx",
+    "xxx11xxxxx","xxx11xxxxx"
   },
 
   diagonals =
@@ -4821,7 +4833,7 @@ GROW_COLONNADE_STRAIGHT_VAULT_BELT =
          ".A","A.",
     "A.",".1","1.",".A",
     "A.",".1","1.",".A",
-         ".A","A.",
+         ".A","A."
   }
 },
 
