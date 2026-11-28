@@ -35,6 +35,14 @@ PREFABS.Window_bay_3 =
   seed_w   = 3
 }
 
+PREFABS.Window_bay_4 =
+{
+  template = "Window_bay_1",
+  map = "MAP04",
+
+  seed_w = 4
+}
+
 PREFABS.Window_bay_diag =
 {
   template = "Window_bay_1",
