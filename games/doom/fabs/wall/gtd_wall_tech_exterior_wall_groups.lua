@@ -851,7 +851,7 @@ PREFABS.Wall_tech_o_goth_arch_fan =
 
   tex_DFAN1 =
   {
-    DFAN = 7,
+    DFAN1 = 7,
     COMPWERD = 1,
   },
 
