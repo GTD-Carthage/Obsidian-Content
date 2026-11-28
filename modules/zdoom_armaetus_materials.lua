@@ -1736,6 +1736,20 @@ OBS_RESOURCE_PACK_MATERIALS = {
   G_IPHFT7 = {t="G_IPHWL9", f="G_IPHFT7"},
   G_IPHFT8 = {t="G_IPHWLB", f="G_IPHFT8"},
 
+  -- bunker theme
+  GO_BNKW1 = {t="GO_BNKW1", f="FLAT18"},
+  GO_BNKW2 = {t="GO_BNKW2", f="FLAT19"},
+  GO_BNKW3 = {t="GO_BNKW3", f="FLOOR0_3"},
+  GO_BNKW4 = {t="GO_BNKW4", f="FLOOR0_6"},
+  GO_BNKW5 = {t="GO_BNKW5", f="SLIME14"},
+  GO_BNKW6 = {t="GO_BNKW6", f="GRATE1"},
+  GO_BNKW7 = {t="GO_BNKW7", f="GRATE2"},
+  GO_BNKW8 = {t="GO_BNKW8", f="GRATE3"},
+  GO_BNKW9 = {t="GO_BNKW9", f="GRATE4"},
+  GO_BNKWA = {t="GO_BNKWA", f="GRATE5"},
+  GO_BNKWB = {t="GO_BNKWB", f="GRATE7"},
+  GO_BNKWC = {t="GO_BNKWC", f="GRATE8"},
+
   -- GOTHIC --
   -- green-ish gothic metal walls with skulls (128px)
   G7_GOGN1 = { t="G7_GOGN1", f="G7_GOGF1"},
@@ -2976,27 +2990,27 @@ brightmap texture G_OTWDW3
   map OBRTWTW3
 }
 
-brightmap texture SDTBNKW7
+brightmap texture GO_BNKW7
 {
   map SDTBKBR7
 }
 
-brightmap texture SDTBNKWA
+brightmap texture GO_BNKWA
 {
   map SDTBKBRA
 }
 
-brightmap texture SDTBNKWB
+brightmap texture GO_BNKWB
 {
   map SDTBKBRB
 }
 
-brightmap texture SDTBNKWC
+brightmap texture GO_BNKWC
 {
   map SDTBKBRC
 }
 
-brightmap texture SDTBNKWE
+brightmap texture GO_BNKWE
 {
   map SDTBKBRE
 }

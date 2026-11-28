@@ -1885,6 +1885,115 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  tech_bunker = --60
+  {
+    env = "building",
+    prob = 60,
+
+    walls =
+    {
+      GO_BNKW1 = 5,
+      GO_BNKW2 = 5,
+      GO_BNKW3 = 5,
+      GO_BNKW4 = 5,
+      GO_BNKW5 = 5,
+      GO_BNKW6 = 5,
+      GO_BNKW8 = 5,
+      GO_BNKW9 = 5,
+      GO_BNKWA = 5
+    },
+
+    floors =
+    {
+      FLAT1 = 5,
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      FLOOR4_8 = 5,
+      SLIME14 = 5,
+
+      DARKF03 = 8,
+      DARKM01 = 8,
+      G09 = 8,
+      G10 = 8,
+      G15 = 8,
+      GMET03 = 6,
+      GMET04 = 6,
+      GRATE1 = 12,
+      GRATE2 = 12,
+      GRATE3 = 12,
+      GRATE4 = 12,
+      GRATE5 = 12,
+      GRATE6 = 12,
+      GRATE7 = 12,
+      GRATE8 = 12,
+      QFLAT09 = 12,
+
+      TILES4 = 12,
+      TILES6 = 12,
+
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+
+      G_OM_FG1 = 10,
+      G_OM_FG2 = 10,
+      G_OM_FT1 = 10,
+      G_OM_FT2 = 10,
+      G_OM_FT3 = 10,
+      G_OM_FT4 = 10,
+      G_OM_FT5 = 10,
+      G_OM_FT8 = 10,
+      G_OM_FT9 = 10,
+      G_OM_FTA = 10
+    },
+
+    ceilings =
+    {
+      FLAT1 = 5,
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      FLOOR4_8 = 5,
+      SLIME14 = 5,
+
+      DARKF03 = 8,
+      DARKM01 = 8,
+      G09 = 8,
+      G10 = 8,
+      G15 = 8,
+      GMET03 = 6,
+      GMET04 = 6,
+      GRATE1 = 12,
+      GRATE2 = 12,
+      GRATE3 = 12,
+      GRATE4 = 12,
+      GRATE5 = 12,
+      GRATE6 = 12,
+      GRATE7 = 12,
+      GRATE8 = 12,
+      QFLAT09 = 12,
+
+      TILES4 = 12,
+      TILES6 = 12,
+
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+
+      G_OM_FG1 = 10,
+      G_OM_FG2 = 10,
+      G_OM_FT1 = 10,
+      G_OM_FT2 = 10,
+      G_OM_FT3 = 10,
+      G_OM_FT4 = 10,
+      G_OM_FT5 = 10,
+      G_OM_FT8 = 10,
+      G_OM_FT9 = 10,
+      G_OM_FTA = 10
+    }
+  },
+
   tech_iStuff = --30
   {
     env = "building",
@@ -5975,6 +6084,115 @@ OBS_RESOURCE_PACK_ROOM_THEMES =
     }
   },
 
+  urban_bunker = --40
+  {
+    env = "building",
+    prob = 40,
+
+    walls =
+    {
+      GO_BNKW1 = 5,
+      GO_BNKW2 = 5,
+      GO_BNKW3 = 5,
+      GO_BNKW4 = 5,
+      GO_BNKW5 = 5,
+      GO_BNKW6 = 5,
+      GO_BNKW8 = 5,
+      GO_BNKW9 = 5,
+      GO_BNKWA = 5
+    },
+
+    floors =
+    {
+      FLAT1 = 5,
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      FLOOR4_8 = 5,
+      SLIME14 = 5,
+
+      DARKF03 = 8,
+      DARKM01 = 8,
+      G09 = 8,
+      G10 = 8,
+      G15 = 8,
+      GMET03 = 6,
+      GMET04 = 6,
+      GRATE1 = 12,
+      GRATE2 = 12,
+      GRATE3 = 12,
+      GRATE4 = 12,
+      GRATE5 = 12,
+      GRATE6 = 12,
+      GRATE7 = 12,
+      GRATE8 = 12,
+      QFLAT09 = 12,
+
+      TILES4 = 12,
+      TILES6 = 12,
+
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+
+      G_OM_FG1 = 10,
+      G_OM_FG2 = 10,
+      G_OM_FT1 = 10,
+      G_OM_FT2 = 10,
+      G_OM_FT3 = 10,
+      G_OM_FT4 = 10,
+      G_OM_FT5 = 10,
+      G_OM_FT8 = 10,
+      G_OM_FT9 = 10,
+      G_OM_FTA = 10
+    },
+
+    ceilings =
+    {
+      FLAT1 = 5,
+      FLAT3 = 5,
+      FLOOR0_3 = 5,
+      FLOOR0_5 = 5,
+      FLOOR4_8 = 5,
+      SLIME14 = 5,
+
+      DARKF03 = 8,
+      DARKM01 = 8,
+      G09 = 8,
+      G10 = 8,
+      G15 = 8,
+      GMET03 = 6,
+      GMET04 = 6,
+      GRATE1 = 12,
+      GRATE2 = 12,
+      GRATE3 = 12,
+      GRATE4 = 12,
+      GRATE5 = 12,
+      GRATE6 = 12,
+      GRATE7 = 12,
+      GRATE8 = 12,
+      QFLAT09 = 12,
+
+      TILES4 = 12,
+      TILES6 = 12,
+
+      OBTSVBF1 = 10,
+      OBTSVBF2 = 10,
+      OBTSVBF3 = 10,
+
+      G_OM_FG1 = 10,
+      G_OM_FG2 = 10,
+      G_OM_FT1 = 10,
+      G_OM_FT2 = 10,
+      G_OM_FT3 = 10,
+      G_OM_FT4 = 10,
+      G_OM_FT5 = 10,
+      G_OM_FT8 = 10,
+      G_OM_FT9 = 10,
+      G_OM_FTA = 10
+    }
+  },
+
   urban_computerCatacombs = --35
   {
     prob = 35,
@@ -7475,6 +7693,16 @@ OBS_RESOURCE_PACK_THEMES =
       G_OVNTW8 = 20,
       G_OVNTWB = 20,
       G_OVNTWC = 20,
+
+      GO_BNKW1 = 15,
+      GO_BNKW2 = 15,
+      GO_BNKW3 = 15,
+      GO_BNKW4 = 15,
+      GO_BNKW5 = 15,
+      GO_BNKW6 = 15,
+      GO_BNKW8 = 15,
+      GO_BNKW9 = 15,
+      GO_BNKWA = 15
     },
 
     fences =
@@ -7996,7 +8224,17 @@ OBS_RESOURCE_PACK_THEMES =
       GO_CACWA = 6,
       GO_CACWB = 6,
       GO_CACWC = 6,
-      GO_CACWD = 6
+      GO_CACWD = 6,
+
+      GO_BNKW1 = 15,
+      GO_BNKW2 = 15,
+      GO_BNKW3 = 15,
+      GO_BNKW4 = 15,
+      GO_BNKW5 = 15,
+      GO_BNKW6 = 15,
+      GO_BNKW8 = 15,
+      GO_BNKW9 = 15,
+      GO_BNKWA = 15,
     },
 
     fences =
